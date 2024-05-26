@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div>
       <DarkNavbar/>
-
+      <p>The editor</p>
       <DarkFooter/>
     </div>
   )
