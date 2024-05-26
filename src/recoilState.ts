@@ -22,12 +22,17 @@ export const projectsState = atom<Project[]>({
     default: []
 });
 
+export const ThemeState = atom<String>({
+    key: 'ThemeState',
+    default: 'dark'
+});
+
 export const experienceState = atom<Experience[]>({
     key: 'experienceState',
     default: []
 });
 
-export const descriptionState = atom<Description[]>({
+export const descriptionState = atom<String>({
     key: 'descriptionState',
-    default: []
+    default: ''
 });
