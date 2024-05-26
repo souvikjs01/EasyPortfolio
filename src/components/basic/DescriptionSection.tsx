@@ -6,9 +6,9 @@ export default function DescriptionSection() {
 
     return (
         <div>
-            <p>{description}</p>
+            {/* <p>{description}</p> */}
 
-            <input type="text" onChange={(e)=>{setDescription(e.target.value)}}/>
+            <input type="text" onChange={(e)=>{setDescription(e.target.value)}} placeholder='write about yourself...' className='w-full outline-none m-2'/>
         </div>
   )
 }

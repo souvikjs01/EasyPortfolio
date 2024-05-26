@@ -5,7 +5,7 @@ import ThemeSelectButton from '@/components/basic/ThemeSelectButton'
 import { RecoilRoot } from 'recoil'
 import DescriptionSection from '@/components/basic/DescriptionSection'
 import Navbar from '@/components/basic/Navbar'
-
+import Footer from '@/components/basic/Footer'
 const page = () => {
   
 
@@ -16,12 +16,11 @@ const page = () => {
       <RecoilRoot>
       <Navbar/>
       
-      <ThemeSelectButton/>
-      <p>The editor</p>
+      
+      
       <DescriptionSection/>
-      {/* <p>{description!}</p> */}
-      {/* <input type="text" onChange={(e)=>{setDescription(e.target.value)}}/> <button>Add Description</button> */}
-      <DarkFooter/>
+      <Footer/>
+      
       </RecoilRoot>
     </div>
     
