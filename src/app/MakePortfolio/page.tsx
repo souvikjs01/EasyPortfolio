@@ -1,27 +1,19 @@
 "use client"
-import DarkFooter from '@/components/Footers/DarkFooter'
 import React from 'react'
-import ThemeSelectButton from '@/components/basic/ThemeSelectButton'
 import { RecoilRoot } from 'recoil'
 import DescriptionSection from '@/components/basic/DescriptionSection'
 import Navbar from '@/components/basic/Navbar'
 import Footer from '@/components/basic/Footer'
+import Home from '@/components/Template1/Home'
 const page = () => {
-  
-
   return (
-    
     <div>
-      
-      <RecoilRoot>
+      {/* <RecoilRoot>
       <Navbar/>
-      
-      
-      
       <DescriptionSection/>
       <Footer/>
-      
-      </RecoilRoot>
+      </RecoilRoot> */}
+      <Home/>
     </div>
     
   )
