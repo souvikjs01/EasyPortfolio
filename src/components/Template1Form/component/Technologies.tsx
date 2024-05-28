@@ -70,28 +70,44 @@ import {
     { skill: 'Communication', icon: <FaComments />, color: '#4C4C4C' },
   ];
   
-  const skillsWithIconsMap = new Map(skillsWithIcons.map(({ skill, icon }) => [skill, icon]));
+const skillsWithIconsMap = new Map(skillsWithIcons.map(({ skill, icon }) => [skill, icon]));
 const iconVariants = (duration: number): Variants => ({
-    initial: { y: -10 },
+    initial: { y: duration%10 },
     animate: {
         y: [10, -10],
         transition: {
-            duration: duration,
+            duration: 1.5,
             ease: 'linear',
             repeat: Infinity,
             repeatType: 'reverse',
         }
     }
 })
-
+interface ListItem {
+    skill: String;
+    color: any;
+    icon: any;
+  }
 export default function Technologies() {
+    const [Technology, setTechnology] = React.useState<ListItem[]>([]);
+    const addSkill = (skill:String, color:any, icon:any) => {
+        setTechnology(prevItems => [...prevItems, {skill: skill, color: color, icon: icon}]);
+        console.log(skill, 'added');
+    }
+    const deleteSkill = (index:any) => {
+        setTechnology((prevItems) => {
+            const updatedItems = [...prevItems];
+            updatedItems[index] = {skill:'deletedItem', color:'deletedItem', icon:'deletedItem'};
+            return updatedItems;
+        })
+    }
   return (
     <div className='border-b border-neutral-800 pb-24'>
         <motion.h1 whileInView={{opacity:1, y:0}} initial={{opacity:0, y: -100}} transition={{duration:1.5}} className='my-20 text-center text-4xl'>Technologies</motion.h1>
         <div className='flex flex-row flex-wrap pb-8'>
             <p className='m-2 p-2 bg-blue-500 bg-clip-text'>Add Skills</p>
         {skillsWithIcons.map(({ skill, icon, color }) => (
-                <div key={skill} className='cursor-pointer hover:bg-purple-900 flex flex-row flex-wrap gap-4 bg-neutral-900 m-1 rounded-lg'>
+                <div onClick={()=>{addSkill(skill, color, icon)}} key={skill} className='cursor-pointer hover:bg-purple-900 flex flex-row flex-wrap gap-4 bg-neutral-900 m-1 rounded-lg'>
                 
                     <div className='flex items-center m-2'>
                     <span style={{color: color, fontSize:'2rem'}}>{icon}</span>
@@ -103,7 +119,29 @@ export default function Technologies() {
         </div>
         
         <p className='m-2 p-2'>Your Skills</p>
-        <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='flex flex-wrap items-center justify-center gap-4'>
+        <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='flex flex-row flex-wrap pb-8'>
+        {Technology.map(({ skill, color, icon }, index) => (
+    skill !== 'deletedItem' ? (
+        <motion.div 
+            key={index}
+            onClick={() => { deleteSkill(index) }} 
+            variants={iconVariants(index)} 
+            initial="initial" 
+            animate="animate" 
+            className="relative cursor-pointer hover:bg-red-500 flex flex-row flex-wrap gap-4 bg-neutral-900 m-2 rounded-lg"
+        >
+            <div className="flex items-center m-3">
+                <span style={{ color: color, fontSize: '2rem' }}>{icon}</span>
+                <span>{skill}</span>
+            </div>
+            <img src="./cross.png" alt="delete" className="absolute top-0 right-0 w-5 h-5" />
+        </motion.div>
+    ) : null
+))}
+
+        </motion.div>
+        
+        {/* <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='flex flex-wrap items-center justify-center gap-4'>
             <motion.div variants={iconVariants(1)} initial='initial' animate='animate' className='relative rounded-2xl border-4 border-neutral-800 p-4'>
                 <RiReactjsLine className='text-7xl text-cyan-400'/>
                 <img src="./cross.png" alt="" className='absolute top-0 right-0 w-5 h-5'/>
@@ -123,7 +161,7 @@ export default function Technologies() {
             <div>
             
             </div>
-        </motion.div>
+        </motion.div> */}
     </div>
   )
 }
