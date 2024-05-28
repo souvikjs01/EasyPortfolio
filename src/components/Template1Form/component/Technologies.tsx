@@ -89,7 +89,7 @@ export default function Technologies() {
     <div className='border-b border-neutral-800 pb-24'>
         <motion.h1 whileInView={{opacity:1, y:0}} initial={{opacity:0, y: -100}} transition={{duration:1.5}} className='my-20 text-center text-4xl'>Technologies</motion.h1>
         <div className='flex flex-row flex-wrap pb-8'>
-            <p className='m-2 p-2'>Add Skills</p>
+            <p className='m-2 p-2 bg-blue-500 bg-clip-text'>Add Skills</p>
         {skillsWithIcons.map(({ skill, icon, color }) => (
                 <div key={skill} className='cursor-pointer hover:bg-purple-900 flex flex-row flex-wrap gap-4 bg-neutral-900 m-1 rounded-lg'>
                 
