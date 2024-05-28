@@ -2,7 +2,7 @@
 import React from "react";
 import { StickyScroll } from "../../ui/sticky-scroll-reveal"
 import { title } from "process";
-
+import { motion } from "framer-motion";
 const Experience = () => {
   const experiences = [
     {
@@ -24,6 +24,7 @@ const Experience = () => {
   ]
   return (
     <div>
+       <motion.h1 whileInView={{opacity:1, y:0}} initial={{opacity:0, y: -100}} transition={{duration:1.5}} className='my-20 text-center text-4xl'>Experience</motion.h1>
       <StickyScroll content={experiences} />
     </div>
   )
