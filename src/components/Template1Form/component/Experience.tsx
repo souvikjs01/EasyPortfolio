@@ -29,18 +29,15 @@ export default function Experience() {
             <div className='mb-8 flex flex-wrap lg:justify-center'>
                 
                 <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='w-full lg:w-1/4'>
-                    Experience: <input value={years} onChange={(e)=>{setyears(e.target.value)}} className='mb-2 text-sm outline outline-blue-500 outline-1 rounded-lg text-neutral-400 w-24 h-8 bg-transparent' placeholder='Eg: 2020-2021'/>
+                    Experience: <input value={years} onChange={(e)=>{setyears(e.target.value)}} className='mb-2 text-sm outline outline-blue-500 outline-1 rounded-lg text-neutral-400 ml-1 pl-1 w-28 h-8 bg-transparent' placeholder='Eg: 2020-2021'/>
                 </motion.div>
                 <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x:100}} transition={{duration:1}} className='w-full max-w-xl lg:w-3/4'>
                     <h6 className='mb-2 font-semibold'>
-                        Designation: <input value={role} onChange={(e)=>{setrole(e.target.value)}} type="text" className='mb-2 text-sm outline outline-blue-500 outline-1 rounded-lg text-neutral-400 w-48 h-8 bg-transparent' placeholder='Eg: Software Engineer'/> - <span className='text-small text-purple-100'>Company: <input value={company} onChange={(e)=>{setcompany(e.target.value)}} type="text" className='mb-2 text-sm outline outline-blue-500 outline-1 rounded-lg text-neutral-400 w-24 h-8 bg-transparent' placeholder='Eg: Amazon'/></span>
+                        Role: <input value={role} onChange={(e)=>{setrole(e.target.value)}} type="text" className='mb-2 ml-1 pl-1 text-sm outline outline-blue-500 outline-1 rounded-lg text-neutral-400 w-48 h-8 bg-transparent' placeholder='Eg: Software Engineer'/> - <span className='text-small text-purple-100'>Company: <input value={company} onChange={(e)=>{setcompany(e.target.value)}} type="text" className='mb-2 ml-1 pl-1 text-sm outline outline-blue-500 outline-1 rounded-lg text-neutral-400 w-24 h-8 bg-transparent' placeholder='Eg: Amazon'/></span>
                     </h6>
-                    <p className='mb-4 text-neutral-400'><textarea value={description} onChange={(e)=>{setdescription(e.target.value)}} className='w-full mb-2 outline outline-blue-500 outline-1 h-32 rounded-lg text-neutral-400 bg-transparent' placeholder='Write a short description about your work experience...'></textarea></p>
-                    Technologies: <input type="text" value={skill} onChange={(e)=>{setskill(e.target.value)}} className='mr-2 w-24 h-8 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent' placeholder='Eg: Kafka'/> <button onClick={addSkill} className='mr-2 bg-purple-900 p-1 rounded-lg hover:bg-purple-500'>Add</button>
-                    {/* <span className='mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'>GraphQL</span>
-                    <span className='mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'>Redis</span>
-                    <span className='mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'>AWS Lambda</span> */}
-                    <button onClick={addExperience} className='bg-green-900 p-1 mx-2 rounded-lg hover:bg-green-700'>Add Experience</button>
+                    <p className='mb-4 text-neutral-400'><textarea value={description} onChange={(e)=>{setdescription(e.target.value)}} className='w-full ml-1 pl-1 mb-2 outline outline-blue-500 outline-1 h-32 rounded-lg text-neutral-400 bg-transparent' placeholder='Write a short description about your work experience...'></textarea></p>
+                    Technologies: <input type="text" value={skill} onChange={(e)=>{setskill(e.target.value)}} className='mr-2 w-24 h-8 ml-1 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent' placeholder='Eg: Kafka'/> <button onClick={addSkill} className='mr-2 bg-purple-900 p-1 rounded-lg hover:bg-purple-500'>Add</button>
+                    
                     <div className='flex flex-row flex-wrap m-3'>
                         
                         {skills.map((key, index)=>(
@@ -51,7 +48,7 @@ export default function Experience() {
                         
                     
                     </div>
-                    
+                    <button onClick={addExperience} className='bg-green-900 p-3 my-2 mx-2 rounded-lg hover:bg-green-700'>Add Experience</button>
                 </motion.div>
             </div>
             {
