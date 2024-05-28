@@ -18,19 +18,19 @@ export default function Hero() {
           <div className="flex flex-col items-center lg:items-start">
             {/* <motion.h1 variants={container(0)} initial="hidden" animate="visible" className="pb-16 text-6xl font-thin tracking-tight lg:mt-12 lg:text-8xl">Selfish Coder</motion.h1> */}
             <motion.div variants={container(0)} initial="hidden" animate="visible" className="pb-16">
-                <input type="text" className="bg-transparent placeholder-cyan-300 h-24 font-thin text-3xl w-full lg:text-6xl outline-none pr-16" style={{ caretColor: 'cyan' }} placeholder="Enter your name..."/>
+                <input type="text" className="bg-transparent placeholder-cyan-300 h-24 font-thin text-2xl w-full lg:text-6xl outlie-none pr-16" style={{ caretColor: 'cyan' }} placeholder="Enter your name..."/>
                 {/* <img src="pen.png" alt="Pen Icon" className="absolute top-0 right-0 w-10 h-10" /> */}
             </motion.div>
 
             <motion.div variants={container(0.5)} initial="hidden" animate="visible" className="pb-12">
-                <input type="text" className="bg-transparent tracking-tight h-24 font-thin text-3xl w-full outline-none pr-16"  placeholder="What you are..."/>
+                <input type="text" className="bg-transparent tracking-tight h-24 font-thin text-2xl lg:text-3xl w-full outline-noe pr-16"  placeholder="What you are..."/>
                 {/* <img src="pen.png" alt="Pen Icon" className="absolute top-0 right-0 w-10 h-10" /> */}
             </motion.div>
 
             {/* <motion.span variants={container(0.5)} initial="hidden" animate="visible" className="bg-gradient-to-r from-pink-300 via-slate-500 to-purple-900 bg-clip-text
             text-3xl tracking-tight text-transparent">Full Stack Developer</motion.span> */}
             <motion.div variants={container(1)} initial="hidden" animate="visible" className="pb-12">
-                <textarea cols={35} className="mt-10 outline-none bg-transparent tracking-tight px-12 lg:px-0 h-24 font-light pr-16 resize-none" placeholder="Write a brief summary..."></textarea>
+                <textarea cols={35} className="mt-10 bg-transparent tracking-tight w-full lg:px-0 h-24 font-light pr-16 resize-none" placeholder="Write a brief summary..."></textarea>
                 {/* <img src="pen.png" alt="Pen Icon" className="absolute top-0 right-0 w-10 h-10" /> */}
             </motion.div>
 
