@@ -24,7 +24,7 @@ export default function Home() {
           <p className="lg:text-6xl text-4xl">Make your <span className="text-pink-500">Portfolio</span> with us...</p>
           <p className="text-neutral-300 max-w-120">Ready to use Portfolio templates for free. Already having lots of projects? Don't have an idea how to showcase them? We got you. <span className="bg-gradient-to-r from-pink-400 via-slate-500 to-purple-500 bg-clip-text tracking-tight text-transparent">You don't need to code for hours now...</span></p>
           <div className="flex flex-row flex-wrap">
-            <Link href="/MakePortfolio" passHref>
+            <Link href="/ChooseTemplate" passHref>
               <button className="bg-gray-100 text-purple-900 m-3 p-3 rounded text-bolder flex flex-row hover:bg-purple-900 hover:text-white min-w-[170px]"><div>Create Portfolio </div><div className="m-1 hover:text-white"><FaArrowRight /></div></button>
             </Link>
             <button className="bg-gray-900 text-white m-3 p-3 rounded text-bold flex flex-row hover:bg-black hover:text-white min-w-[170px]"><div>Visit Portfolios </div><div className="m-1 hover:text-white"><FaArrowRight /></div></button></div>

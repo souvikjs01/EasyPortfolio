@@ -7,7 +7,7 @@ import { FaInstagram } from 'react-icons/fa'
 export default function EasyPortfolioNavbar() {
   return (
     <div>
-      <nav className="fixed w-full p-5 top-0 flex items-center justify-between shadow-md z-10">
+      <nav className="fixed w-full p-5 top-0 flex items-center justify-between shadow-md z-10 zIndex-5">
         <div className="flex flex-shrink-0 items-center">
           <p className='text-pink-500 text-3xl'>EasyPortfolios</p>
         </div>
