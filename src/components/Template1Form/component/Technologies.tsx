@@ -84,13 +84,13 @@ const iconVariants = (duration: number): Variants => ({
     }
 })
 interface ListItem {
-    skill: String;
+    skill: string;
     color: any;
     icon: any;
   }
 export default function Technologies() {
     const [Technology, setTechnology] = React.useState<ListItem[]>([]);
-    const addSkill = (skill:String, color:any, icon:any) => {
+    const addSkill = (skill:string, color:any, icon:any) => {
         setTechnology(prevItems => [...prevItems, {skill: skill, color: color, icon: icon}]);
         console.log(skill, 'added');
     }
