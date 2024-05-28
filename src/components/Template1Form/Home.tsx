@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import Navbar from "./component/Navbar";
 import Hero from "./component/Hero";
 import About from "./component/About";
@@ -7,8 +6,6 @@ import Technologies from "./component/Technologies";
 import Experience from "./component/Experience";
 import Projects from "./component/Projects";
 import Contact from "./component/Contact";
-import Link from "next/link";
-
 function Home() {
   return (
     <div className="overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900">
@@ -24,17 +21,6 @@ function Home() {
         <Projects/>
         <Contact />
       </div>
-      
-      <Link href={'/AddDetails'}>
-      <motion.button
-        className="fixed bottom-6 right-6 bg-cyan-900 text-white py-2 px-4 rounded-full shadow-lg hover:bg-cyan-400 transition-colors"
-        animate={{ y: [0, -10, 0] }}
-        transition={{ repeat: Infinity, repeatType: "loop", duration: 2 }}
-
-      >
-        Use This Template
-      </motion.button>
-      </Link>
     </div>
   );
 }
