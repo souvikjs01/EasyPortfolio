@@ -1,12 +1,12 @@
 "use client"
+import Home2 from '@/components/Template2/Home2'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
-import Home from '@/components/Template1/Home'
 
 const page = () => {
   return (
     <div>
-      <Home/>
+      <Home2/>
     </div>
     
   )

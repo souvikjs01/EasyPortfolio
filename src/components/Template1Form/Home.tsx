@@ -6,6 +6,8 @@ import Technologies from "./component/Technologies";
 import Experience from "./component/Experience";
 import Projects from "./component/Projects";
 import Contact from "./component/Contact";
+import {motion} from 'framer-motion';
+import { Button } from "../ui/moving-border";
 function Home() {
   return (
     <div className="overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900">
@@ -21,6 +23,17 @@ function Home() {
         <Projects/>
         <Contact />
       </div>
+      
+      <motion.div
+        className="fixed bottom-6 right-6 bg-cyan-900 text-white rounded-full shadow-lg hover:bg-cyan-300 transition-colors"
+        animate={{ y: [0, -10, 0] }}
+        transition={{ repeat: Infinity, repeatType: "loop", duration: 2 }}
+
+      >
+        <Button >Publish Portfolio</Button>
+      </motion.div>
+
+      
     </div>
   );
 }
