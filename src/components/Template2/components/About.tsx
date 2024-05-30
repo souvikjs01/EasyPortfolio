@@ -1,6 +1,7 @@
 "use client";
 import { TextGenerateEffect } from "../../ui/text-generate-effect";
 import { Spotlight } from '@/components/ui/Spotlight'
+
 import React from 'react'
 
 const words = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nulla rerum sapiente aliquam consequuntur commodi quod error sit suscipit quidem! Officia reprehenderit esse deserunt blanditiis earum,`;
@@ -21,8 +22,8 @@ const About = () => {
         <div className="text-md py-5 leading-8 dark:text-gray-200 max-w-xl mx-auto md:text-xl">
             <TextGenerateEffect words={words} />
         </div>
-        <div className="mx-auto bg-gradient-to-b from-teal-500 rounded-full w-40 h-40 sm:w-80 sm:h-80 relative overflow-hidden mt-10 sm:mt-20 md:h-96 md:w-96">
-            <img src="#" alt="img" />
+        <div className="mx-auto bg-gradient-to-b from-teal-500 rounded-full w-30 h-30 sm:w-80 sm:h-80 relative overflow-hidden mt-10 sm:mt-20 md:h-96 md:w-96">
+            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="img" />
         </div>
   </div>
   )
