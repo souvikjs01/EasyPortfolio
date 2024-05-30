@@ -105,20 +105,20 @@ export default function Technologies() {
     <div className='border-b border-neutral-800 pb-24'>
         <motion.h1 whileInView={{opacity:1, y:0}} initial={{opacity:0, y: -100}} transition={{duration:1.5}} className='my-20 text-center text-4xl'>Technologies</motion.h1>
         <div className='flex flex-row flex-wrap pb-8'>
-            <p className='m-2 p-2 bg-blue-500 bg-clip-text'>Add Skills</p>
-        {skillsWithIcons.map(({ skill, icon, color }) => (
-                <div onClick={()=>{addSkill(skill, color, icon)}} key={skill} className='cursor-pointer hover:bg-purple-900 flex flex-row flex-wrap gap-4 bg-neutral-900 m-1 rounded-lg'>
-                
-                    <div className='flex items-center m-2'>
-                    <span style={{color: color, fontSize:'2rem'}}>{icon}</span>
-                    <span>{skill}</span>
-                    </div>
-                
-                </div>
-            ))}
+            <motion.p whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='m-2 p-2 bg-blue-500 bg-clip-text'>Add Skills</motion.p>
+            {skillsWithIcons.map(({ skill, icon, color }) => (
+                    <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} onClick={()=>{addSkill(skill, color, icon)}} key={skill} className='cursor-pointer hover:bg-purple-900 flex flex-row flex-wrap gap-4 bg-neutral-900 m-1 rounded-lg'>
+                    
+                        <div className='flex items-center m-2'>
+                        <span style={{color: color, fontSize:'2rem'}}>{icon}</span>
+                        <span>{skill}</span>
+                        </div>
+                    
+                    </motion.div>
+                ))}
         </div>
         
-        <p className='m-2 p-2'>Your Skills</p>
+        <motion.p whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='m-2 p-2'>Your Skills</motion.p>
         <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='flex flex-row flex-wrap pb-8'>
         {Technology.map(({ skill, color, icon }, index) => (
     skill !== 'deletedItem' ? (
