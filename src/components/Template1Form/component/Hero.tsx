@@ -33,6 +33,8 @@ export default function Hero() {
                 <textarea cols={35} className="mt-6 bg-transparent tracking-tight w-full lg:px-0 h-24 font-light pr-16 resize-none" placeholder="Write a brief summary..."></textarea>
                 {/* <img src="pen.png" alt="Pen Icon" className="absolute top-0 right-0 w-10 h-10" /> */}
             </motion.div>
+            
+
 
           </div>
         </div>
