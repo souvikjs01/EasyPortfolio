@@ -37,11 +37,29 @@ export default function Hero() {
           </div>
         </div>
         <div className="w-full lg:w-1/2 lg:p-8">
-            <div className="flex justify-center ">
-                <motion.img initial={{x:100, opacity: 0}} animate={{x:0, opacity:1}} transition={{duration:1, delay:1.2}} src="./blank2.jpg" alt="Image" height={100} width={100} style={{height:'450px', width:'auto', borderRadius:'10px'}}/>
-            </div>
+        <div className="relative flex justify-center cursor-pointer group">
+        {HeroImage()}
+      </div>
         </div>
       </div>
     </div>
   );
 }
+function HeroImage() {
+  return <div className='relative'>
+    <motion.img
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 1, delay: 1.2 }}
+      src="./blank2.jpg"
+      alt="Image"
+      height={100}
+      width={100}
+      style={{ height: '450px', width: 'auto', borderRadius: '10px' }}
+      className='rounded-xl group-hover:opacity-70' />
+    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 rounded-xl transition duration-300">
+      <span className="text-white text-lg opacity-0 group-hover:opacity-100 transition duration-300">Choose Image</span>
+    </div>
+  </div>;
+}
+

@@ -6,6 +6,7 @@ import Technologies from "./component/Technologies";
 import Experience from "./component/Experience";
 import Projects from "./component/Projects";
 import Contact from "./component/Contact";
+import SocialLinks from "./component/SocialLinks";
 import {motion} from 'framer-motion';
 import { Button } from "../ui/moving-border";
 function Home() {
@@ -22,6 +23,7 @@ function Home() {
         <Experience />
         <Projects/>
         <Contact />
+        <SocialLinks />
       </div>
       
       <motion.div
