@@ -25,16 +25,16 @@ const Navbar = () => {
   return (
     <nav className="mb-10 flex items-center justify-between py-6">
       <div className="flex flex-shrink-0 items-center">
-        <p className="text-pink-500 text-3xl">Portfolio.</p>
+        <p className="text-pink-500 mr-1 text-3xl">Portfolio.</p>
       </div>
-      <div className="m-4 flex items-center justify-center gap-1 lg:gap-4 text-2xl">
+      <div className="lg:m-4 mr-1 my-4 flex flex-wrap items-center justify-center lg:gap-4 text-2xl">
         <Popover>
           <div>
             {checkLinkedin && (
               <div className="relative">
                 <PopoverTrigger asChild>
                   <span className='text-white opacity-100 cursor-pointer'>
-                    <FaLinkedin className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
+                    <FaLinkedin className={`lg:h-12 lg:w-12 h-12 w-12 pr-2 my-2 `} />
                   </span>
                 </PopoverTrigger>
                 <div

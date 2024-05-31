@@ -30,7 +30,7 @@ export default function Hero() {
             {/* <motion.span variants={container(0.5)} initial="hidden" animate="visible" className="bg-gradient-to-r from-pink-300 via-slate-500 to-purple-900 bg-clip-text
             text-3xl tracking-tight text-transparent">Full Stack Developer</motion.span> */}
             <motion.div variants={container(1)} initial="hidden" animate="visible" className="pb-12">
-                <textarea cols={35} className="mt-6 bg-transparent tracking-tight w-full lg:px-0 h-24 font-light pr-16 resize-none" placeholder="Write a brief summary..."></textarea>
+                <textarea cols={35} className="mt-6 bg-transparent tracking-tight w-full outline-none h-24 font-light pr-16 resize-none" placeholder="Write a brief summary..."></textarea>
                 {/* <img src="pen.png" alt="Pen Icon" className="absolute top-0 right-0 w-10 h-10" /> */}
             </motion.div>
             
