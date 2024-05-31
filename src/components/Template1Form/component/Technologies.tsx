@@ -1,10 +1,5 @@
-import React from 'react'
-import { RiReactjsLine } from 'react-icons/ri'
-import { TbBrandNextjs } from 'react-icons/tb'
-import { SiMongodb } from 'react-icons/si'
-import { DiRedis } from 'react-icons/di'
-import { FaNodeJs } from 'react-icons/fa'
-import { motion, Variants } from 'framer-motion'
+import React, { useState } from 'react';
+import { motion, Variants } from 'framer-motion';
 import { 
     FaHtml5, 
     FaCss3Alt, 
@@ -12,14 +7,12 @@ import {
     FaReact, 
     FaAngular, 
     FaVuejs, 
-    
     FaBootstrap, 
     FaSass, 
     FaGitAlt, 
     FaDatabase, 
     FaAws, 
     FaDocker, 
-     
     FaCode, 
     FaNetworkWired, 
     FaCogs, 
@@ -30,22 +23,20 @@ import {
     FaTasks, 
     FaBalanceScale, 
     FaComments, 
-    FaUserFriends, 
     FaSearchDollar, 
     FaRocket, 
     FaClipboardCheck, 
     FaHandshake,
-    
-  } from 'react-icons/fa';
-  
-  const skillsWithIcons = [
+} from 'react-icons/fa';
+
+const skillsWithIcons = [
     { skill: 'HTML', icon: <FaHtml5 />, color: '#E44D26' },
     { skill: 'CSS', icon: <FaCss3Alt />, color: '#1572B6' },
     { skill: 'JavaScript', icon: <FaJs />, color: '#F7DF1E' },
     { skill: 'React.js', icon: <FaReact />, color: '#61DAFB' },
     { skill: 'Angular', icon: <FaAngular />, color: '#DD0031' },
     { skill: 'Vue.js', icon: <FaVuejs />, color: '#4FC08D' },
-    { skill: 'Node.js', icon: <FaNodeJs />, color: '#68A063' },
+    { skill: 'Node.js', icon: <FaCode />, color: '#68A063' },
     { skill: 'Express.js', icon: <FaServer />, color: '#000000' },
     { skill: 'Bootstrap', icon: <FaBootstrap />, color: '#7952B3' },
     { skill: 'Sass', icon: <FaSass />, color: '#CC6699' },
@@ -68,11 +59,10 @@ import {
     { skill: 'Agile', icon: <FaBalanceScale />, color: '#0093D7' },
     { skill: 'Problem Solving', icon: <FaSearchDollar />, color: '#EA5A5A' },
     { skill: 'Communication', icon: <FaComments />, color: '#4C4C4C' },
-  ];
-  
-const skillsWithIconsMap = new Map(skillsWithIcons.map(({ skill, icon }) => [skill, icon]));
+];
+
 const iconVariants = (duration: number): Variants => ({
-    initial: { y: duration%10 },
+    initial: { y: duration % 10 },
     animate: {
         y: [10, -10],
         transition: {
@@ -82,87 +72,100 @@ const iconVariants = (duration: number): Variants => ({
             repeatType: 'reverse',
         }
     }
-})
+});
+
 interface ListItem {
     skill: string;
     color: any;
     icon: any;
-  }
+}
+
 export default function Technologies() {
-    const [Technology, setTechnology] = React.useState<ListItem[]>([]);
-    const addSkill = (skill:string, color:any, icon:any) => {
-        setTechnology(prevItems => [...prevItems, {skill: skill, color: color, icon: icon}]);
-        console.log(skill, 'added');
+    const [Technology, setTechnology] = useState<ListItem[]>([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [showMore, setShowMore] = useState(false);
+
+    const addSkill = (skill: string, color: any, icon: any) => {
+        setTechnology(prevItems => [...prevItems, { skill, color, icon }]);
     }
-    const deleteSkill = (index:any) => {
+
+    const deleteSkill = (index: any) => {
         setTechnology((prevItems) => {
             const updatedItems = [...prevItems];
-            updatedItems[index] = {skill:'deletedItem', color:'deletedItem', icon:'deletedItem'};
+            updatedItems[index] = { skill: 'deletedItem', color: 'deletedItem', icon: 'deletedItem' };
             return updatedItems;
         })
     }
-  return (
-    <div className='border-b border-neutral-800 pb-24'>
-        <motion.h1 whileInView={{opacity:1, y:0}} initial={{opacity:0, y: -100}} transition={{duration:1.5}} className='my-20 text-center text-4xl'>Technologies</motion.h1>
-        <div className='flex flex-row flex-wrap pb-8'>
-            <motion.p whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='m-2 p-2 bg-blue-500 bg-clip-text'>Add Skills</motion.p>
-            {skillsWithIcons.map(({ skill, icon, color }) => (
-                    <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} onClick={()=>{addSkill(skill, color, icon)}} key={skill} className='cursor-pointer hover:bg-purple-900 flex flex-row flex-wrap gap-4 bg-neutral-900 m-1 rounded-lg'>
-                    
+
+    const filteredSkills = skillsWithIcons.filter(({ skill }) => 
+        skill.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const displayedSkills = showMore ? filteredSkills : filteredSkills.slice(0, 10);
+
+    return (
+        <div className='border-b border-neutral-800 pb-24'>
+            <motion.h1 whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: -100 }} transition={{ duration: 1.5 }} className='my-20 text-center text-4xl'>Technologies</motion.h1>
+            <div className='flex flex-row flex-wrap pb-8'>
+            <motion.p whileInView={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: -100 }} transition={{ duration: 1.5 }} className='ml-2 my-2 p-2 bg-blue-500 bg-clip-text'>Add Skills -</motion.p>
+                <input 
+                    type='text' 
+                    placeholder='Search skills...' 
+                    value={searchTerm} 
+                    onChange={(e) => setSearchTerm(e.target.value)} 
+                    className='my-2 w-32 h-12 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent' 
+                />
+                
+                {displayedSkills.map(({ skill, icon, color }) => (
+                    <motion.div 
+                        whileInView={{ opacity: 1, x: 0 }} 
+                        initial={{ opacity: 0, x: -100 }} 
+                        transition={{ duration: 1.5 }} 
+                        onClick={() => { addSkill(skill, color, icon) }} 
+                        key={skill} 
+                        className='cursor-pointer hover:bg-purple-900 flex flex-row flex-wrap gap-4 bg-neutral-900 m-1 rounded-lg'
+                    >
                         <div className='flex items-center m-2'>
-                        <span style={{color: color, fontSize:'2rem'}}>{icon}</span>
-                        <span>{skill}</span>
+                            <span style={{ color: color, fontSize: '2rem' }}>{icon}</span>
+                            <span>{skill}</span>
                         </div>
-                    
                     </motion.div>
                 ))}
+                {filteredSkills.length === 0 && (
+                    <button 
+                        onClick={() => { addSkill(searchTerm, '#ffffff', <FaCode />) }} 
+                        className='cursor-pointer hover:bg-cyan-500 bg-cyan-900 m-2 rounded-lg p-2'
+                    >
+                        Add "{searchTerm}"
+                    </button>
+                )}
+            </div>
+            {filteredSkills.length > 10 && (
+                <button onClick={() => setShowMore(!showMore)} className='rounded-lg m-2 p-2 bg-blue-800 '>
+                    {showMore ? 'Show Less' : 'Show More'}
+                </button>
+            )}
+            <motion.p whileInView={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: -100 }} transition={{ duration: 1.5 }} className='m-2 p-2'>Your Skills</motion.p>
+            <motion.div whileInView={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: -100 }} transition={{ duration: 1.5 }} className='flex flex-row flex-wrap pb-8'>
+                {Technology.map(({ skill, color, icon }, index) => (
+                    skill !== 'deletedItem' ? (
+                        <motion.div 
+                            key={index}
+                            onClick={() => { deleteSkill(index) }} 
+                            variants={iconVariants(index)} 
+                            initial="initial" 
+                            animate="animate" 
+                            className="relative cursor-pointer hover:bg-red-500 flex flex-row flex-wrap gap-4 bg-neutral-900 m-2 rounded-lg"
+                        >
+                            <div className="flex items-center m-3">
+                                <span style={{ color: color, fontSize: '2rem' }}>{icon}</span>
+                                <span>{skill}</span>
+                            </div>
+                            <img src="./cross.png" alt="delete" className="absolute top-0 right-0 w-5 h-5" />
+                        </motion.div>
+                    ) : null
+                ))}
+            </motion.div>
         </div>
-        
-        <motion.p whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='m-2 p-2'>Your Skills</motion.p>
-        <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='flex flex-row flex-wrap pb-8'>
-        {Technology.map(({ skill, color, icon }, index) => (
-    skill !== 'deletedItem' ? (
-        <motion.div 
-            key={index}
-            onClick={() => { deleteSkill(index) }} 
-            variants={iconVariants(index)} 
-            initial="initial" 
-            animate="animate" 
-            className="relative cursor-pointer hover:bg-red-500 flex flex-row flex-wrap gap-4 bg-neutral-900 m-2 rounded-lg"
-        >
-            <div className="flex items-center m-3">
-                <span style={{ color: color, fontSize: '2rem' }}>{icon}</span>
-                <span>{skill}</span>
-            </div>
-            <img src="./cross.png" alt="delete" className="absolute top-0 right-0 w-5 h-5" />
-        </motion.div>
-    ) : null
-))}
-
-        </motion.div>
-        
-        
-        {/* <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='flex flex-wrap items-center justify-center gap-4'>
-            <motion.div variants={iconVariants(1)} initial='initial' animate='animate' className='relative rounded-2xl border-4 border-neutral-800 p-4'>
-                <RiReactjsLine className='text-7xl text-cyan-400'/>
-                <img src="./cross.png" alt="" className='absolute top-0 right-0 w-5 h-5'/>
-            </motion.div>
-            <motion.div variants={iconVariants(2)} initial='initial' animate='animate' className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <TbBrandNextjs className='text-7xl '/>
-            </motion.div>
-            <motion.div variants={iconVariants(3)} initial='initial' animate='animate' className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <SiMongodb className='text-7xl text-green-500'/>
-            </motion.div>
-            <motion.div variants={iconVariants(4)} initial='initial' animate='animate' className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <DiRedis className='text-7xl text-red-500'/>
-            </motion.div>
-            <motion.div variants={iconVariants(5)} initial='initial' animate='animate' className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <FaNodeJs className='text-7xl text-green-500'/>
-            </motion.div>
-            <div>
-            
-            </div>
-        </motion.div> */}
-    </div>
-  )
+    )
 }
