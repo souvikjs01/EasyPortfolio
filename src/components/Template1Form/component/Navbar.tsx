@@ -27,14 +27,14 @@ const Navbar = () => {
       <div className="flex flex-shrink-0 items-center">
         <p className="text-pink-500 text-3xl">Portfolio.</p>
       </div>
-      <div className="m-4 flex items-center justify-center gap-4 text-2xl">
+      <div className="m-4 flex items-center justify-center gap-1 lg:gap-4 text-2xl">
         <Popover>
           <div>
             {checkLinkedin && (
               <div className="relative">
                 <PopoverTrigger asChild>
                   <span className='text-white opacity-100 cursor-pointer'>
-                    <FaLinkedin className={`h-12 w-12`} />
+                    <FaLinkedin className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
                   </span>
                 </PopoverTrigger>
                 <div
@@ -48,7 +48,7 @@ const Navbar = () => {
             {!checkLinkedin && (
               <div className="relative">
                 <span className='text-white opacity-20'>
-                  <FaLinkedin className={`h-12 w-12`} />
+                  <FaLinkedin className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
                 </span>
                 <div
                   onClick={() => setCheckLinkedin(!checkLinkedin)}
@@ -68,7 +68,7 @@ const Navbar = () => {
               <div className="relative">
                 <PopoverTrigger asChild>
                   <span className='text-white opacity-100 cursor-pointer'>
-                    <FaGithub className={`h-12 w-12`} />
+                    <FaGithub className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
                   </span>
                 </PopoverTrigger>
                 <div
@@ -82,7 +82,7 @@ const Navbar = () => {
             {!checkGithub && (
               <div className="relative">
                 <span className='text-white opacity-20'>
-                  <FaGithub className={`h-12 w-12`} />
+                  <FaGithub className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
                 </span>
                 <div
                   onClick={() => setCheckGithub(!checkGithub)}
@@ -102,7 +102,7 @@ const Navbar = () => {
               <div className="relative">
                 <PopoverTrigger asChild>
                   <span className='text-white opacity-100 cursor-pointer'>
-                    <FaInstagram className={`h-12 w-12`} />
+                    <FaInstagram className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
                   </span>
                 </PopoverTrigger>
                 <div
@@ -116,7 +116,7 @@ const Navbar = () => {
             {!checkInsta && (
               <div className="relative">
                 <span className='text-white opacity-20'>
-                  <FaInstagram className={`h-12 w-12`} />
+                  <FaInstagram className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
                 </span>
                 <div
                   onClick={() => setCheckInsta(!checkInsta)}
