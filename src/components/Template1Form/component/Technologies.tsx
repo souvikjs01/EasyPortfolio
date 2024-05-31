@@ -141,6 +141,7 @@ export default function Technologies() {
 
         </motion.div>
         
+        
         {/* <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='flex flex-wrap items-center justify-center gap-4'>
             <motion.div variants={iconVariants(1)} initial='initial' animate='animate' className='relative rounded-2xl border-4 border-neutral-800 p-4'>
                 <RiReactjsLine className='text-7xl text-cyan-400'/>

@@ -31,6 +31,8 @@ const Home: React.FC = () => {
                 <EasyPortfolioNavbar />
                 <div className="container mx-auto mt-20 h-screen px-6 w-full flex flex-col gap-6 items-center">
                     <p className="lg:text-xl text-xl">Choose template</p>
+                    {/* <button value=s1><home/></button>
+                    <button value=s2><home2/></button> */}
                     <a href="/MakePortfolio">Classic Animation Template</a>
                     <a href="/MakePortfolio2">Glint Animation Template</a>
                 </div>
