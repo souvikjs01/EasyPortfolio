@@ -48,7 +48,7 @@ const Navbar = () => {
             {!checkLinkedin && (
               <div className="relative">
                 <span className='text-white opacity-20'>
-                  <FaLinkedin className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
+                  <FaLinkedin className={`lg:h-12 lg:w-12 h-12 w-12 pr-2 my-2`} />
                 </span>
                 <div
                   onClick={() => setCheckLinkedin(!checkLinkedin)}
