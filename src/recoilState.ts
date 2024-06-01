@@ -16,6 +16,10 @@ interface Description {
     text: string;
 }
 
+export const num = atom({
+    key:'num',
+    default: 0
+})
 
 export const projectsState = atom<Project[]>({
     key: 'projectsState',

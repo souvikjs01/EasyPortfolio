@@ -4,8 +4,11 @@ import { RecoilRoot } from "recoil";
 import EasyPortfolioNavbar from '@/components/basic/EasyPortfolioNavbar';
 import { FaArrowRight } from "react-icons/fa6";
 import Link from 'next/link';
+// import { useRecoilValue } from "recoil";
+// import { num } from "@/recoilState";
 
 export default function Home() {
+  // const val = useRecoilValue(num);
   return (
     <RecoilRoot>
       <div className="overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900">
@@ -19,7 +22,7 @@ export default function Home() {
          {/* Added padding to ensure content is below the navbar */}
           <EasyPortfolioNavbar/>
         
-        
+        {/* <div className="text-6xl twxt-white">{val}</div> */}
         <div className="container mx-auto h-screen px-8 lg:w-[820px] w-full flex flex-col gap-6 items-center justify-center">
           <p className="lg:text-6xl text-4xl">Make your <span className="text-pink-500">Portfolio</span> with us...</p>
           <p className="text-neutral-300 max-w-120">Ready to use Portfolio templates for free. Already having lots of projects? Don't have an idea how to showcase them? We got you. <span className="bg-gradient-to-r from-pink-400 via-slate-500 to-purple-500 bg-clip-text tracking-tight text-transparent">You don't need to code for hours now...</span></p>
