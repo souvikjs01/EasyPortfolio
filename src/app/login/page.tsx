@@ -17,7 +17,9 @@ function page() {
         redirect: false
       })
       
-      console.log(res);
+      console.log('pp resp',res);
+      router.push('/ChooseTemplate')
+      
       
     } catch (error) {
       console.log(error)
