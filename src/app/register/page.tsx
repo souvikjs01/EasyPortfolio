@@ -6,8 +6,9 @@ import Link from 'next/link';
 import axios from 'axios';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
-
+import { useRouter } from 'next/navigation';
 function page() {
+    const router = useRouter();
     const register = async() => {
         try {
             const reg = await axios.post("/api/users/signup",{
@@ -16,6 +17,8 @@ function page() {
                 password: pass,
             })
             console.log("success");
+            router.push('/login');
+
         } catch (error) {
             console.log(error);
         }
