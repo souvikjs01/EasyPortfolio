@@ -37,6 +37,11 @@ export const temp1Form = atom({
     default: false
 })
 
+export const Name = atom({
+    key: 'Name',
+    default: ''
+})
+
 export const temp2Form = atom({
     key:'temp2Form',
     default: false

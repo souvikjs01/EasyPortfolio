@@ -3,6 +3,9 @@ import { TextGenerateEffect } from "../../ui/text-generate-effect";
 import { Spotlight } from '@/components/ui/Spotlight'
 import React from 'react'
 import { motion } from "framer-motion";
+import { useRecoilState } from "recoil";
+import { Name } from "@/recoilState";
+
 const container = (delay:any) => ({
     hidden: {x: -100, opacity: 0},
     visible: {
@@ -15,14 +18,17 @@ const container = (delay:any) => ({
 const words = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nulla rerum sapiente aliquam consequuntur commodi quod error sit suscipit quidem! Officia reprehenderit esse deserunt blanditiis earum,`;
 
 const About = () => {
+    const [name, setname] = useRecoilState(Name);
+    console.log(name);
   return (
     <div className="text-center p-10 py-10 flex flex-col">
         <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="blue"
         />
+        {/* <p>Name is - {name}</p> */}
         <motion.div variants={container(0)} initial="hidden" animate="visible" className="pb-16">
-            <input type="text" className="bg-transparent placeholder-cyan-300 h-12 font-thin text-xl sm:text-3xl w-full sm:w-[50%] lg:text-3xl outlie-none pr-16" style={{ caretColor: 'cyan' }} placeholder="Enter your name..."/>
+            <input value={name} onChange={(e)=>{setname(e.target.value)}} type="text" className="bg-transparent placeholder-cyan-300 h-12 font-thin text-xl sm:text-3xl w-full sm:w-[50%] lg:text-3xl outlie-none pr-16" style={{ caretColor: 'cyan' }} placeholder="Enter your name..."/>
         </motion.div>
         <motion.div variants={container(0.5)} initial="hidden" animate="visible" className="pb-12">
             <input type="text" className="bg-transparent tracking-tight h-12 font-thin text-xl lg:text-3xl w-full sm:w-[50%] outline-noe pr-16"  placeholder="What's your profession"/>
