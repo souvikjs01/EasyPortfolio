@@ -41,6 +41,7 @@ function HomePage() {
         {/* <button className="bg-blue-500" onClick={()=>setpp(pp+1)}>button value - {pp}</button> */}
         <Navbar />
         <p>{session?.user?.username}</p>
+        <p>{session?.user?.name}</p>
         <Hero />
         <About />
         <Technologies />
