@@ -31,30 +31,30 @@ const Navbar = () => {
         <Popover>
           <div>
             {checkLinkedin && (
-              <div className="relative">
+              <div className="relative mx-1">
                 <PopoverTrigger asChild>
                   <span className='text-white opacity-100 cursor-pointer'>
-                    <FaLinkedin className={`lg:h-12 lg:w-12 h-12 w-12 pr-2 my-2 `} />
+                    <FaLinkedin className={`lg:h-12 lg:w-12 h-8 w-8 pr-2 my-2 `} />
                   </span>
                 </PopoverTrigger>
                 <div
                   onClick={() => setCheckLinkedin(!checkLinkedin)}
                   className="absolute top-0 right-0 cursor-pointer"
                 >
-                  <img src="./cross.png" alt="" className='w-6 h-6' />
+                  <img src="./cross.png" alt="" className='w-4 h-4' />
                 </div>
               </div>
             )}
             {!checkLinkedin && (
-              <div className="relative">
+              <div className="relative mx-1">
                 <span className='text-white opacity-20'>
-                  <FaLinkedin className={`lg:h-12 lg:w-12 h-12 w-12 pr-2 my-2`} />
+                  <FaLinkedin className={`lg:h-12 lg:w-12 h-8 w-8 pr-2 my-2`} />
                 </span>
                 <div
                   onClick={() => setCheckLinkedin(!checkLinkedin)}
                   className="absolute top-0 right-0 cursor-pointer"
                 >
-                  <img src="./tick.png" alt="" className='w-6 h-6' />
+                  <img src="./tick.png" alt="" className='w-4 h-4' />
                 </div>
               </div>
             )}
@@ -65,30 +65,30 @@ const Navbar = () => {
         <Popover>
           <div>
             {checkGithub && (
-              <div className="relative">
+              <div className="relative mx-1">
                 <PopoverTrigger asChild>
                   <span className='text-white opacity-100 cursor-pointer'>
-                    <FaGithub className={`lg:h-12 lg:w-12 h-12 w-12 py-2 ml-2 my-2`} />
+                    <FaGithub className={`lg:h-12 lg:w-12 h-8 w-8 pr-2  my-2`} />
                   </span>
                 </PopoverTrigger>
                 <div
                   onClick={() => setCheckGithub(!checkGithub)}
                   className="absolute top-0 right-0 cursor-pointer"
                 >
-                  <img src="./cross.png" alt="" className='w-6 h-6' />
+                  <img src="./cross.png" alt="" className='w-4 h-4' />
                 </div>
               </div>
             )}
             {!checkGithub && (
-              <div className="relative">
+              <div className="relative mx-1">
                 <span className='text-white opacity-20'>
-                  <FaGithub className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
+                  <FaGithub className={`lg:h-12 lg:w-12 h-8 w-8 pr-2 my-2`} />
                 </span>
                 <div
                   onClick={() => setCheckGithub(!checkGithub)}
                   className="absolute top-0 right-0 cursor-pointer"
                 >
-                  <img src="./tick.png" alt="" className='w-6 h-6' />
+                  <img src="./tick.png" alt="" className='w-4 h-4' />
                 </div>
               </div>
             )}
@@ -99,30 +99,30 @@ const Navbar = () => {
         <Popover>
           <div>
             {checkInsta && (
-              <div className="relative">
+              <div className="relative mx-1">
                 <PopoverTrigger asChild>
                   <span className='text-white opacity-100 cursor-pointer'>
-                    <FaInstagram className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
+                    <FaInstagram className={`lg:h-12 lg:w-12 h-8 w-8 pr-2 my-2`} />
                   </span>
                 </PopoverTrigger>
                 <div
                   onClick={() => setCheckInsta(!checkInsta)}
                   className="absolute top-0 right-0 cursor-pointer"
                 >
-                  <img src="./cross.png" alt="" className='w-6 h-6' />
+                  <img src="./cross.png" alt="" className='w-4 h-4' />
                 </div>
               </div>
             )}
             {!checkInsta && (
-              <div className="relative">
+              <div className="relative mx-1">
                 <span className='text-white opacity-20'>
-                  <FaInstagram className={`lg:h-12 lg:w-12 h-12 w-12 p-2 m-2`} />
+                  <FaInstagram className={`lg:h-12 lg:w-12 h-8 w-8 pr-2 my-2`} />
                 </span>
                 <div
                   onClick={() => setCheckInsta(!checkInsta)}
                   className="absolute top-0 right-0 cursor-pointer"
                 >
-                  <img src="./tick.png" alt="" className='w-6 h-6' />
+                  <img src="./tick.png" alt="" className='w-4 h-4' />
                 </div>
               </div>
             )}
