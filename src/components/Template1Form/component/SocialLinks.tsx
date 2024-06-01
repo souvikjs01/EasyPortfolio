@@ -185,7 +185,7 @@ function SocialLinks() {
             <div className="m-3 text-cyan-700">No handle selected</div>
           )}
         </div>
-        <div className="flex flex-row flex-wrap justify-center text-center items-center">
+        <div className="mb-10 flex flex-row flex-wrap justify-center text-center items-center">
           {linked.map(({ url, name, icon, color }, index) => (
             <a href={url} key={index} target="_blank" rel="noopener noreferrer">
               <div className="m-2 p-2 text-center flex flex-row items-center">

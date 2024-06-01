@@ -23,7 +23,7 @@ function Projects() {
         <div>
             <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='mb-8 flex flex-wrap lg:justify-center'>
                 <div className='w-full lg:w-1/4'>
-                    <Image src="/o1.jpg" alt="" width={200} height={200} className=''/>
+                    <Image src="/o1.jpg" alt="" width={200} height={200} className='rounded-lg'/>
                 </div>
                 <div className='w-full max-w-xl lg:w-3/4'>
                     <h6 className='mb-2 font-semibold'>Project Title: <input onChange={(e) => {
