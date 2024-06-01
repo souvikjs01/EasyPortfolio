@@ -1,6 +1,7 @@
 import { atom } from 'recoil';
 
 
+
 interface Project {
     name: string;
     description: string;
@@ -19,6 +20,26 @@ interface Description {
 export const num = atom({
     key:'num',
     default: 0
+})
+
+export const temp1 = atom({
+    key:'temp1',
+    default: false
+})
+
+export const temp2 = atom({
+    key:'temp2',
+    default: false
+})
+
+export const temp1Form = atom({
+    key:'temp1Form',
+    default: false
+})
+
+export const temp2Form = atom({
+    key:'temp2Form',
+    default: false
 })
 
 export const projectsState = atom<Project[]>({
