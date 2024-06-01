@@ -13,15 +13,23 @@ import { useRecoilState } from "recoil";
 import { temp1 } from "@/recoilState";
 import { temp1Form } from "@/recoilState";
 import Home from "../Template1Form/Home1";
-
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation";
 // import { useRecoilState } from "recoil";
 // import { num } from "@/recoilState";
 
 function HomePage() {
 
-  // const [pp, setpp] = useRecoilState(num);
+  // const [pp, setpp] = useRecoilState(num);\
+  const router = useRouter();
   const [temp, settemp] = useRecoilState(temp1);
   const [tempform, settempform] = useRecoilState(temp1Form);
+  const { data: session} = useSession()
+  const clickAction = () => {
+    if(session?.user) {settempform(!tempform)}
+    else router.push('/login');
+  }
+  console.log(session);
   return (
     <div>
     {!tempform && <div className="overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900">
@@ -32,6 +40,7 @@ function HomePage() {
       <div className="container mx-auto px-8">
         {/* <button className="bg-blue-500" onClick={()=>setpp(pp+1)}>button value - {pp}</button> */}
         <Navbar />
+        {/* <p>{session?.user?.username}</p> */}
         <Hero />
         <About />
         <Technologies />
@@ -45,7 +54,7 @@ function HomePage() {
         className="fixed bottom-6 right-6 bg-cyan-900 text-white py-2 px-4 rounded-full shadow-lg hover:bg-cyan-400 transition-colors"
         animate={{ y: [0, -10, 0] }}
         transition={{ repeat: Infinity, repeatType: "loop", duration: 2 }}
-        onClick={()=>settempform(!tempform)}
+        onClick={clickAction}
       >
         Use This Template
       </motion.button>

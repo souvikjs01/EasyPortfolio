@@ -11,10 +11,18 @@ import { useRecoilState } from "recoil";
 import { temp2 } from "@/recoilState";
 import { temp2Form } from '@/recoilState'
 import Home from '../Template2Form/Home2'
+import { useRouter } from 'next/navigation'
+import { useSession } from "next-auth/react"
 
 const Home2Page = () => {
   const [temp, settemp] = useRecoilState(temp2);
   const [tempform, settempform] = useRecoilState(temp2Form);
+  const { data: session} = useSession()
+  const router = useRouter();
+  const clickAction = () => {
+    if(session?.user) {settempform(!tempform)}
+    else router.push('/login');
+  }
   return (
     <div>
     {!tempform && <div className=' bg-black px-10 text-white'>
@@ -31,7 +39,7 @@ const Home2Page = () => {
         className="fixed bottom-6 right-6 bg-cyan-900 text-white py-2 px-4 rounded-full shadow-lg hover:bg-cyan-400 transition-colors"
         animate={{ y: [0, -10, 0] }}
         transition={{ repeat: Infinity, repeatType: "loop", duration: 2 }}
-        onClick={()=>settempform(!tempform)}
+        onClick={clickAction}
       >
         Use This Template
       </motion.button>
