@@ -10,9 +10,22 @@ import Projects from "./component/Projects";
 import Contact from "../Template1Form/component/Contact";
 import SocialLinks from '../Template1Form/component/SocialLinks';
 import { useRecoilState } from 'recoil';
-import { temp2Form } from '@/recoilState';
+import { temp1Form } from "@/recoilState";
+import { temp2Form } from "@/recoilState";
+import { temp1 } from "@/recoilState";
+import { temp2 } from "@/recoilState";
 const Home = () => {
-  const [X, setX] = useRecoilState(temp2Form);
+  const [X, setX] = useRecoilState(temp1Form);
+  const [Y, setY] = useRecoilState(temp2Form);
+  const [Z, setZ] = useRecoilState(temp1);
+  const [a, seta] = useRecoilState(temp2);
+  const changeTemplate = () => {
+    setX(!X);
+    setY(!Y);
+    setZ(!Z);
+    seta(!a);
+  }
+  
   return (
     <div className="overflow-x-hidden text-neutral-300 bg-black">
       <div className="fixed top-0 -z-10 h-full w-full">
@@ -28,7 +41,16 @@ const Home = () => {
           <Contact/>
           <SocialLinks/>
         </div>
-          
+        <motion.div
+        className="fixed bottom-6 left-6 bg-cyan-900 text-white rounded-full shadow-lg hover:bg-cyan-300 transition-colors"
+        animate={{ y: [0, -10, 0] }}
+        transition={{ repeat: Infinity, repeatType: "loop", duration: 2 }}
+
+      >
+        <button onClick={changeTemplate} className="rounded-lg bg-cyan-700 hover:bg-cyan-400 p-2">
+        Switch to Classic template
+        </button>
+      </motion.div>
          <motion.div
             className="fixed bottom-6 right-6 bg-cyan-900 text-white rounded-full shadow-lg hover:bg-cyan-300 transition-colors"
             animate={{ y: [0, -10, 0] }}
