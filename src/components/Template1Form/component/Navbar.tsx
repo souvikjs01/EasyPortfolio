@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="flex flex-shrink-0 items-center">
         <p className="text-pink-500 mr-1 text-3xl">Portfolio.</p>
       </div>
-      <div className="lg:m-4 bg-blue-500 my-4 flex flex-wrap items-center justify-center lg:gap-4 text-2xl">
+      <div className="lg:m-4 my-4 flex flex-wrap items-center justify-center lg:gap-4 text-2xl">
         <Popover>
           <div>
             {checkLinkedin && (
