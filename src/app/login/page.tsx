@@ -1,40 +1,70 @@
 "use client"
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-function page() {
-  const [email, setemail] = useState("");
-  const [pass, setpass] = useState("");
+function Page() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
-  const loginuser = async() => {
+
+  const loginUser = async () => {
     try {
-      const res = await signIn("credentials",{
+      const res = await signIn("credentials", {
         email: email,
-        password: pass,
+        password: password,
         redirect: false
-      })
-      
-      console.log('pp resp',res);
-      router.push('/ChooseTemplate')
-      
-      
+      });
+
+      console.log('pp resp', res);
+      if (res?.ok) {
+        router.push('/ChooseTemplate');
+      } else {
+        // Handle login failure
+        console.error('Login failed');
+      }
     } catch (error) {
-      console.log(error)
+      console.error(error);
     }
-  }
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+      const res = await signIn("google", { redirect: false });
+      if (res?.ok) {
+        router.push('/ChooseTemplate');
+      } else {
+        // Handle Google sign-in failure
+        console.error('Google sign-in failed');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className='mt-8 flex flex-col justify-center items-center content-center'>
-      <p className='text-3xl m-2'>Login </p>
-      <input type="text" className='m-2 rounded h-8 text-black' value={email} placeholder='email' onChange={(e)=>setemail(e.target.value)}/>
-      <input type="text" className='m-2 rounded h-8 text-black' value={pass} placeholder='password' onChange={(e)=>setpass(e.target.value)}/>
-      <button className='bg-blue-500 rounded m-3 p-2' onClick={loginuser}>Login User</button>
-      <button className='bg-gray-500 rounded m-3 p-2' onClick={()=>signIn("google")}>Signin with Google</button>
-      <Link href="/register"><p className='text-blue-300' >Register</p></Link>
+      <p className='text-3xl m-2'>Login</p>
+      <input
+        type="text"
+        className='m-2 rounded h-8 text-black'
+        value={email}
+        placeholder='email'
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        className='m-2 rounded h-8 text-black'
+        value={password}
+        placeholder='password'
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button className='bg-blue-500 rounded m-3 p-2' onClick={loginUser}>Login User</button>
+      <button className='bg-gray-500 rounded m-3 p-2' onClick={signInWithGoogle}>Sign in with Google</button>
+      <Link href="/register"><p className='text-blue-300'>Register</p></Link>
     </div>
-  )
+  );
 }
 
-export default page
+export default Page;
