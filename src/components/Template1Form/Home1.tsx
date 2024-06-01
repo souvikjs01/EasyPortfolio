@@ -45,13 +45,13 @@ function Home() {
       </div>
       
       <motion.div
-        className="fixed bottom-6 left-6 bg-cyan-900 text-white rounded-full shadow-lg hover:bg-cyan-300 transition-colors"
+        className="fixed top-36 left-6 bg-cyan-900 text-white rounded-full shadow-lg hover:bg-cyan-300 transition-colors"
         animate={{ y: [0, -10, 0] }}
         transition={{ repeat: Infinity, repeatType: "loop", duration: 2 }}
 
       >
         <button onClick={changeTemplate} className="rounded-lg bg-cyan-700 hover:bg-cyan-400 p-2">
-        Switch to Glint template
+        Switch
         </button>
       </motion.div>
 
