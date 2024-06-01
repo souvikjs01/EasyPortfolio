@@ -42,14 +42,14 @@ const Home = () => {
           <SocialLinks/>
         </div>
         <motion.div
-        className="fixed top-36 left-6 bg-cyan-900 text-white rounded-full shadow-lg hover:bg-cyan-300 transition-colors"
-        animate={{ y: [0, 10, 0] }}
+        className="fixed bottom-6 left-6 bg-cyan-900 text-white rounded-full shadow-lg hover:bg-cyan-300 transition-colors"
+        animate={{ y: [0, -10, 0] }}
         transition={{ repeat: Infinity, repeatType: "loop", duration: 2 }}
 
       >
-        <button onClick={changeTemplate} className="rounded-lg bg-cyan-700 hover:bg-cyan-400 p-2">
-        Switch
-        </button>
+        <Button onClick={changeTemplate} className="rounded-lg bg-black p-2">
+        Switch theme
+        </Button>
       </motion.div>
          <motion.div
             className="fixed bottom-6 right-6 bg-cyan-900 text-white rounded-full shadow-lg hover:bg-cyan-300 transition-colors"
