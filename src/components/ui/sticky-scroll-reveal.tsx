@@ -11,6 +11,9 @@ export const StickyScroll = ({
   content: {
     title: string;
     description: string;
+    year: string;
+    techstack: string;
+    company: string
     content?: React.ReactNode | any;
   }[];
   contentClassName?: string;
@@ -80,9 +83,42 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-kg text-slate-300 max-w-sm mt-10"
+                className="text-kg text-slate-200 max-w-sm mt-4"
               >
                 {item.description}
+              </motion.p>
+              <motion.p
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: activeCard === index ? 1 : 0.3,
+                }}
+                className="text-kg text-slate-400 text-sm max-w-sm mt-2"
+              >
+                {item.techstack}
+              </motion.p>
+              <motion.p
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: activeCard === index ? 1 : 0.3,
+                }}
+                className="text-kg text-slate-400 text-sm max-w-sm mt-2"
+              >
+                {item.year}
+              </motion.p>
+              <motion.p
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: activeCard === index ? 1 : 0.3,
+                }}
+                className="text-kg text-slate-400 text-sm max-w-sm mt-2"
+              >
+                {item.company}
               </motion.p>
             </div>
           ))}
