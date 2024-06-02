@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { cn } from "../../utils/cn";
 import React, { useEffect, useState } from "react";
 
@@ -11,9 +12,11 @@ export const InfiniteMovingCards = ({
   className,
 }: {
   items: {
-    quote: string;
-    name: string;
-    title: string;
+    description: string;
+    project_title: string;
+    tech_stacks: string;
+    deploy_link: string;
+    github_link: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -92,24 +95,40 @@ export const InfiniteMovingCards = ({
               background:
                 "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
             }}
-            key={item.name}
+            key={item.description}
           >
             <blockquote>
               <div
                 aria-hidden="true"
                 className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
               ></div>
-              <span className=" relative z-20 text-sm leading-[1.6] text-gray-100 font-normal">
-                {item.quote}
-              </span>
+                <div>
+                    <span className=" text-xl leading-[1.6] text-gray-100 font-bold">
+                      {item.project_title}
+                    </span>
+                </div>
+                <div>
+                  <span className=" relative z-20 text-sm leading-[1.6] text-gray-400 font-normal">
+                    {item.description}
+                  </span>
+                </div>
+
               <div className="relative z-20 mt-6 flex flex-row items-center">
                 <span className="flex flex-col gap-1">
+                 
                   <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
-                    {item.name}
+                    {item.tech_stacks}
                   </span>
-                  <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
-                    {item.title}
-                  </span>
+                  <Link href={item.deploy_link}>
+                    <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
+                      Deploy_link
+                    </span>
+                  </Link>
+                  <Link href={item.github_link}>
+                    <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
+                      Github_link
+                    </span>
+                  </Link>
                 </span>
               </div>
             </blockquote>

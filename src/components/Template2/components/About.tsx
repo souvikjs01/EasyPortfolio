@@ -20,7 +20,7 @@ const About = () => {
             Fullstack Developer.
         </h3>
         <div className="text-md py-5 leading-8 dark:text-gray-200 max-w-xl mx-auto md:text-xl">
-            <TextGenerateEffect words={words} />
+            <TextGenerateEffect words={words} className=" text-sm font-serif font-normal opacity-70"/>
         </div>
         <div className="mx-auto bg-gradient-to-b from-teal-500 rounded-full w-30 h-30 sm:w-80 sm:h-80 relative overflow-hidden mt-10 sm:mt-20 md:h-96 md:w-96">
             <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="img" />
