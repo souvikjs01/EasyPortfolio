@@ -1,33 +1,42 @@
 "use client"
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards'
-import { title } from 'process'
 import React from 'react'
 
 const projects = [
     {
-        quote: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, exercitationem fuga fugit earum excepturi, alias harum officiis minus voluptatem nobis, facere aperiam corporis enim quisquam recusandae assumenda quia tenetur omnis.",
-        name: "Alex",
-        title: "Automatic portfolio builder" 
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, exercitationem fuga fugit earum excepturi, alias harum officiis minus voluptatem nobis, facere aperiam corporis enim quisquam recusandae assumenda quia tenetur omnis.",
+        project_title: "easy portfolio",
+        tech_stacks: "React, Next, Recoil, Tailwind" ,
+        deploy_link: "https://twitter.com",
+        github_link: "https://google.com"
     },
     {
-        quote: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, exercitationem fuga fugit earum excepturi, alias harum officiis minus voluptatem nobis, facere aperiam corporis enim quisquam recusandae assumenda quia tenetur omnis.",
-        name: "Alex",
-        title: "Automatic portfolio builder" 
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, exercitationem fuga fugit earum excepturi, alias harum officiis minus voluptatem nobis, facere aperiam corporis enim quisquam recusandae assumenda quia tenetur omnis.",
+        project_title: "easy portfolio",
+        tech_stacks: "React, Next, Recoil, Tailwind",
+        deploy_link: "https://twitter.com",
+        github_link: "https://google.com"
     },
     {
-        quote: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, exercitationem fuga fugit earum excepturi, alias harum officiis minus voluptatem nobis, facere aperiam corporis enim quisquam recusandae assumenda quia tenetur omnis.",
-        name: "Alex",
-        title: "Automatic portfolio builder" 
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, exercitationem fuga fugit earum excepturi, alias harum officiis minus voluptatem nobis, facere aperiam corporis enim quisquam recusandae assumenda quia tenetur omnis.",
+        project_title: "easy portfolio",
+        tech_stacks: "React, Next, Recoil, Tailwind" ,
+        deploy_link: "https://twitter.com",
+        github_link: "https://google.com"
     },
     {
-        quote: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, exercitationem fuga fugit earum excepturi, alias harum officiis minus voluptatem nobis, facere aperiam corporis enim quisquam recusandae assumenda quia tenetur omnis.",
-        name: "Alex",
-        title: "Automatic portfolio builder" 
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, exercitationem fuga fugit earum excepturi, alias harum officiis minus voluptatem nobis, facere aperiam corporis enim quisquam recusandae assumenda quia tenetur omnis.",
+      project_title: "easy portfolio",
+      tech_stacks: "React, Next, Recoil, Tailwind" ,
+      deploy_link: "https://twitter.com",
+      github_link: "https://google.com" 
     },
     {
-        quote: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, exercitationem fuga fugit earum excepturi, alias harum officiis minus voluptatem nobis, facere aperiam corporis enim quisquam recusandae assumenda quia tenetur omnis.",
-        name: "Alex",
-        title: "Automatic portfolio builder" 
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, exercitationem fuga fugit earum excepturi, alias harum officiis minus voluptatem nobis, facere aperiam corporis enim quisquam recusandae assumenda quia tenetur omnis.",
+      project_title: "easy portfolio",
+      tech_stacks: "React, Next, Recoil, Tailwind" ,
+      deploy_link: "https://twitter.com",
+      github_link: "https://google.com"
     },
 ]
 const Project = () => {
