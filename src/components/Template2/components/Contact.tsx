@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <div className=' flex justify-center items-center flex-col bg-black opacity-80 pb-10'>
       <div>
-        <p className=' text-3xl p-6'>Contact</p>
+        <p className=' text-3xl p-6'>Contact </p>
       </div>
       <div>
         <p className=' text-lg'>New-town, kolkata</p>

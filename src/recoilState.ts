@@ -68,6 +68,34 @@ export const Technology_ = atom<ListItem[]>({
     default: []
 })
 
+// Address
+export const Address = atom({
+    key: 'Address',
+    default: ''
+})
+export const Email = atom({
+    key: 'Email',
+    default: ''
+})
+export const Mobile = atom({
+    key: 'Mobile',
+    default: ''
+})
+
+// Social Links
+interface SocialMediaLinked {
+    url: string;
+    name: string;
+    icon: JSX.Element;
+    color: string;
+}
+
+
+export const SocialHandles = atom<SocialMediaLinked[]>({
+    key: 'SocialHandles',
+    default: []
+})
+
 
 
 

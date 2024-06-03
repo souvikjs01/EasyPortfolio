@@ -34,6 +34,8 @@ import {
 } from "react-icons/fa";
 import { SiLeetcode, SiCodechef, SiCodeforces, SiGeeksforgeeks } from "react-icons/si";
 import { Variants, motion } from 'framer-motion';
+import { useRecoilState } from "recoil";
+import { SocialHandles } from "@/recoilState";
 
 interface SocialMediaHandle {
   name: string;
@@ -62,9 +64,10 @@ const iconVariants = (duration: number): Variants => ({
 });
 
 function SocialLinks() {
+  
   const [searchTerm, setSearchTerm] = useState("");
   const [selected, setSelected] = useState<SocialMediaHandle | null>(null);
-  const [linked, setLinked] = useState<SocialMediaLinked[]>([]);
+  const [linked, setLinked] = useRecoilState(SocialHandles);
   const [url, setUrl] = useState("");
   const [showAll, setShowAll] = useState(false);
 
