@@ -60,6 +60,8 @@ const skillsWithIcons = [
     { skill: 'Problem Solving', icon: <FaSearchDollar />, color: '#EA5A5A' },
     { skill: 'Communication', icon: <FaComments />, color: '#4C4C4C' },
 ];
+import {Technology_} from '@/recoilState'
+import { useRecoilState } from 'recoil';
 
 const iconVariants = (duration: number): Variants => ({
     initial: { y: duration % 10 },
@@ -81,7 +83,7 @@ interface ListItem {
 }
 
 export default function Technologies() {
-    const [Technology, setTechnology] = useState<ListItem[]>([]);
+    const [Technology, setTechnology] = useRecoilState<ListItem[]>(Technology_);
     const [searchTerm, setSearchTerm] = useState('');
     const [showMore, setShowMore] = useState(false);
 

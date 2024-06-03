@@ -37,10 +37,39 @@ export const temp1Form = atom({
     default: false
 })
 
+// Form fields...
+
+// Hero 
+
 export const Name = atom({
     key: 'Name',
     default: ''
 })
+
+export const WhatYouAre = atom({
+    key: 'WhatYouAre',
+    default: ''
+})
+
+export const Summary = atom({
+    key: 'Summary',
+    default: ''
+})
+
+// Technologies 
+interface ListItem {
+    skill: string;
+    color: any;
+    icon: any;
+}
+
+export const Technology_ = atom<ListItem[]>({
+    key: 'Technology_',
+    default: []
+})
+
+
+
 
 export const temp2Form = atom({
     key:'temp2Form',
