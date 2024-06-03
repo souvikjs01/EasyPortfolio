@@ -126,16 +126,18 @@ export const StickyScroll = ({
         </div>
       </div>
       <motion.div
-        animate={{
-          background: linearGradients[activeCard % linearGradients.length],
-        }}
-        className={cn(
-          "hidden lg:block h-60 w-80 rounded-md bg-white sticky top-10 overflow-hidden",
-          contentClassName
-        )}
-      >
-        {content[activeCard].content ?? null}
-      </motion.div>
+  animate={{
+    background: linearGradients[activeCard % linearGradients.length],
+  }}
+  className={cn(
+    "hidden lg:flex items-center justify-center h-60 w-80 rounded-md bg-white sticky top-10 overflow-hidden",
+    contentClassName
+  )}
+>
+  <p className="text-bolder text-4xl">{content[activeCard].company!}</p>
+  {/* {content[activeCard].content ?? null} */}
+</motion.div>
+
     </motion.div>
   );
 };
