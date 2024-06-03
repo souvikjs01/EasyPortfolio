@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import {motion} from 'framer-motion'
-
+import {Button} from '@/components/ui/moving-border'
 export default function About() {
   return (
     <div className='border-b border-neutral-900 pb-4'>
@@ -20,11 +20,11 @@ export default function About() {
 
                 
             </motion.div>
-            <motion.div whileInView={{opacity:1, x:0}} initial={{opacity: 0, x:100}} transition={{duration: 0.5}} className='pb-12'>
+            <motion.div whileInView={{opacity:1, x:0}} initial={{opacity: 0, x:100}} transition={{duration: 0.5}} className='pb-12 flex flex-col'>
             
-                <textarea cols={30} className="mt-10 outline-none bg-transparent tracking-tight h-24 font-light pr-16 resize-none" placeholder="Write about yourself..."></textarea>
+                <textarea cols={30} className="mt-10 mb-5 outline-none bg-transparent tracking-tight h-24 font-light pr-16 resize-none" placeholder="Write about yourself..."></textarea>
                 {/* <img src="pen.png" alt="Pen Icon" className="absolute top-0 right-0 w-10 h-10" /> */}
-            
+                <Button className='bg-black '>Resume</Button>
             </motion.div>
         </div>
     </div>

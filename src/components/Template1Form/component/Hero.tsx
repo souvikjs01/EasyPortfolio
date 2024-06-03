@@ -26,7 +26,8 @@ export default function Hero() {
             </motion.div>
 
             <motion.div variants={container(0.5)} initial="hidden" animate="visible" className="pb-4">
-                <input type="text" className="bg-transparent tracking-tight h-24 font-thin text-2xl lg:text-3xl w-full outline-noe pr-16"  placeholder="What you are..."/>
+                <input type="text" className=" bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-slate-500 to-violet-500
+            text-3xl tracking-tight h-24 placeholder:text-2xl lg:text-3xl w-full outline-noe pr-16" style={{ caretColor: 'cyan' }}  placeholder="What you are..."/>
                 {/* <img src="pen.png" alt="Pen Icon" className="absolute top-0 right-0 w-10 h-10" /> */}
             </motion.div>
 
