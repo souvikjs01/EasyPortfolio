@@ -3,6 +3,8 @@ import Image from 'next/image'
 import {motion} from 'framer-motion'
 import { useState } from 'react'
 import { LuLink } from "react-icons/lu";
+import { useRecoilState } from 'recoil';
+import { projectState } from '@/recoilState';
 
 interface ProjectItem {
     projectName: string;
@@ -16,7 +18,7 @@ function Projects() {
     const [description, setdescription] = useState('');
     const [technologies, settechnologies] = useState<string[]>([]);
     const [tech, settech] = useState('');
-    const [Projects, setProjects] = useState<ProjectItem[]>([]);
+    const [Projects, setProjects] = useRecoilState(projectState);
     const [github, setgithub] = useState('');
     const [hosted, sethosted] = useState('');
 

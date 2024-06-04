@@ -1,5 +1,8 @@
 import React from 'react'
 import {motion} from 'framer-motion'
+import { experienceState } from '@/recoilState';
+import { useRecoilState } from 'recoil';
+
 interface ExperienceItem {
     years: string;
     role: string;
@@ -7,6 +10,7 @@ interface ExperienceItem {
     description: string;
     stack: string[];
   }
+
 export default function Experience() {
     const [skills, setskills] = React.useState<string[]>([]);
     const [skill, setskill] = React.useState('');
@@ -14,7 +18,7 @@ export default function Experience() {
     const [role, setrole] = React.useState('');
     const [company, setcompany] = React.useState('');
     const [description, setdescription] = React.useState('');
-    const [experience, setexperience] = React.useState<ExperienceItem[]>([]);
+    const [experience, setexperience] = useRecoilState(experienceState);
     const addExperience = () => {
         setexperience(prevItems=>[...prevItems, {years: years, role: role, company: company, description: description, stack:skills}]);
         setskills([]);

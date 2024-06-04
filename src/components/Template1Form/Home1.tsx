@@ -11,22 +11,51 @@ import Contact from "./component/Contact";
 import SocialLinks from "./component/SocialLinks";
 import {motion} from 'framer-motion';
 import { Button } from "../ui/moving-border";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { temp1Form } from "@/recoilState";
 import { temp2Form } from "@/recoilState";
 import { temp1 } from "@/recoilState";
 import { temp2 } from "@/recoilState";
+// importing the profile information
+import {Name, WhatYouAre, Summary, Resume, AboutText, Technology_, Address, Email, Mobile, SocialHandles, experienceState, projectState} from '@/recoilState';
+import axios from "axios";
+
 function Home() {
   const [X, setX] = useRecoilState(temp1Form);
   const [Y, setY] = useRecoilState(temp2Form);
   const [Z, setZ] = useRecoilState(temp1);
   const [a, seta] = useRecoilState(temp2);
+  const NameVal = useRecoilValue(Name);
+  const WhatYouAreVal = useRecoilValue(WhatYouAre);
+  const SummaryVal = useRecoilValue(Summary);
+  const ResumeVal = useRecoilValue(Resume);
+  const AboutTextVal = useRecoilValue(AboutText);
+  const Technology_Val = useRecoilValue(Technology_);
+  const AddressVal = useRecoilValue(Address);
+  const EmailVal = useRecoilValue(Email);
+  const MobileVal = useRecoilValue(Mobile);
+  const SocialHandlesVal = useRecoilValue(SocialHandles);
+  const projectStateVal = useRecoilValue(projectState);
+  const experienceStateVal = useRecoilValue(experienceState);
   const changeTemplate = () => {
     setX(!X);
     setY(!Y);
     setZ(!Z);
     seta(!a);
   }
+  const PublishPortfolio = async () => {
+    try {
+      console.log('upto this');
+      const portfolio = await axios.post('../../api/users/uploadInformation', {
+        username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
+      });
+      console.log('uploaded', portfolio)
+    } catch (error) {
+      console.log('error', error);
+    }
+    
+  }
+
   return (
     <div className="overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900">
       <div className="fixed top-0 -z-10 h-full w-full">
@@ -59,7 +88,7 @@ function Home() {
         className="fixed bottom-6 right-6 bg-cyan-900 text-white rounded-full shadow-lg hover:bg-cyan-300 transition-colors"
         animate={{ y: [0, -10, 0] }}
         transition={{ repeat: Infinity, repeatType: "loop", duration: 2 }}
-
+        onClick={PublishPortfolio}
       >
         <Button >Publish Portfolio</Button>
       </motion.div>

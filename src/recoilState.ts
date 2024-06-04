@@ -6,7 +6,15 @@ interface Project {
     name: string;
     description: string;
 }
-
+// Project Type
+interface ProjectItem {
+    projectName: string;
+    description: string;
+    technologies: string[];
+    github: string;
+    hosted: string;
+}
+// Experience Type
 interface Experience {
     company: string;
     role: string;
@@ -53,6 +61,16 @@ export const WhatYouAre = atom({
 
 export const Summary = atom({
     key: 'Summary',
+    default: ''
+})
+
+export const Resume = atom({
+    key:'Resume',
+    default: ''
+})
+
+export const AboutText = atom({
+    key:'AboutText',
     default: ''
 })
 
@@ -104,17 +122,28 @@ export const temp2Form = atom({
     default: false
 })
 
-export const projectsState = atom<Project[]>({
-    key: 'projectsState',
-    default: []
-});
+// export const projectsState = atom<Project[]>({
+//     key: 'projectsState',
+//     default: []
+// });
 
 export const ThemeState = atom<String>({
     key: 'ThemeState',
     default: 'dark'
 });
+interface ExperienceItem {
+    years: string;
+    role: string;
+    company: string;
+    description: string;
+    stack: string[];
+  }
+export const projectState = atom<ProjectItem[]>({
+    key: 'projectState',
+    default: []
+});
 
-export const experienceState = atom<Experience[]>({
+export const experienceState = atom<ExperienceItem[]>({
     key: 'experienceState',
     default: []
 });
