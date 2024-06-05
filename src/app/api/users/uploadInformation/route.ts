@@ -38,9 +38,12 @@ export async function PUT(request: NextRequest) {
 
     try {
         const reqBody = await request.json();
+        console.log("request body ================== ", reqBody);
         const {username} = reqBody;
+        console.log("username is .......", username)
         const PortfolioData = await Data.find({username: username});
         //console.log(member);
+        console.log(PortfolioData);
         return NextResponse.json({
             PortfolioData
         })
