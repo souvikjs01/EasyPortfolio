@@ -70,7 +70,7 @@ interface PortfolioDataVal {
   stack?: string[];
 }
 
-const UserProfile: React.FC<PortfolioDataVal> = () => {
+const UserProfile: React.FC = () => {
   const { id: name } = useParams();
   const [portfolioDataVal, setPortfolioDataVal] = useState<PortfolioDataVal | null>(null);
   const data:HomePageStruct = {
