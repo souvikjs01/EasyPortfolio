@@ -48,14 +48,14 @@ function Home() {
   }
   const PublishPortfolio = async () => {
     try {
-      console.log('upto this');
-      console.log({
-        template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
-     })
+    //   console.log('upto this');
+    //   console.log({
+    //     template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
+    //  })
       const portfolio = await axios.post('../../api/users/uploadInformation', {
          template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
       });
-      console.log('uploaded', portfolio)
+      // console.log('uploaded', portfolio)
       router.push(`/Profile/${NameVal}`)
     } catch (error) {
       console.log('error', error);
