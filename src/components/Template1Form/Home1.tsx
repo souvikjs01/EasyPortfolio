@@ -25,6 +25,7 @@ function Home() {
   const [Y, setY] = useRecoilState(temp2Form);
   const [Z, setZ] = useRecoilState(temp1);
   const [a, seta] = useRecoilState(temp2);
+  const template = "template1"
   const NameVal = useRecoilValue(Name);
   const WhatYouAreVal = useRecoilValue(WhatYouAre);
   const SummaryVal = useRecoilValue(Summary);
@@ -46,8 +47,11 @@ function Home() {
   const PublishPortfolio = async () => {
     try {
       console.log('upto this');
+      console.log({
+        template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
+     })
       const portfolio = await axios.post('../../api/users/uploadInformation', {
-        username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
+         template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
       });
       console.log('uploaded', portfolio)
     } catch (error) {

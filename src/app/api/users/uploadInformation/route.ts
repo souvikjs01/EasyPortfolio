@@ -13,12 +13,12 @@ export async function POST(request: NextRequest, response: NextResponse){
     // const session = await getServerSession(request, response, authOptions)
     try {
         const reqBody = await request.json()
-        const {username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience} = reqBody
+        const {template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience} = reqBody
         //const description_short = description.slice(0,50)+"...";
         // Save Message
-        console.log(reqBody);
+        console.log("pppppp",reqBody);
         const newPortfolio = new Data({
-            username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience
+            template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience
         })
         console.log(newPortfolio)
         await newPortfolio.save();

@@ -21,6 +21,7 @@ interface Experience {
 }
 
 interface portfolioDataVal {
+  template: string;
   username: string;
   whatyouare: string;
   summary: string;
@@ -61,6 +62,7 @@ const UserProfile: React.FC = () => {
 
   return (
     <div>
+      <p>{portfolioDataVal.template}</p>
       <h1>{portfolioDataVal.username}</h1>
       <h2>{portfolioDataVal.whatyouare}</h2>
       <p>{portfolioDataVal.summary}</p>

@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 mongoose.Promise = global.Promise;
 
 const portfolioSchema = new mongoose.Schema({
+    template: {
+        type: String,
+    },
     username: {
         type: String,
     },
