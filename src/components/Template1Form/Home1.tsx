@@ -17,6 +17,7 @@ import { temp2Form } from "@/recoilState";
 import { temp1 } from "@/recoilState";
 import { temp2 } from "@/recoilState";
 // importing the profile information
+import { useRouter } from "next/navigation";
 import {Name, WhatYouAre, Summary, Resume, AboutText, Technology_, Address, Email, Mobile, SocialHandles, experienceState, projectState} from '@/recoilState';
 import axios from "axios";
 
@@ -25,6 +26,7 @@ function Home() {
   const [Y, setY] = useRecoilState(temp2Form);
   const [Z, setZ] = useRecoilState(temp1);
   const [a, seta] = useRecoilState(temp2);
+  const router = useRouter();
   const template = "template1"
   const NameVal = useRecoilValue(Name);
   const WhatYouAreVal = useRecoilValue(WhatYouAre);
@@ -54,6 +56,7 @@ function Home() {
          template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
       });
       console.log('uploaded', portfolio)
+      router.push(`/Profile/${NameVal}`)
     } catch (error) {
       console.log('error', error);
     }

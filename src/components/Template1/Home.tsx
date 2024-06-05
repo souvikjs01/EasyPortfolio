@@ -17,7 +17,53 @@ import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation";
 // import { useRecoilState } from "recoil";
 // import { num } from "@/recoilState";
-
+const aboutData = {
+  image: "/about.jpg",
+  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit nulla animi veritatis repellat porro dolorem maiores veniam tempore, ex quidem quis vitae et voluptas nihil earum iusto temporibus ut quia recusandae? Eveniet tempora tempore, eaque hic vel culpa sed explicabo eligendi debitis saepe. Minima porro fuga soluta error, enim provident labore repellat, reprehenderit cupiditate neque saepe aliquid dicta. Temporibus reiciendis porro harum omnis."
+}
+const experienceData = [
+  {
+    duration: "2020 - 2022",
+    title: "Software Engineer II",
+    company: "Google Inc.",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, ratione? Impedit autem eligendi beatae dolorum, veritatis voluptatum esse accusantium tenetur eveniet totam porro ut dolor officia aliquam iure. Velit, nostrum? Veniam, soluta. Ratione, molestiae.",
+    technologies: ["GraphQL", "Redis", "AWS Lambda"]
+  },
+  {
+    duration: "2018 - 2020",
+    title: "Software Engineer I",
+    company: "Amazon Inc.",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, ratione? Impedit autem eligendi beatae dolorum, veritatis voluptatum esse accusantium tenetur eveniet totam porro ut dolor officia aliquam iure. Velit, nostrum? Veniam, soluta. Ratione, molestiae.",
+    technologies: ["Node.js", "React", "AWS"]
+  },
+  {
+    duration: "2016 - 2018",
+    title: "Junior Software Engineer",
+    company: "Facebook Inc.",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, ratione? Impedit autem eligendi beatae dolorum, veritatis voluptatum esse accusantium tenetur eveniet totam porro ut dolor officia aliquam iure. Velit, nostrum? Veniam, soluta. Ratione, molestiae.",
+    technologies: ["Python", "Django", "GraphQL"]
+  }
+]
+const projectData = [
+  {
+    image: "/o1.jpg",
+    title: "Automatic Portfolio Builder",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate. Recusandae culpa laborum animi labore, earum soluta impedit! Et tempora ipsa quaerat deleniti, soluta fuga adipisci, eaque non fugiat necessitatibus nisi reprehenderit at incidunt.",
+    technologies: ["GraphQL", "C++ SMTP"]
+  },
+  {
+    image: "/o2.jpg",
+    title: "Project Two",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate. Recusandae culpa laborum animi labore, earum soluta impedit! Et tempora ipsa quaerat deleniti, soluta fuga adipisci, eaque non fugiat necessitatibus nisi reprehenderit at incidunt.",
+    technologies: ["React", "Node.js"]
+  },
+  {
+    image: "/o3.jpg",
+    title: "Project Three",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate. Recusandae culpa laborum animi labore, earum soluta impedit! Et tempora ipsa quaerat deleniti, soluta fuga adipisci, eaque non fugiat necessitatibus nisi reprehenderit at incidunt.",
+    technologies: ["Python", "Django"]
+  }
+]
 function HomePage() {
 
   // const [pp, setpp] = useRecoilState(num);\
@@ -25,6 +71,7 @@ function HomePage() {
   const [temp, settemp] = useRecoilState(temp1);
   const [tempform, settempform] = useRecoilState(temp1Form);
   const { data: session} = useSession()
+  
   const clickAction = () => {
     if(session?.user) {settempform(!tempform)}
     else router.push('/login');
@@ -42,12 +89,12 @@ function HomePage() {
         <Navbar />
         <p>{session?.user?.username}</p>
         <p>{session?.user?.name}</p>
-        <Hero />
-        <About />
+        <Hero Name="Shubhradip"  WhatYouAre="Software Engineer III" Summary="A passionate full stack developer"/>
+        <About data={aboutData}/>
         <Technologies />
-        <Experience />
-        <Projects/>
-        <Contact />
+        <Experience experiences={experienceData}/>
+        <Projects projects={projectData}/>
+        <Contact Address="Shyamchand bagan lane Lahiribagan, pin-741404, Santipur, Nadia, West Bengal" Mobile="+916294537321" Email="shubhradipsarkar@gmail.com"/>
       </div>
       
       
