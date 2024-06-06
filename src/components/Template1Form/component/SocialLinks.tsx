@@ -32,8 +32,13 @@ import {
   FaPatreon,
   FaCode,
 } from "react-icons/fa";
-import { SiLeetcode, SiCodechef, SiCodeforces, SiGeeksforgeeks } from "react-icons/si";
-import { Variants, motion } from 'framer-motion';
+import {
+  SiLeetcode,
+  SiCodechef,
+  SiCodeforces,
+  SiGeeksforgeeks,
+} from "react-icons/si";
+import { Variants, motion } from "framer-motion";
 import { useRecoilState } from "recoil";
 import { SocialHandles } from "@/recoilState";
 
@@ -56,15 +61,14 @@ const iconVariants = (duration: number): Variants => ({
     y: [5, -5],
     transition: {
       duration: 1.5,
-      ease: 'linear',
+      ease: "linear",
       repeat: Infinity,
-      repeatType: 'reverse',
+      repeatType: "reverse",
     },
   },
 });
 
 function SocialLinks() {
-  
   const [searchTerm, setSearchTerm] = useState("");
   const [selected, setSelected] = useState<SocialMediaHandle | null>(null);
   const [linked, setLinked] = useRecoilState(SocialHandles);
@@ -72,11 +76,23 @@ function SocialLinks() {
   const [showAll, setShowAll] = useState(false);
 
   const addHandle = (name: string, icon: any, color: string) => {
-    setSelected({ name, icon, color });
+    if (icon === "Nothing") {
+      setSelected({ name: name, icon: icon, color: color });
+    } else setSelected({ name: name, icon: name, color: color });
   };
 
   const addLink = (url: string, name: string, color: string, icon: any) => {
-    setLinked((prevItems) => [...prevItems, { url:url, name:name, icon:icon, color:color }]);
+    console.log({ url, name, color, icon });
+    if (icon === "Nothing") {
+      setLinked((prevItems) => [
+        ...prevItems,
+        { url: url, name: icon, icon: name, color: color },
+      ]);
+    } else
+      setLinked((prevItems) => [
+        ...prevItems,
+        { url: url, name: name, icon: name, color: color },
+      ]);
     setUrl("");
   };
 
@@ -117,20 +133,38 @@ function SocialLinks() {
     { name: "CodeChef", icon: <SiCodechef />, color: "white" },
     { name: "GeeksForGeeks", icon: <SiGeeksforgeeks />, color: "green" },
   ];
+  interface MyHashMap {
+    [key: string]: any; // or any other type
+  }
 
+  const HashMap: MyHashMap = {};
   const filteredHandles = handles.filter((handle) =>
     handle.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  handles.forEach((handle) => {
+    HashMap[handle.name] = handle.icon;
+  });
+  HashMap["Nothing"] = <FaCode />;
 
   const handlesToShow = showAll ? filteredHandles : filteredHandles.slice(0, 5);
 
   return (
     <div className="border-nautral-900 pb-20">
-      <motion.h1 whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: -100 }} transition={{ duration: 1.5 }} className="my-10 text-center text-4xl">
+      <motion.h1
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -100 }}
+        transition={{ duration: 1.5 }}
+        className="my-10 text-center text-4xl"
+      >
         Social Media Links
       </motion.h1>
       <div>
-        <motion.div whileInView={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: -100 }} transition={{ duration: 1 }} className="m-2">
+        <motion.div
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -100 }}
+          transition={{ duration: 1 }}
+          className="m-2"
+        >
           Social and Coding profiles -{" "}
           <input
             type="text"
@@ -140,49 +174,101 @@ function SocialLinks() {
             className="mr-2 w-full lg:w-36 h-8 ml-1 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent"
           />
         </motion.div>
-        <motion.div whileInView={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: 0 }} transition={{ duration: 1 }} style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+        <motion.div
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 0 }}
+          transition={{ duration: 1 }}
+          style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
+        >
           {handlesToShow.length > 0 ? (
             handlesToShow.map((handle, index) => (
-              <motion.div variants={iconVariants(index)} initial="initial" animate="animate" key={handle.name} style={{ textAlign: "center" }}>
+              <motion.div
+                variants={iconVariants(index)}
+                initial="initial"
+                animate="animate"
+                key={handle.name}
+                style={{ textAlign: "center" }}
+              >
                 <motion.div
                   className="rounded-2xl border-4 border-neutral-800 p-4 cursor-pointer"
                   title={handle.name}
                   style={{ color: handle.color, fontSize: "2em" }}
-                  onClick={() => { addHandle(handle.name, handle.icon, handle.color); }}
+                  onClick={() => {
+                    addHandle(handle.name, handle.icon, handle.color);
+                  }}
                 >
                   {handle.icon}
                 </motion.div>
               </motion.div>
             ))
           ) : (
-            <button className="m-2 p-2 bg-cyan-700 rounded-lg hover:bg-cyan-400" onClick={() => addHandle(searchTerm, <FaCode />, 'white')}>Add this to handles</button>
+            <button
+              className="m-2 p-2 bg-cyan-700 rounded-lg hover:bg-cyan-400"
+              onClick={() => addHandle(searchTerm, "Nothing", "white")}
+            >
+              Add this to handles
+            </button>
           )}
         </motion.div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
           {!showAll && filteredHandles.length > 5 && (
-            <button className="m-2 p-2 bg-cyan-700 rounded-lg hover:bg-cyan-400" onClick={() => setShowAll(true)}>Show More</button>
+            <button
+              className="m-2 p-2 bg-cyan-700 rounded-lg hover:bg-cyan-400"
+              onClick={() => setShowAll(true)}
+            >
+              Show More
+            </button>
           )}
           {showAll && filteredHandles.length > 5 && (
-            <button className="m-2 p-2 bg-cyan-700 rounded-lg hover:bg-cyan-400" onClick={() => setShowAll(false)}>Show Less</button>
+            <button
+              className="m-2 p-2 bg-cyan-700 rounded-lg hover:bg-cyan-400"
+              onClick={() => setShowAll(false)}
+            >
+              Show Less
+            </button>
           )}
         </div>
       </div>
       <div>
-        <motion.div whileInView={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: -100 }} transition={{ duration: 1.5 }} className="m-2 mt-12">
+        <motion.div
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -100 }}
+          transition={{ duration: 1.5 }}
+          className="m-2 mt-12"
+        >
           Provide Social and Coding profile links
         </motion.div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
           {selected ? (
-            <div key={selected.name} className="text-center flex flex-row items-center">
+            <div
+              key={selected.name}
+              className="text-center flex flex-row items-center"
+            >
               <div
                 className="rounded-2xl flex items-center justify-center border-4 border-neutral-800 p-4 cursor-pointer"
                 title={selected.name}
                 style={{ color: selected.color, fontSize: "2em" }}
               >
-                {selected.icon}
+                {HashMap[selected.icon]}
               </div>
-              <input value={url} onChange={(e) => setUrl(e.target.value)} type="text" placeholder={`https://${selected.name}.com/XYZ...`} className="mr-2 placeholder:text-cyan-700 placeholder:text-sm flex items-center justify-center w-full h-8 ml-1 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent" />
-              <button onClick={() => addLink(url, selected.name, selected.color, selected.icon)} className="m-2 p-2 rounded-lg bg-cyan-700 hover:bg-cyan-400">Add</button>
+              <input
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                type="text"
+                placeholder={`https://${selected.name}.com/XYZ...`}
+                className="mr-2 placeholder:text-cyan-700 placeholder:text-sm flex items-center justify-center w-full h-8 ml-1 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent"
+              />
+              <button
+                onClick={() => {
+                  if (selected.icon === "Nothing")
+                    addLink(url, selected.name, selected.color, selected.icon);
+                  else
+                    addLink(url, selected.name, selected.color, selected.name);
+                }}
+                className="m-2 p-2 rounded-lg bg-cyan-700 hover:bg-cyan-400"
+              >
+                Add
+              </button>
             </div>
           ) : (
             <div className="m-3 text-cyan-700">No handle selected</div>
@@ -197,7 +283,7 @@ function SocialLinks() {
                   title={name}
                   style={{ color: color, fontSize: "2em" }}
                 >
-                  {icon}
+                  {HashMap[name]}
                 </div>
               </div>
             </a>
