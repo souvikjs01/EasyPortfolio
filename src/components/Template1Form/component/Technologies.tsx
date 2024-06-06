@@ -63,6 +63,15 @@ const skillsWithIcons = [
 import {Technology_} from '@/recoilState'
 import { useRecoilState } from 'recoil';
 
+interface MyHashMap {
+    [key: string]: any; // or any other type
+}
+const HashMap: MyHashMap = {};
+skillsWithIcons.forEach((handle) => {
+    HashMap[handle.skill] = handle.icon;
+});
+HashMap["Nothing"] = <FaCode />;
+
 const iconVariants = (duration: number): Variants => ({
     initial: { y: duration % 10 },
     animate: {
@@ -79,7 +88,7 @@ const iconVariants = (duration: number): Variants => ({
 interface ListItem {
     skill: string;
     color: any;
-    icon: any;
+    icon: string;
 }
 
 export default function Technologies() {
@@ -87,7 +96,10 @@ export default function Technologies() {
     const [searchTerm, setSearchTerm] = useState('');
     const [showMore, setShowMore] = useState(false);
 
-    const addSkill = (skill: string, color: any, icon: any) => {
+    const addSkill = (skill: string, color: any, icon: string) => {
+        // if(icon === "Nothing"){
+        //     setTechnology(prevItems => [...prevItems, { skill, color, icon }]);
+        // }
         setTechnology(prevItems => [...prevItems, { skill, color, icon }]);
     }
 
@@ -123,19 +135,19 @@ export default function Technologies() {
                         whileInView={{ opacity: 1, x: 0 }} 
                         initial={{ opacity: 0, x: -100 }} 
                         transition={{ duration: 1.5 }} 
-                        onClick={() => { addSkill(skill, color, icon) }} 
+                        onClick={() => { addSkill(skill, color, skill) }} 
                         key={skill} 
                         className='cursor-pointer hover:bg-purple-900 flex flex-row flex-wrap gap-4 bg-neutral-900 m-1 rounded-lg'
                     >
                         <div className='flex items-center m-2'>
-                            <span style={{ color: color, fontSize: '2rem' }}>{icon}</span>
+                            <span style={{ color: color, fontSize: '2rem' }}>{HashMap[skill]}</span>
                             <span>{skill}</span>
                         </div>
                     </motion.div>
                 ))}
                 {filteredSkills.length === 0 && (
                     <button 
-                        onClick={() => { addSkill(searchTerm, '#ffffff', <FaCode />) }} 
+                        onClick={() => { addSkill(searchTerm, '#ffffff', "Nothing") }} 
                         className='cursor-pointer hover:bg-cyan-500 bg-cyan-900 m-2 rounded-lg p-2'
                     >
                         Add "{searchTerm}"
@@ -160,7 +172,7 @@ export default function Technologies() {
                             className="relative cursor-pointer hover:bg-red-500 flex flex-row flex-wrap gap-4 bg-neutral-900 m-2 rounded-lg"
                         >
                             <div className="flex items-center m-3">
-                                <span style={{ color: color, fontSize: '2rem' }}>{icon}</span>
+                                <span style={{ color: color, fontSize: '2rem' }}>{HashMap[icon]}</span>
                                 <span>{skill}</span>
                             </div>
                             <img src="./cross.png" alt="delete" className="absolute top-0 right-0 w-5 h-5" />

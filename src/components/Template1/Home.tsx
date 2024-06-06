@@ -87,8 +87,8 @@ function HomePage() {
       <div className="container mx-auto px-8">
         {/* <button className="bg-blue-500" onClick={()=>setpp(pp+1)}>button value - {pp}</button> */}
         <Navbar />
-        <p>{session?.user?.username}</p>
-        <p>{session?.user?.name}</p>
+        {/* <p>{session?.user?.username}</p>
+        <p>{session?.user?.name}</p> */}
         <Hero Name="Shubhradip"  WhatYouAre="Software Engineer III" Summary="A passionate full stack developer"/>
         <About data={aboutData}/>
         <Technologies />

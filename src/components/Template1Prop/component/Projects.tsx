@@ -16,7 +16,7 @@ interface ProjectsProps {
 }
 
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {
-  console.log("weeeeeeeeeeeeee got", projects)
+  // console.log("weeeeeeeeeeeeee got", projects)
   return (
     <div className='border-b border-neutral-900 pb-4'>
       <motion.h1 

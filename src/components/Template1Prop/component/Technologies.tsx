@@ -1,9 +1,4 @@
 import React from 'react'
-import { RiReactjsLine } from 'react-icons/ri'
-import { TbBrandNextjs } from 'react-icons/tb'
-import { SiMongodb } from 'react-icons/si'
-import { DiRedis } from 'react-icons/di'
-import { FaNodeJs } from 'react-icons/fa'
 import { motion, Variants } from 'framer-motion'
 import { 
     FaHtml5, 
@@ -65,40 +60,65 @@ const skillsWithIcons = [
     { skill: 'Problem Solving', icon: <FaSearchDollar />, color: '#EA5A5A' },
     { skill: 'Communication', icon: <FaComments />, color: '#4C4C4C' },
 ];
-const iconVariants = (duration: number): Variants => ({
-    initial: { y: -10 },
+interface MyHashMap {
+    [key: string]: any; // or any other type
+}
+const HashMap: MyHashMap = {};
+skillsWithIcons.forEach((handle) => {
+    HashMap[handle.skill] = handle.icon;
+});
+HashMap["Nothing"] = <FaCode />;
+const iconVariants = (index: number): Variants => ({
+    
+    initial: { y: 0 },
     animate: {
         y: [10, -10],
         transition: {
-            duration: duration,
+            duration: index%3+1,
             ease: 'linear',
             repeat: Infinity,
             repeatType: 'reverse',
         }
     }
 })
-
-export default function Technologies() {
+interface Technology {
+    skill?: string,
+    color?: any;
+    icon?: string,
+}
+interface PropType {
+    technologies?: Technology[],
+}
+const Technologies: React.FC<PropType> = ({ technologies }) => {
+    // console.log("titties", technologies);
   return (
     <div className='border-b border-neutral-800 pb-24'>
         <motion.h1 whileInView={{opacity:1, y:0}} initial={{opacity:0, y: -100}} transition={{duration:1.5}} className='my-20 text-center text-4xl'>Technologies</motion.h1>
         <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className='flex flex-wrap items-center justify-center gap-4'>
-            <motion.div variants={iconVariants(1)} initial='initial' animate='animate' className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <RiReactjsLine className='text-7xl text-cyan-400'/>
-            </motion.div>
-            <motion.div variants={iconVariants(2)} initial='initial' animate='animate' className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <TbBrandNextjs className='text-7xl '/>
-            </motion.div>
-            <motion.div variants={iconVariants(3)} initial='initial' animate='animate' className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <SiMongodb className='text-7xl text-green-500'/>
-            </motion.div>
-            <motion.div variants={iconVariants(4)} initial='initial' animate='animate' className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <DiRedis className='text-7xl text-red-500'/>
-            </motion.div>
-            <motion.div variants={iconVariants(5)} initial='initial' animate='animate' className='rounded-2xl border-4 border-neutral-800 p-4'>
-                <FaNodeJs className='text-7xl text-green-500'/>
-            </motion.div>
+        {technologies?.map(({ skill, color, icon }, index) => (
+            skill!=='deletedItem' && (
+                <motion.div 
+                    key={index} // Added a key to each element
+                    variants={iconVariants(index + 1)} 
+                    initial='initial' 
+                    animate='animate' 
+                    className='m-1 rounded-2xl border-4 border-neutral-800 p-4'
+                >
+                    {/* {console.log(icon)} */}
+                    <div className='flex items-center m-2'>
+                        {icon && <span style={{ color: color, fontSize: '4rem' }}>{HashMap[icon]}</span>}
+                        <span style={{ color: color }}>{skill}</span>
+                        {/* <span>{index}</span> */}
+                    </div>
+                </motion.div>
+            )
+        ))}
+
+            
+            
         </motion.div>
     </div>
   )
 }
+
+export default Technologies

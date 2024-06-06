@@ -25,8 +25,8 @@ export default function Hero() {
         <div className="w-full lg:w-1/2">
           <div className="flex flex-col items-center lg:items-start">
             {/* <motion.h1 variants={container(0)} initial="hidden" animate="visible" className="pb-16 text-6xl font-thin tracking-tight lg:mt-12 lg:text-8xl">Selfish Coder</motion.h1> */}
-            <motion.div variants={container(0)} initial="hidden" animate="visible" className="pb-16">
-                <input value={name} onChange={(e)=>{setname(e.target.value)}} type="text" className="bg-transparent placeholder-cyan-300 h-24 font-thin text-2xl w-full lg:text-6xl outlie-none pr-16" style={{ caretColor: 'cyan' }} placeholder="Enter your name..."/>
+            <motion.div variants={container(0)} initial="hidden" animate="visible" className="pb-8">
+                <input value={name} onChange={(e)=>{setname(e.target.value)}} type="text" className="bg-transparent placeholder-cyan-300 placeholder:text-2xl h-24 font-thin text-3xl w-full lg:text-6xl outlie-none pr-16" style={{ caretColor: 'cyan' }} placeholder="Enter your name..."/>
                 {/* <img src="pen.png" alt="Pen Icon" className="absolute top-0 right-0 w-10 h-10" /> */}
             </motion.div>
 

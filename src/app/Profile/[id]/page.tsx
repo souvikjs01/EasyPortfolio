@@ -34,7 +34,19 @@ interface ContactStruct {
 
 interface AboutStruct {
   image?: string;
-  description?: string;
+  abouttext?: string;
+}
+
+interface TechnologyStruct {
+  skill: string;
+  color: any;
+  icon: string;
+}
+interface socialLinkStruct {
+  url: string;
+  name: string;
+  icon: any;
+  color: string;
 }
 
 interface HomePageStruct {
@@ -43,16 +55,19 @@ interface HomePageStruct {
   AboutSection?: AboutStruct;
   ProjectSection?: ProjectStruct[];
   ExperienceSection?: ExperienceStruct[];
+  TechnologySection?: TechnologyStruct[];
+  SocialSection?: socialLinkStruct[];
 }
 interface PortfolioDataVal {
+
   template?: string;
   username?: string;
   whatyouare?: string;
   summary?: string;
   address?: string;
   mobile?: string;
-  sociallinks?: { url: string; name: string; icon: { color: string } }[];
-  technology?: { skill: string; color: string }[];
+  sociallinks?: { url: string; name: string; icon: string,  color: string}[];
+  technology?: { skill: string; color: string, icon: string}[];
   projects?: {
     projectName?: string;
     description?: string;
@@ -88,10 +103,21 @@ const UserProfile: React.FC = () => {
       description: experience.description,
       technologies: experience.stack,
     })),
+    TechnologySection: portfolioDataVal?.technology?.map(tech => ({
+      skill: tech.skill,
+      color:tech.color,
+      icon:tech.icon,
+    })),
     AboutSection: {
-      image: './person.png',
-    
-    }
+      // abouttext: portfolioDataVal.
+      image: '/blank.png',
+    },
+    SocialSection:portfolioDataVal?.sociallinks?.map(social=>({
+      url: social.url,
+      name: social.name,
+      icon: social.icon,
+      color: social.color,
+    })),
   }
   console.log('--------------------------------', data);
   useEffect(() => {
@@ -100,7 +126,7 @@ const UserProfile: React.FC = () => {
         const response = await axios.put("/api/users/uploadInformation", {
           username: name
         });
-        console.log("oooooooooooooooooooooooooooooooooo",response.data.PortfolioData[0])
+        // console.log("oooooooooooooooooooooooooooooooooo",response.data.PortfolioData[0])
         setPortfolioDataVal(response.data.PortfolioData[0]);
       } catch (error) {
         console.error('Error fetching data:', error);

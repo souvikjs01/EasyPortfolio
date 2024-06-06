@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 
 // Define the type for the about data
 interface AboutData {
-  image: string;
-  description: string;
+  image?: string;
+  description?: string;
 }
 
 // Define the prop types for the About component
@@ -14,6 +14,7 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ data }) => {
+  console.log("in about section", data);
   return (
     <div className='border-b border-neutral-900 pb-4'>
       <motion.h1 
@@ -33,7 +34,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
           className='w-full lg:w-1/2 lg:p-8'
         >
           <div className='flex items-center justify-center'>
-            <Image src={data.image} alt="About Image" height={500} width={500} className='rounded-2xl'/>
+            <img src={data.image} alt="About Image" height={500} width={500} className='rounded-2xl'/>
           </div>
         </motion.div>
         <motion.div 

@@ -8,6 +8,7 @@ import Technologies from "./component/Technologies";
 import Experience from "./component/Experience";
 import Projects from "./component/Projects";
 import Contact from "./component/Contact";
+import SocialLinks from "./component/SocialLinks";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -42,6 +43,17 @@ interface AboutStruct {
   image?: string;
   description?: string;
 }
+interface TechnologyStruct {
+  skill: string;
+  color: any;
+  icon: string;
+}
+interface socialLinkStruct {
+  url: string;
+  name: string;
+  icon: any;
+  color: string;
+}
 
 interface HomePageStruct {
   HeroSection?: HeroStruct;
@@ -49,6 +61,8 @@ interface HomePageStruct {
   AboutSection?: AboutStruct;
   ProjectSection?: ProjectStruct[];
   ExperienceSection?: ExperienceStruct[];
+  TechnologySection?: TechnologyStruct[];
+  SocialSection?: socialLinkStruct[],
 }
 
 interface WrapAllProps {
@@ -56,7 +70,7 @@ interface WrapAllProps {
 }
 
 const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
-  console.log(Data);
+  // console.log("the user data", Data?.SocialSection);
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -69,14 +83,15 @@ const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
         
         <div className="container mx-auto px-8">
           <Navbar />
-          <p>{session?.user?.username}</p>
-          <p>{session?.user?.name}</p>
+          {/* <p>{session?.user?.username}</p>
+           */}
           <Hero Name={Data?.HeroSection?.Name} WhatYouAre={Data?.HeroSection?.WhatYouAre} Summary={Data?.HeroSection?.Summary}/>
-          <About />
-          <Technologies />
+          <About data={Data?.AboutSection}/>
+          <Technologies technologies={Data?.TechnologySection}/>
           <Experience experiences={Data?.ExperienceSection}/>
           <Projects projects={Data?.ProjectSection}/>
           <Contact Address={Data?.ContactSection?.Address} Mobile={Data?.ContactSection?.Mobile} Email={Data?.ContactSection?.Email}/>
+          <SocialLinks linked={Data?.SocialSection}/>
         </div>
 
         <motion.button
