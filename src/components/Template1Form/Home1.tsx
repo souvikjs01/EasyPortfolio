@@ -22,6 +22,7 @@ import {Name, WhatYouAre, Summary, Resume, AboutText, Technology_, Address, Emai
 import axios from "axios";
 
 function Home() {
+  const [publish, setpublish] = React.useState('Publish Portfolio');
   const [X, setX] = useRecoilState(temp1Form);
   const [Y, setY] = useRecoilState(temp2Form);
   const [Z, setZ] = useRecoilState(temp1);
@@ -52,13 +53,17 @@ function Home() {
     //   console.log({
     //     template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
     //  })
+      setpublish('Publishing...')
       const portfolio = await axios.post('../../api/users/uploadInformation', {
          template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
       });
       // console.log('uploaded', portfolio)
       router.push(`/Profile/${NameVal}`)
     } catch (error) {
+      setpublish('Try again');
       console.log('error', error);
+    } finally{
+      setpublish('redirecting...');
     }
     
   }
@@ -97,7 +102,7 @@ function Home() {
         transition={{ repeat: Infinity, repeatType: "loop", duration: 2 }}
         onClick={PublishPortfolio}
       >
-        <Button >Publish Portfolio</Button>
+        <Button >{publish}</Button>
       </motion.div>
 
       
