@@ -39,14 +39,14 @@ import { SocialHandles } from "@/recoilState";
 
 interface SocialMediaHandle {
   name: string;
-  icon: JSX.Element;
+  icon: any;
   color: string;
 }
 
 interface SocialMediaLinked {
   url: string;
   name: string;
-  icon: JSX.Element;
+  icon: any;
   color: string;
 }
 
@@ -76,7 +76,7 @@ function SocialLinks() {
   };
 
   const addLink = (url: string, name: string, color: string, icon: any) => {
-    setLinked((prevItems) => [...prevItems, { url, name, icon, color }]);
+    setLinked((prevItems) => [...prevItems, { url:url, name:name, icon:icon, color:color }]);
     setUrl("");
   };
 

@@ -2,17 +2,17 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 // Define the type for an experience
-interface Experience {
-  duration: string;
-  title: string;
-  company: string;
-  description: string;
-  technologies: string[];
+interface ExperienceStruct {
+  duration?: string;
+  title?: string;
+  company?: string;
+  description?: string;
+  technologies?: string[];
 }
 
 // Define the prop types for the Experience component
 interface ExperienceProps {
-  experiences?: Experience[];
+  experiences?: ExperienceStruct[];
 }
 
 const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
@@ -48,7 +48,7 @@ const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
               </h6>
               <p className='mb-4 text-neutral-400'>{exp.description}</p>
               <div>
-                {exp.technologies.map((tech, i) => (
+                {exp?.technologies?.map((tech, i) => (
                   <span 
                     key={i} 
                     className='mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'

@@ -53,14 +53,14 @@ interface PortfolioDataVal {
   mobile?: string;
   sociallinks?: { url: string; name: string; icon: { color: string } }[];
   technology?: { skill: string; color: string }[];
-  ProjectSection?: {
+  projects?: {
     projectName?: string;
     description?: string;
     technologies?: string[];
     github?: string;
     hosted?: string;
   }[];
-  ExperienceSection?: {
+  experience?: {
     years?: string;
     role?: string;
     company?: string;
@@ -75,15 +75,32 @@ const UserProfile: React.FC = () => {
   const [portfolioDataVal, setPortfolioDataVal] = useState<PortfolioDataVal | null>(null);
   const data:HomePageStruct = {
     HeroSection: {Name: portfolioDataVal?.username, WhatYouAre: portfolioDataVal?.whatyouare, Summary: portfolioDataVal?.summary},
-    ContactSection: {Address: portfolioDataVal?.address, Mobile: portfolioDataVal?.mobile}
+    ContactSection: {Address: portfolioDataVal?.address, Mobile: portfolioDataVal?.mobile},
+    ProjectSection: portfolioDataVal?.projects?.map(project => ({
+      title: project.projectName,
+      description: project.description,
+      technologies: project.technologies,
+    })),
+    ExperienceSection: portfolioDataVal?.experience?.map(experience => ({
+      duration: experience.years,
+      title: experience.role,
+      company: experience.company,
+      description: experience.description,
+      technologies: experience.stack,
+    })),
+    AboutSection: {
+      image: './person.png',
+    
+    }
   }
+  console.log('--------------------------------', data);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.put("/api/users/uploadInformation", {
           username: name
         });
-        console.log(response.data.PortfolioData[0])
+        console.log("oooooooooooooooooooooooooooooooooo",response.data.PortfolioData[0])
         setPortfolioDataVal(response.data.PortfolioData[0]);
       } catch (error) {
         console.error('Error fetching data:', error);

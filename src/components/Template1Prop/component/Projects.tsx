@@ -3,19 +3,20 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 // Define the type for a project
-interface Project {
-  image: string;
-  title: string;
-  description: string;
-  technologies: string[];
+interface ProjectStruct {
+  image?: string;
+  title?: string;
+  description?: string;
+  technologies?: string[];
 }
 
 // Define the prop types for the Projects component
 interface ProjectsProps {
-  projects?: Project[];
+  projects?: ProjectStruct[];
 }
 
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {
+  console.log("weeeeeeeeeeeeee got", projects)
   return (
     <div className='border-b border-neutral-900 pb-4'>
       <motion.h1 
@@ -27,7 +28,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         Projects
       </motion.h1>
       <div>
-        {projects && projects.map((project, index) => (
+        {projects && projects?.map((project, index) => (
           <motion.div 
             key={index} 
             whileInView={{ opacity: 1, x: 0 }} 
@@ -36,13 +37,13 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
             className='mb-8 flex flex-wrap lg:justify-center'
           >
             <div className='w-full lg:w-1/4'>
-              <Image src={project.image} alt={project.title} width={200} height={200} className='' />
+              <img src={project?.image} alt={project?.title} width={200} height={200} className='' />
             </div>
             <div className='w-full max-w-xl lg:w-3/4'>
               <h6 className='mb-2 font-semibold'>{project.title}</h6>
               <p className='mb-4 text-neutral-400'>{project.description}</p>
               <div>
-                {project.technologies.map((tech, i) => (
+                {project?.technologies?.map((tech, i) => (
                   <span 
                     key={i} 
                     className='mr-2 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'

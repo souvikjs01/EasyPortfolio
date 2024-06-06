@@ -104,7 +104,7 @@ export const Mobile = atom({
 interface SocialMediaLinked {
     url: string;
     name: string;
-    icon: JSX.Element;
+    icon: any;
     color: string;
 }
 

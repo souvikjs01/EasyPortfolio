@@ -74,9 +74,9 @@ const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
           <Hero Name={Data?.HeroSection?.Name} WhatYouAre={Data?.HeroSection?.WhatYouAre} Summary={Data?.HeroSection?.Summary}/>
           <About />
           <Technologies />
-          <Experience />
-          <Projects />
-          <Contact />
+          <Experience experiences={Data?.ExperienceSection}/>
+          <Projects projects={Data?.ProjectSection}/>
+          <Contact Address={Data?.ContactSection?.Address} Mobile={Data?.ContactSection?.Mobile} Email={Data?.ContactSection?.Email}/>
         </div>
 
         <motion.button
