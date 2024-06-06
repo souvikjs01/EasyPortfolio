@@ -131,9 +131,9 @@ const SocialLinks: React.FC<PropType> = ({linked}) => {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 1.5 }}
-        className="my-10 text-center text-4xl"
+        className="my-10 text-center text-2xl"
       >
-        Social Media Links
+        Social <span className="text-neutral-400">Media</span> <span className="text-neutral-600">Links</span>
       </motion.h1>
       <div>
         
@@ -161,7 +161,7 @@ const SocialLinks: React.FC<PropType> = ({linked}) => {
                 <motion.div
                   className="rounded-2xl flex items-center justify-center border-4 border-neutral-800 p-4 cursor-pointer"
                   title={icon}
-                  style={{ color: color, fontSize: "3em" }}
+                  style={{ color: color, fontSize: "2em" }}
                   key={index} // Added a key to each element
                     variants={iconVariants(index + 1)} 
                     initial='initial' 

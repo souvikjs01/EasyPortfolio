@@ -106,7 +106,7 @@ const Technologies: React.FC<PropType> = ({ technologies }) => {
                 >
                     {/* {console.log(icon)} */}
                     <div className='flex items-center m-2'>
-                        {icon && <span style={{ color: color, fontSize: '4rem' }}>{HashMap[icon]}</span>}
+                        {icon && <span style={{ color: color, fontSize: '3rem' }}>{HashMap[icon]}</span>}
                         <span style={{ color: color }}>{skill}</span>
                         {/* <span>{index}</span> */}
                     </div>

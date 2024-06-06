@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 // Define the type for the about data
 interface AboutData {
   image?: string;
-  description?: string;
+  abouttext?: string;
 }
 
 // Define the prop types for the About component
@@ -34,7 +34,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
           className='w-full lg:w-1/2 lg:p-8'
         >
           <div className='flex items-center justify-center'>
-            <img src={data.image} alt="About Image" height={500} width={500} className='rounded-2xl'/>
+            {data.image && <Image src={data.image} alt="About Image" height={500} width={500} className='rounded-2xl'/>}
           </div>
         </motion.div>
         <motion.div 
@@ -44,7 +44,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
           className='w-full lg:w-1/2'
         >
           <div className='flex justify-center lg:justify-start'>
-            <p className='my-2 max-w-xl py-6'>{data.description}</p>
+            <p className='my-2 max-w-xl py-6'>{data.abouttext}</p>
           </div>
         </motion.div>
       </div>

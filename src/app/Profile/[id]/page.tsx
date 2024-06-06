@@ -64,6 +64,8 @@ interface PortfolioDataVal {
   username?: string;
   whatyouare?: string;
   summary?: string;
+  image?: string;
+  abouttext?: string;
   address?: string;
   mobile?: string;
   sociallinks?: { url: string; name: string; icon: string,  color: string}[];
@@ -109,8 +111,8 @@ const UserProfile: React.FC = () => {
       icon:tech.icon,
     })),
     AboutSection: {
-      // abouttext: portfolioDataVal.
-      image: '/blank.png',
+      abouttext: portfolioDataVal?.abouttext,
+      image: '/aboutDefault.jpg',
     },
     SocialSection:portfolioDataVal?.sociallinks?.map(social=>({
       url: social.url,
@@ -119,7 +121,7 @@ const UserProfile: React.FC = () => {
       color: social.color,
     })),
   }
-  console.log('--------------------------------', data);
+  // console.log('--------------------------------', data);
   useEffect(() => {
     const fetchData = async () => {
       try {
