@@ -82,7 +82,7 @@ function SocialLinks() {
   };
 
   const addLink = (url: string, name: string, color: string, icon: any) => {
-    console.log({ url, name, color, icon });
+    console.log("chuchu", { url, name, color, icon });
     if (icon === "Nothing") {
       setLinked((prevItems) => [
         ...prevItems,
@@ -191,7 +191,7 @@ function SocialLinks() {
               >
                 <motion.div
                   className="rounded-2xl border-4 border-neutral-800 p-4 cursor-pointer"
-                  title={handle.name}
+                  title={handle.icon}
                   style={{ color: handle.color, fontSize: "2em" }}
                   onClick={() => {
                     addHandle(handle.name, handle.icon, handle.color);
@@ -280,7 +280,7 @@ function SocialLinks() {
               <div className="m-2 p-2 text-center flex flex-row items-center">
                 <div
                   className="rounded-2xl flex items-center justify-center border-4 border-neutral-800 p-4 cursor-pointer"
-                  title={name}
+                  title={icon}
                   style={{ color: color, fontSize: "2em" }}
                 >
                   {HashMap[name]}
