@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import axios from 'axios';
 import HomePage from '@/components/Template1Prop/Home';
-
+import App from '@/components/Middlepages/Spinners';
 
 interface ProjectStruct {
   image?: string;
@@ -111,7 +111,7 @@ const UserProfile: React.FC = () => {
   }, [name]);
 
   if (!portfolioDataVal) {
-    return <div>Loading...</div>;
+    return <div><App /></div>;
   }
 
   
