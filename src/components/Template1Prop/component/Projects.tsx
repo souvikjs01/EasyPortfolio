@@ -37,7 +37,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
             className='mb-8 flex flex-wrap lg:justify-center'
           >
             <div className='w-full lg:w-1/4'>
-              <img src="./o1.jpg" alt={project?.title} width={200} height={200} className='' />
+              <img src="/o1.jpg" alt={project?.title} width={200} height={200} className='' />
             </div>
             <div className='w-full max-w-xl lg:w-3/4'>
               <h6 className='mb-2 font-semibold'>{project.title}</h6>
