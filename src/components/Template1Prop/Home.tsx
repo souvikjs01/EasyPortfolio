@@ -11,7 +11,7 @@ import Contact from "./component/Contact";
 import SocialLinks from "./component/SocialLinks";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 interface ProjectStruct {
   image?: string;
   title?: string;
@@ -94,6 +94,7 @@ const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
           <SocialLinks linked={Data?.SocialSection}/>
         </div>
 
+        <Link href="../../ChooseTemplate">
         <motion.button
           className="fixed bottom-6 right-6 bg-cyan-900 text-white py-2 px-4 rounded-full shadow-lg hover:bg-cyan-400 transition-colors"
           animate={{ y: [0, -10, 0] }}
@@ -101,6 +102,7 @@ const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
         >
           Update Portfolio
         </motion.button>
+        </Link>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import axios from 'axios';
 import HomePage from '@/components/Template1Prop/Home';
 import App from '@/components/Middlepages/Spinners';
+import { useRouter } from 'next/navigation';
 
 interface ProjectStruct {
   image?: string;
@@ -90,6 +91,7 @@ interface PortfolioDataVal {
 
 const UserProfile: React.FC = () => {
   const { id: name } = useParams();
+  
   const [portfolioDataVal, setPortfolioDataVal] = useState<PortfolioDataVal | null>(null);
   const data:HomePageStruct = {
     HeroSection: {Name: portfolioDataVal?.username, WhatYouAre: portfolioDataVal?.whatyouare, Summary: portfolioDataVal?.summary},
