@@ -89,7 +89,7 @@ useEffect(()=>{
       console.log("about === ", AboutText);
 
       const portfolio = await axios.post('../../api/users/uploadInformation', {
-        template:template ,username: NameVal, findUser: email, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
+        template:template ,username: NameVal, findUser: email, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal, email: EmailVal
       });
       // console.log('uploaded', portfolio)
       router.push(`/Profile/${email}`)

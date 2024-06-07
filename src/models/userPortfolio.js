@@ -25,6 +25,9 @@ const portfolioSchema = new mongoose.Schema({
     abouttext : {
         type: String,
     },
+    email :{
+        type: String,
+    },
     address : {
         type: String,
     },

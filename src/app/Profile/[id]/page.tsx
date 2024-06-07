@@ -85,6 +85,7 @@ interface PortfolioDataVal {
     stack?: string[];
   }[];
   stack?: string[];
+  email?: string;
 }
 
 const UserProfile: React.FC = () => {
@@ -92,7 +93,7 @@ const UserProfile: React.FC = () => {
   const [portfolioDataVal, setPortfolioDataVal] = useState<PortfolioDataVal | null>(null);
   const data:HomePageStruct = {
     HeroSection: {Name: portfolioDataVal?.username, WhatYouAre: portfolioDataVal?.whatyouare, Summary: portfolioDataVal?.summary},
-    ContactSection: {Address: portfolioDataVal?.address, Mobile: portfolioDataVal?.mobile},
+    ContactSection: {Address: portfolioDataVal?.address, Mobile: portfolioDataVal?.mobile, Email: portfolioDataVal?.email},
     ProjectSection: portfolioDataVal?.projects?.map(project => ({
       title: project.projectName,
       description: project.description,

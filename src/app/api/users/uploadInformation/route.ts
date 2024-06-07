@@ -13,7 +13,7 @@ export async function POST(request: NextRequest, response: NextResponse){
     // const session = await getServerSession(request, response, authOptions)
     try {
         const reqBody = await request.json()
-        const {template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience} = reqBody
+        const {template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email} = reqBody
         //const description_short = description.slice(0,50)+"...";
         // Save Message
         console.log("pppppp",reqBody);
