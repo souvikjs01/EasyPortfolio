@@ -21,7 +21,88 @@ import { useRouter } from "next/navigation";
 import {Name, WhatYouAre, Summary, Resume, AboutText, Technology_, Address, Email, Mobile, SocialHandles, experienceState, projectState} from '@/recoilState';
 import axios from "axios";
 import { useSession } from "next-auth/react";
+interface ProjectStruct {
+  image?: string;
+  title?: string;
+  description?: string;
+  technologies?: string[];
+}
 
+interface ExperienceStruct {
+  duration?: string;
+  title?: string;
+  company?: string;
+  description?: string;
+  technologies?: string[];
+}
+
+interface HeroStruct {
+  Name?: string;
+  WhatYouAre?: string;
+  Summary?: string;
+}
+
+interface ContactStruct {
+  Address?: string;
+  Mobile?: string;
+  Email?: string;
+}
+
+interface AboutStruct {
+  image?: string;
+  abouttext?: string;
+}
+
+interface TechnologyStruct {
+  skill: string;
+  color: any;
+  icon: string;
+}
+interface socialLinkStruct {
+  url: string;
+  name: string;
+  icon: any;
+  color: string;
+}
+
+interface HomePageStruct {
+  HeroSection?: HeroStruct;
+  ContactSection?: ContactStruct;
+  AboutSection?: AboutStruct;
+  ProjectSection?: ProjectStruct[];
+  ExperienceSection?: ExperienceStruct[];
+  TechnologySection?: TechnologyStruct[];
+  SocialSection?: socialLinkStruct[];
+}
+interface fetchedfromBackend {
+
+  template?: string;
+  username?: string;
+  whatyouare?: string;
+  summary?: string;
+  image?: string;
+  abouttext?: string;
+  address?: string;
+  mobile?: string;
+  sociallinks?: { url: string; name: string; icon: string,  color: string}[];
+  technology?: { skill: string; color: string, icon: string}[];
+  projects?: {
+    projectName?: string;
+    description?: string;
+    technologies?: string[];
+    github?: string;
+    hosted?: string;
+  }[];
+  experience?: {
+    years?: string;
+    role?: string;
+    company?: string;
+    description?: string;
+    stack?: string[];
+  }[];
+  stack?: string[];
+  email?: string;
+}
 function Home() {
   const [publish, setpublish] = React.useState('Publish Portfolio');
   const [X, setX] = useRecoilState(temp1Form);
@@ -44,7 +125,8 @@ function Home() {
   const experienceStateVal = useRecoilValue(experienceState);
   const {data: session} = useSession();
   const [email, setemail] = React.useState('');
-  // console.log(session.data?.user.)
+  const [fetchedfromBackend, setfetchedfromBackend] = React.useState<fetchedfromBackend>();
+  
   function cleanEmailAddress(email: string): string {
     // Split the email into local part and domain part
     const [localPart, domainPart] = email.split('@');
@@ -70,13 +152,54 @@ useEffect(()=>{
   }
 }, [session?.user.email]);
 
-
-
-// Example usage:
-// const email = "user123.name+alias@example.com";
-// const cleanedEmail = cleanEmailAddress(email);
-// console.log(cleanedEmail);  // Output: "usernamealias@examplecom"
-
+useEffect(() => {
+  const fetchData = async() => {
+    try {
+      if(session?.user)
+      { console.log("finding through", cleanEmailAddress(session?.user.email));
+      const profile = await axios.put('../../api/users/uploadInformation', {
+        findUser: cleanEmailAddress(session?.user.email),
+      })
+      console.log("profile ======= ", profile.data.PortfolioData[0]);
+      setfetchedfromBackend(profile.data.PortfolioData[0]);
+    }
+    } catch (error) {
+      
+    }
+  }
+  fetchData();
+},[]);
+const data:HomePageStruct = {
+  HeroSection: {Name: fetchedfromBackend?.username, WhatYouAre: fetchedfromBackend?.whatyouare, Summary: fetchedfromBackend?.summary},
+  ContactSection: {Address: fetchedfromBackend?.address, Mobile: fetchedfromBackend?.mobile, Email: fetchedfromBackend?.email},
+  ProjectSection: fetchedfromBackend?.projects?.map(project => ({
+    title: project.projectName,
+    description: project.description,
+    technologies: project.technologies,
+  })),
+  ExperienceSection: fetchedfromBackend?.experience?.map(experience => ({
+    duration: experience.years,
+    title: experience.role,
+    company: experience.company,
+    description: experience.description,
+    technologies: experience.stack,
+  })),
+  TechnologySection: fetchedfromBackend?.technology?.map(tech => ({
+    skill: tech.skill,
+    color:tech.color,
+    icon:tech.icon,
+  })),
+  AboutSection: {
+    abouttext: fetchedfromBackend?.abouttext,
+    image: '/aboutDefault.jpg',
+  },
+  SocialSection:fetchedfromBackend?.sociallinks?.map(social=>({
+    url: social.url,
+    name: social.name,
+    icon: social.icon,
+    color: social.color,
+  })),
+}
   const changeTemplate = () => {
     setX(!X);
     setY(!Y);
@@ -110,13 +233,14 @@ useEffect(()=>{
       <button className=" p-2 bg-neutral-800 rounded-lg flex flex-row " onClick={()=>{setX(!temp1Form)}}><svg width="25" height="25" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg> Go back</button>
       <div className="container mx-auto px-8">
         <Navbar />
-        <Hero />
+        <Hero Name_={data.HeroSection?.Name} WhatYouAre_={data.HeroSection?.WhatYouAre} Summary_={data.HeroSection?.Summary}/>
         <About />
         <Technologies />
         <Experience />
         <Projects/>
         <Contact />
         <SocialLinks />
+
       </div>
       
       <motion.div

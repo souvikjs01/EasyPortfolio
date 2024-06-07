@@ -34,7 +34,10 @@ export const temp1 = atom({
     key:'temp1',
     default: false
 })
-
+export const fetchCount = atom({
+    key: 'fetchCount',
+    default: 0
+})
 export const temp2 = atom({
     key:'temp2',
     default: false

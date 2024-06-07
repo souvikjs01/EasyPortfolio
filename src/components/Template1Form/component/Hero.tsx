@@ -2,9 +2,10 @@ import React from "react";
 // import Image from 'next/image'
 import {motion} from 'framer-motion'
 import { useRecoilState } from "recoil";
-import { Name } from "@/recoilState";
+import { Name, fetchCount } from "@/recoilState";
 import { WhatYouAre } from "@/recoilState";
 import { Summary } from "@/recoilState";
+import { useEffect } from "react";
 
 const container = (delay:any) => ({
     hidden: {x: -100, opacity: 0},
@@ -14,11 +15,30 @@ const container = (delay:any) => ({
         transition: {duration: 0.5, delay: delay},
     }
 })
-export default function Hero() {
+interface MyComponentProps {
+  Name_?: string;
+  WhatYouAre_?: string;
+  Summary_?: string;
+}
+const Hero : React.FC<MyComponentProps> = ({Name_, WhatYouAre_, Summary_}) => {
   const [name, setname] = useRecoilState(Name);
   const [whatuare, setwhatuare] = useRecoilState(WhatYouAre);
   const [summary, setsummary] = useRecoilState(Summary);
+  const [Count, setCount] = useRecoilState(fetchCount);
+  useEffect(() => {
+    console.log("faetchcount", Count)
+    if(Count<1){
+      if(Name_ || WhatYouAre_ || Summary_){
+        if(Name_) setname(Name_);
+        if(WhatYouAre_) setwhatuare(WhatYouAre_);
+        if(Summary_) setsummary(Summary_);
+        setCount(Count+1)
+      }
+    }
+    
 
+  }, [Name_, WhatYouAre_, Summary_]);
+  
   return (
     <div className="border-b border-neutral-900 pb-4 lg:mb-35">
       <div className="flex flex-wrap">
@@ -74,3 +94,4 @@ function HeroImage() {
   </div>;
 }
 
+export default Hero

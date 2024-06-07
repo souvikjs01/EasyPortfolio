@@ -90,8 +90,15 @@ interface ListItem {
     color: any;
     icon: string;
 }
-
-export default function Technologies() {
+interface Technology {
+    skill?: string,
+    color?: any;
+    icon?: string,
+}
+interface PropType {
+    technologies_?: Technology[],
+}
+const Technologies: React.FC<PropType> = ({ technologies_ }) => {
     const [Technology, setTechnology] = useRecoilState<ListItem[]>(Technology_);
     const [searchTerm, setSearchTerm] = useState('');
     const [showMore, setShowMore] = useState(false);
@@ -183,3 +190,5 @@ export default function Technologies() {
         </div>
     )
 }
+
+export default Technologies
