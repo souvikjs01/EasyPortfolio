@@ -2,10 +2,33 @@ import React from 'react'
 import {motion} from 'framer-motion'
 import { Email, Mobile, Address} from '@/recoilState'
 import { useRecoilState } from 'recoil';
-function Contact() {
+import { fetchCount } from '@/recoilState';
+import { useEffect } from 'react';
+
+interface MyComponentProps {
+  Address_?: string;
+  Mobile_?: string;
+  Email_?: string;
+}
+const Contact : React.FC<MyComponentProps> = ({Address_, Mobile_, Email_}) => {
   const [email, setemail] = useRecoilState(Email);
   const [mobile, setmobile] = useRecoilState(Mobile);
   const [address, setaddress] = useRecoilState(Address);
+  const [Count, setCount] = useRecoilState(fetchCount);
+  
+  useEffect(() => {
+    console.log("faetchcount", Count)
+    if(Count<1){
+      if(Address_ || Mobile_ || Email_){
+        if(Address_) setaddress(Address_);
+        if(Mobile_) setmobile(Mobile_);
+        if(Email_) setemail(Email_);
+        
+      }
+    }
+    
+
+  }, [Address_, Mobile_, Email_]);
   return (
     <div className=' border-nautral-900 pb-20'>
         <motion.h1 whileInView={{opacity:1, y:0}} initial={{opacity:0, y: -100}} transition={{duration:1.5}} className='my-10 text-center text-4xl'>Contact</motion.h1>

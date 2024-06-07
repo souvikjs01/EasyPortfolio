@@ -1,19 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import {motion} from 'framer-motion'
 import { useState } from 'react'
 import { LuLink } from "react-icons/lu";
-import { useRecoilState } from 'recoil';
-import { projectState } from '@/recoilState';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { fetchCount, projectState } from '@/recoilState';
 
-interface ProjectItem {
-    projectName: string;
-    description: string;
-    technologies: string[];
-    github: string;
-    hosted: string;
+interface ProjectStruct {
+    projectName?: string;
+    description?: string;
+    technologies?: string[];
+    github?: string;
+    hosted?: string;
   }
-function Projects() {
+  
+  // Define the prop types for the Projects component
+  interface ProjectsProps {
+    projects?: ProjectStruct[];
+  }
+  
+  const Projects: React.FC<ProjectsProps> = ({ projects }) =>{
     const [projectName, setprojectName] = useState('');
     const [description, setdescription] = useState('');
     const [technologies, settechnologies] = useState<string[]>([]);
@@ -21,7 +27,13 @@ function Projects() {
     const [Projects, setProjects] = useRecoilState(projectState);
     const [github, setgithub] = useState('');
     const [hosted, sethosted] = useState('');
+    const Count = useRecoilValue(fetchCount);
 
+    useEffect(()=>{
+        if(Count < 1) {
+            if(projects ) setProjects(projects);
+        }
+    }, [projects])
     const addTechnology = () => {
         settechnologies(prevItem => [...prevItem, tech]);
     }
@@ -66,7 +78,7 @@ function Projects() {
                         <h6 className='mb-2 font-semibold'>{projectName}</h6>
                         <p className='mb-4 text-neutral-400'>{description}</p>
                         <div className='mt-2 flex flex-row flex-wrap'>
-                            {technologies.map((techi)=>(
+                            {technologies && technologies.map((techi)=>(
                                 <div className='mt-1 mr-1'>
                                     <span className=' rounded bg-neutral-900  px-2 py-1 text-sm font-medium text-purple-600'>{techi}</span>
                                 </div>

@@ -13,10 +13,11 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 interface ProjectStruct {
-  image?: string;
-  title?: string;
+  projectName?: string;
   description?: string;
   technologies?: string[];
+  github?: string;
+  hosted?: string;
 }
 
 interface ExperienceStruct {
@@ -70,7 +71,7 @@ interface WrapAllProps {
 }
 
 const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
-  // console.log("the user data", Data?.SocialSection);
+  console.log("the user data", Data);
   const router = useRouter();
   const { data: session } = useSession();
 

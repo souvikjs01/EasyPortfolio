@@ -8,11 +8,11 @@ interface Project {
 }
 // Project Type
 interface ProjectItem {
-    projectName: string;
-    description: string;
-    technologies: string[];
-    github: string;
-    hosted: string;
+    projectName?: string;
+    description?: string;
+    technologies?: string[];
+    github?: string;
+    hosted?: string;
 }
 // Experience Type
 interface Experience {
@@ -79,9 +79,9 @@ export const AboutText = atom({
 
 // Technologies 
 interface ListItem {
-    skill: string;
-    color: any;
-    icon: any;
+    skill?: string;
+    color?: any;
+    icon?: any;
 }
 
 export const Technology_ = atom<ListItem[]>({
@@ -105,10 +105,10 @@ export const Mobile = atom({
 
 // Social Links
 interface SocialMediaLinked {
-    url: string;
-    name: string;
-    icon: any;
-    color: string;
+    url?: string;
+    name?: string;
+    icon?: any;
+    color?: string;
 }
 
 
@@ -135,11 +135,11 @@ export const ThemeState = atom<String>({
     default: 'dark'
 });
 interface ExperienceItem {
-    years: string;
-    role: string;
-    company: string;
-    description: string;
-    stack: string[];
+    years?: string;
+    role?: string;
+    company?: string;
+    description?: string;
+    stack?: string[];
   }
 export const projectState = atom<ProjectItem[]>({
     key: 'projectState',

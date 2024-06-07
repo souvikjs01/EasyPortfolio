@@ -25,6 +25,7 @@ const Hero : React.FC<MyComponentProps> = ({Name_, WhatYouAre_, Summary_}) => {
   const [whatuare, setwhatuare] = useRecoilState(WhatYouAre);
   const [summary, setsummary] = useRecoilState(Summary);
   const [Count, setCount] = useRecoilState(fetchCount);
+  
   useEffect(() => {
     console.log("faetchcount", Count)
     if(Count<1){

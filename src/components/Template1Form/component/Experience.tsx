@@ -1,24 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {motion} from 'framer-motion'
-import { experienceState } from '@/recoilState';
-import { useRecoilState } from 'recoil';
+import { experienceState, fetchCount } from '@/recoilState';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-interface ExperienceItem {
+interface ExperienceStruct {
+    years?: string;
+    role?: string;
+    company?: string;
+    description?: string;
+    stack?: string[];
+  }
+  interface ExperienceItem {
     years: string;
     role: string;
     company: string;
     description: string;
     stack: string[];
   }
-
-export default function Experience() {
+  
+  // Define the prop types for the Experience component
+  interface ExperienceProps {
+    experiences_?: ExperienceStruct[];
+  }
+  const Experience: React.FC<ExperienceProps> = ({ experiences_ }) => {
     const [skills, setskills] = React.useState<string[]>([]);
     const [skill, setskill] = React.useState('');
     const [years, setyears] = React.useState('');
     const [role, setrole] = React.useState('');
     const [company, setcompany] = React.useState('');
     const [description, setdescription] = React.useState('');
-    const [experience, setexperience] = useRecoilState(experienceState);
+    const [experience, setexperience] = useRecoilState<ExperienceStruct[]>(experienceState);
+    const Count = useRecoilValue(fetchCount);
+    console.log("experience_ prop == ", experiences_)
+    console.log("experience prop == ", experience)
+    
+    useEffect(()=>{
+        if(Count < 1) {
+            if(experiences_ ) setexperience(experiences_);
+        }
+    }, [experiences_])
+
     const addExperience = () => {
         setexperience(prevItems=>[...prevItems, {years: years, role: role, company: company, description: description, stack:skills}]);
         setskills([]);
@@ -55,8 +76,7 @@ export default function Experience() {
                     <button onClick={addExperience} className='bg-green-900 p-3 my-2 mx-2 rounded-lg hover:bg-green-700'>Add Experience</button>
                 </motion.div>
             </div>
-            {
-                experience.map(({years, role, company, description, stack}, index)=>(
+            {experience.map(({years, role, company, description, stack}, index)=>(
                     <div>
                         <div className='mb-8 flex flex-wrap lg:justify-center'>
                             <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='w-full lg:w-1/4'>
@@ -68,7 +88,7 @@ export default function Experience() {
                                 </h6>
                                 <p className='mb-4 text-neutral-400'>{description}</p>
                                 <div className='mt-2 flex flex-row flex-wrap'>
-                                {stack.map((tech, index)=>(
+                                {stack && stack.map((tech, index)=>(
                                     <div>
                                         <span className='mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'>{tech}</span>
                                     </div>
@@ -86,3 +106,5 @@ export default function Experience() {
     </div>
   )
 }
+
+export default Experience

@@ -7,10 +7,11 @@ import App from '@/components/Middlepages/Spinners';
 import { useRouter } from 'next/navigation';
 
 interface ProjectStruct {
-  image?: string;
-  title?: string;
+  projectName?: string;
   description?: string;
   technologies?: string[];
+  github?: string;
+  hosted?: string;
 }
 
 interface ExperienceStruct {
@@ -97,9 +98,11 @@ const UserProfile: React.FC = () => {
     HeroSection: {Name: portfolioDataVal?.username, WhatYouAre: portfolioDataVal?.whatyouare, Summary: portfolioDataVal?.summary},
     ContactSection: {Address: portfolioDataVal?.address, Mobile: portfolioDataVal?.mobile, Email: portfolioDataVal?.email},
     ProjectSection: portfolioDataVal?.projects?.map(project => ({
-      title: project.projectName,
+      projectName: project.projectName,
       description: project.description,
       technologies: project.technologies,
+      github: project.github,
+      hosted: project.hosted
     })),
     ExperienceSection: portfolioDataVal?.experience?.map(experience => ({
       duration: experience.years,

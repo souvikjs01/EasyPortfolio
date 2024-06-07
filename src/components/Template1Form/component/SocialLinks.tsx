@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaFacebook,
   FaTwitter,
@@ -40,7 +40,7 @@ import {
 } from "react-icons/si";
 import { Variants, motion } from "framer-motion";
 import { useRecoilState } from "recoil";
-import { SocialHandles } from "@/recoilState";
+import { SocialHandles, fetchCount } from "@/recoilState";
 
 interface SocialMediaHandle {
   name: string;
@@ -49,12 +49,14 @@ interface SocialMediaHandle {
 }
 
 interface SocialMediaLinked {
-  url: string;
-  name: string;
-  icon: any;
-  color: string;
+  url?: string;
+  name?: string;
+  icon?: any;
+  color?: string;
 }
-
+interface PropType {
+  linked_?: SocialMediaLinked[]
+}
 const iconVariants = (duration: number): Variants => ({
   initial: { y: duration % 5 },
   animate: {
@@ -68,12 +70,23 @@ const iconVariants = (duration: number): Variants => ({
   },
 });
 
-function SocialLinks() {
+const SocialLinks: React.FC<PropType> = ({linked_}) =>{
   const [searchTerm, setSearchTerm] = useState("");
   const [selected, setSelected] = useState<SocialMediaHandle | null>(null);
   const [linked, setLinked] = useRecoilState(SocialHandles);
   const [url, setUrl] = useState("");
   const [showAll, setShowAll] = useState(false);
+  const [Count, setCount] = useRecoilState(fetchCount);
+  useEffect(() => {
+    if (Count < 1) {
+      if(linked_){
+        setLinked(linked_)
+      }
+      // if (technologies_) {
+      //   setTechnology(technologies_);
+      // }
+    }
+  }, [linked_]);
 
   const addHandle = (name: string, icon: any, color: string) => {
     if (icon === "Nothing") {
@@ -283,7 +296,7 @@ function SocialLinks() {
                   title={icon}
                   style={{ color: color, fontSize: "2em" }}
                 >
-                  {HashMap[name]}
+                  {name && HashMap[name]}
                 </div>
               </div>
             </a>

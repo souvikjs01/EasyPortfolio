@@ -22,18 +22,19 @@ import {Name, WhatYouAre, Summary, Resume, AboutText, Technology_, Address, Emai
 import axios from "axios";
 import { useSession } from "next-auth/react";
 interface ProjectStruct {
-  image?: string;
-  title?: string;
-  description?: string;
-  technologies?: string[];
+    projectName?: string;
+    description?: string;
+    technologies?: string[];
+    github?: string;
+    hosted?: string;
 }
 
 interface ExperienceStruct {
-  duration?: string;
-  title?: string;
+  years?: string;
+  role?: string;
   company?: string;
   description?: string;
-  technologies?: string[];
+  stack?: string[];
 }
 
 interface HeroStruct {
@@ -54,9 +55,9 @@ interface AboutStruct {
 }
 
 interface TechnologyStruct {
-  skill: string;
-  color: any;
-  icon: string;
+  skill?: string;
+  color?: any;
+  icon?: string;
 }
 interface socialLinkStruct {
   url: string;
@@ -173,21 +174,23 @@ const data:HomePageStruct = {
   HeroSection: {Name: fetchedfromBackend?.username, WhatYouAre: fetchedfromBackend?.whatyouare, Summary: fetchedfromBackend?.summary},
   ContactSection: {Address: fetchedfromBackend?.address, Mobile: fetchedfromBackend?.mobile, Email: fetchedfromBackend?.email},
   ProjectSection: fetchedfromBackend?.projects?.map(project => ({
-    title: project.projectName,
-    description: project.description,
-    technologies: project.technologies,
+    projectName: project?.projectName,
+    description: project?.description,
+    technologies: project?.technologies,
+    github: project?.github,
+    hosted: project?.hosted,
   })),
   ExperienceSection: fetchedfromBackend?.experience?.map(experience => ({
-    duration: experience.years,
-    title: experience.role,
-    company: experience.company,
-    description: experience.description,
-    technologies: experience.stack,
+    years: experience?.years,
+    role: experience?.role,
+    company: experience?.company,
+    description: experience?.description,
+    stack: experience?.stack,
   })),
   TechnologySection: fetchedfromBackend?.technology?.map(tech => ({
-    skill: tech.skill,
-    color:tech.color,
-    icon:tech.icon,
+    skill: tech?.skill,
+    color: tech?.color,
+    icon: tech?.icon,
   })),
   AboutSection: {
     abouttext: fetchedfromBackend?.abouttext,
@@ -200,6 +203,7 @@ const data:HomePageStruct = {
     color: social.color,
   })),
 }
+// console.log("complete data ========== ", data)
   const changeTemplate = () => {
     setX(!X);
     setY(!Y);
@@ -234,12 +238,12 @@ const data:HomePageStruct = {
       <div className="container mx-auto px-8">
         <Navbar />
         <Hero Name_={data.HeroSection?.Name} WhatYouAre_={data.HeroSection?.WhatYouAre} Summary_={data.HeroSection?.Summary}/>
-        <About />
-        <Technologies />
-        <Experience />
-        <Projects/>
-        <Contact />
-        <SocialLinks />
+        <About data={data.AboutSection}/>
+        <Technologies technologies_={data.TechnologySection}/>
+        <Experience experiences_={data.ExperienceSection}/>
+        <Projects projects={data.ProjectSection}/>
+        <Contact Address_={data.ContactSection?.Address} Mobile_={data.ContactSection?.Mobile} Email_={data.ContactSection?.Email}/>
+        <SocialLinks linked_={data.SocialSection}/>
 
       </div>
       

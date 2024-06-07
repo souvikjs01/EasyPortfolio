@@ -48,7 +48,7 @@ interface SocialMediaLinked {
   color?: string;
 }
 interface SocialMediaHandle {
-    name: string;
+    name?: string;
     icon?: any;
     color?: string;
 }
@@ -119,7 +119,7 @@ const SocialLinks: React.FC<PropType> = ({linked}) => {
   const HashMap: MyHashMap = {};
   
   handles.forEach((handle) => {
-    HashMap[handle.name] = handle.icon;
+    if(handle.name) HashMap[handle.name] = handle.icon;
   });
   HashMap["Nothing"] = <FaCode />;
 

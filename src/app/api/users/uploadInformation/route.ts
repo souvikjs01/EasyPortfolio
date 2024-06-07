@@ -9,28 +9,53 @@ export async function GET(){
         pp:'pp'
     })
 }
-export async function POST(request: NextRequest, response: NextResponse){
+export async function POST(request: NextRequest, response: NextResponse) {
     // const session = await getServerSession(request, response, authOptions)
     try {
-        const reqBody = await request.json()
-        const {template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email} = reqBody
-        //const description_short = description.slice(0,50)+"...";
-        // Save Message
-        console.log("pppppp",reqBody);
-        const newPortfolio = new Data({
-            template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience
-        })
-        console.log(newPortfolio)
-        await newPortfolio.save();
+        const reqBody = await request.json();
+        const {
+            template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
+        } = reqBody;
 
-        return NextResponse.json({
-            message: "Portfolio saved successfully",
-            success: true,
-        })
+        console.log("Received Request Body:", reqBody);
+
+        // Check if a portfolio with the specified findUser already exists
+        const existingPortfolio = await Data.findOne({ findUser });
+
+        if (existingPortfolio) {
+            // Update the existing portfolio
+            const updatedPortfolio = await Data.findOneAndUpdate(
+                { findUser },
+                {
+                    template, username, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
+                },
+                { new: true } // Return the updated document
+            );
+
+            console.log("Updated Portfolio:", updatedPortfolio);
+
+            return NextResponse.json({
+                message: "Portfolio updated successfully",
+                success: true,
+            });
+        } else {
+            // Create a new portfolio
+            const newPortfolio = new Data({
+                template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
+            });
+
+            console.log("New Portfolio:", newPortfolio);
+            await newPortfolio.save();
+
+            return NextResponse.json({
+                message: "Portfolio saved successfully",
+                success: true,
+            });
+        }
 
     } catch (error: any) {
-        console.log(error)
-        return NextResponse.json({error: error.message},{status: 500})
+        console.log("Error:", error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
 
