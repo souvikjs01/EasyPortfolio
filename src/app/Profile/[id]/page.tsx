@@ -126,7 +126,7 @@ const UserProfile: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await axios.put("/api/users/uploadInformation", {
-          username: name
+          findUser: name
         });
         // console.log("oooooooooooooooooooooooooooooooooo",response.data.PortfolioData[0])
         setPortfolioDataVal(response.data.PortfolioData[0]);

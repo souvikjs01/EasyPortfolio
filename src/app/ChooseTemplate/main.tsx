@@ -50,6 +50,7 @@ const HomeMain: React.FC = () => {
             {
                 template1 && <div><HomePage /></div>
             }
+            
             {
                 template2 && <div><Home2Page /></div>
             }

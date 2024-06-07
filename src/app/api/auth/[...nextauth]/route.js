@@ -80,6 +80,7 @@ const authOptions = {
                 token.username = user.username;
                 token.email = user.email;
                 token.id = user.id;
+                token.email = user.email;
             }
             //console.log("token = ", token);
             return token;

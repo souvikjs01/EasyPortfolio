@@ -73,6 +73,7 @@ function HomePage() {
   const { data: session} = useSession()
   
   const clickAction = () => {
+    console.log(session);
     if(session?.user) {settempform(!tempform)}
     else router.push('/login');
   }

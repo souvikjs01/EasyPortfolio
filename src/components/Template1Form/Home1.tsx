@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./component/Navbar";
 import Hero from "./component/Hero";
 import About from "./component/About";
@@ -20,6 +20,7 @@ import { temp2 } from "@/recoilState";
 import { useRouter } from "next/navigation";
 import {Name, WhatYouAre, Summary, Resume, AboutText, Technology_, Address, Email, Mobile, SocialHandles, experienceState, projectState} from '@/recoilState';
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 function Home() {
   const [publish, setpublish] = React.useState('Publish Portfolio');
@@ -41,6 +42,41 @@ function Home() {
   const SocialHandlesVal = useRecoilValue(SocialHandles);
   const projectStateVal = useRecoilValue(projectState);
   const experienceStateVal = useRecoilValue(experienceState);
+  const {data: session} = useSession();
+  const [email, setemail] = React.useState('');
+  // console.log(session.data?.user.)
+  function cleanEmailAddress(email: string): string {
+    // Split the email into local part and domain part
+    const [localPart, domainPart] = email.split('@');
+
+    // Define regular expressions to match allowed characters
+    const localRegex = /[^a-zA-Z0-9.]/g; // Allow letters, digits, and periods in local part
+    const domainRegex = /[^a-zA-Z0-9]/g; // Allow letters and digits in domain part
+
+    // Clean the local and domain parts
+    const cleanedLocalPart = localPart.replace(localRegex, '');
+    const cleanedDomainPart = domainPart ? domainPart.replace(domainRegex, '') : '';
+
+    // Combine the cleaned parts without @
+    const cleanedEmail = `${cleanedLocalPart}${cleanedDomainPart}`;
+
+    return cleanedEmail;
+}
+
+useEffect(()=>{
+  if(session?.user.email){
+    const cleanedEmail = cleanEmailAddress(session?.user.email);
+    setemail(cleanedEmail);
+  }
+}, [session?.user.email]);
+
+
+
+// Example usage:
+// const email = "user123.name+alias@example.com";
+// const cleanedEmail = cleanEmailAddress(email);
+// console.log(cleanedEmail);  // Output: "usernamealias@examplecom"
+
   const changeTemplate = () => {
     setX(!X);
     setY(!Y);
@@ -49,19 +85,14 @@ function Home() {
   }
   const PublishPortfolio = async () => {
     try {
-    //   console.log('upto this');
-    //   console.log({
-    //     template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
-    //  })
       setpublish('Publishing...')
-      console.log({
-        template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
-     })
+      console.log("about === ", AboutText);
+
       const portfolio = await axios.post('../../api/users/uploadInformation', {
-         template:template ,username: NameVal, findUser: NameVal, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
+        template:template ,username: NameVal, findUser: email, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal
       });
       // console.log('uploaded', portfolio)
-      router.push(`/Profile/${NameVal}`)
+      router.push(`/Profile/${email}`)
     } catch (error) {
       setpublish('Try again');
       console.log('error', error);

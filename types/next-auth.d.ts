@@ -10,8 +10,7 @@ declare module "next-auth" {
       name: string
       id: string
       username: string
-      isAdmin: boolean
-      isMember: boolean
+      email: string
     }
   }
 }
