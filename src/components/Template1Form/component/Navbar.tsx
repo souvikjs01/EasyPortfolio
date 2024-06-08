@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react';
 import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 import {
@@ -5,19 +6,26 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useRecoilState } from 'recoil';
+import { NavbarItems, LinkedInNavbar, GithubNavbar, InstaNavbar } from '@/recoilState';
+
 interface ListItem {
-  link: string;
-  name: string;
-  icon: any;
+  link?: string;
+  name?: string;
+  icon?: any;
 }
+
 const Navbar = () => {
   const [checkLinkedin, setCheckLinkedin] = useState(true);
   const [checkGithub, setCheckGithub] = useState(true);
   const [checkInsta, setCheckInsta] = useState(true);
-  const [linkedinLink, setlinkedinLink] = useState('');
-  const [githubLink, setgithubLink] = useState('');
-  const [instaLink, setinstaLink] = useState('');
-  const [navsocialLinks, setnavsocialLinks] = useState<ListItem[]>([]);
+  const [linkedinUrl, setlinkedinUrl] = useState('');
+  const [githubUrl, setgithubUrl] = useState('');
+  const [instaUrl, setinstaUrl] = useState('');
+  const [linkedinLink, setlinkedinLink] = useRecoilState(LinkedInNavbar);
+  const [githubLink, setgithubLink] = useRecoilState(GithubNavbar);
+  const [instaLink, setinstaLink] = useRecoilState(InstaNavbar);
+  const [navsocialLinks, setnavsocialLinks] = useRecoilState<ListItem[]>(NavbarItems);
   const addLink = (link: string, name: string, icon: any) => {
     setnavsocialLinks(prevItems => [...prevItems, {link: link, name: name, icon: icon}]);
   }
@@ -58,7 +66,7 @@ const Navbar = () => {
                 </div>
               </div>
             )}
-            <PopoverContent className="w-full bg-transparent text-white">LinkedIn url - <div className='flex flex-row'><input value={linkedinLink} onChange={(e)=>{setlinkedinLink(e.target.value)}} type="text" className='mr-2 w-full h-8 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent'/><button onClick={()=>{addLink(linkedinLink, 'LinkedIn', <FaLinkedin />)}} className='p-2 ml-1 bg-cyan-700 hover:bg-cyan-500 text-white rounded-lg'>Add</button></div></PopoverContent>
+            <PopoverContent className="w-full bg-transparent text-white">LinkedIn url - <div className='flex flex-row'><input value={linkedinUrl} onChange={(e)=>{setlinkedinUrl(e.target.value)}} type="text" className='mr-2 w-full h-8 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent'/><button onClick={()=>{setlinkedinLink({link:linkedinUrl, name:'LinkedIn', icon: 'LinkedIn'})}} className='p-2 ml-1 bg-cyan-700 hover:bg-cyan-500 text-white rounded-lg'>Add</button></div></PopoverContent>
           </div>
         </Popover>
 
@@ -92,7 +100,7 @@ const Navbar = () => {
                 </div>
               </div>
             )}
-            <PopoverContent className="w-full bg-transparent text-white">GitHub url - <div className='flex flex-row'><input value={githubLink} onChange={(e)=>{setgithubLink(e.target.value)}} type="text" className='mr-2 w-full h-8 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent'/><button onClick={()=>{addLink(githubLink, 'GitHub', <FaGithub />)}} className='p-2 ml-1 bg-cyan-700 hover:bg-cyan-500 text-white rounded-lg'>Add</button></div></PopoverContent>
+            <PopoverContent className="w-full bg-transparent text-white">GitHub url - <div className='flex flex-row'><input value={githubUrl} onChange={(e)=>{setgithubUrl(e.target.value)}} type="text" className='mr-2 w-full h-8 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent'/><button onClick={()=>{setgithubLink({link:githubUrl, name:'GitHub',icon: 'Github'})}} className='p-2 ml-1 bg-cyan-700 hover:bg-cyan-500 text-white rounded-lg'>Add</button></div></PopoverContent>
           </div>
         </Popover>
 
@@ -126,7 +134,7 @@ const Navbar = () => {
                 </div>
               </div>
             )}
-            <PopoverContent className="w-full bg-transparent text-white">Instagram url - <div className='flex flex-row'><input value={instaLink} onChange={(e)=>{setinstaLink(e.target.value)}} type="text" className='mr-2 w-full h-8 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent'/><button onClick={()=>{addLink(instaLink, 'Instagram', <FaInstagram />)}} className='p-2 ml-1 bg-cyan-700 hover:bg-cyan-500 text-white rounded-lg'>Add</button></div></PopoverContent>
+            <PopoverContent className="w-full bg-transparent text-white">Instagram url - <div className='flex flex-row'><input value={instaUrl} onChange={(e)=>{setinstaUrl(e.target.value)}} type="text" className='mr-2 w-full h-8 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent'/><button onClick={()=>{setinstaLink({link:instaUrl, name: 'Instagram', icon:'Instagram'})}} className='p-2 ml-1 bg-cyan-700 hover:bg-cyan-500 text-white rounded-lg'>Add</button></div></PopoverContent>
           </div>
         </Popover>
       </div>

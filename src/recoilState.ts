@@ -49,8 +49,29 @@ export const temp1Form = atom({
 })
 
 // Form fields...
-
+interface ListItem {
+    link?: string;
+    name?: string;
+    icon?: any;
+}
+export const LinkedInNavbar = atom <ListItem> ({
+    key: 'LinkedInNavbar',
+    default: {}
+})
+export const GithubNavbar = atom <ListItem> ({
+    key: 'GithubNavbar',
+    default: {}
+})
+export const InstaNavbar = atom <ListItem> ({
+    key: 'InstaNavbar',
+    default: {}
+})
+export const NavbarItems = atom<ListItem[]>({
+    key: 'NavbarItems',
+    default: [],
+})
 // Hero 
+
 
 export const Name = atom({
     key: 'Name',

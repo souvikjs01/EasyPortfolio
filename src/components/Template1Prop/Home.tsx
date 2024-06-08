@@ -55,8 +55,15 @@ interface socialLinkStruct {
   icon: any;
   color: string;
 }
-
+interface NavStruct {
+  link?: string;
+  name?: string;
+  icon?: any;
+}
 interface HomePageStruct {
+  NavGithubSection?: NavStruct;
+  NavLinkedInSection?: NavStruct;
+  NavInstaSection?: NavStruct;
   HeroSection?: HeroStruct;
   ContactSection?: ContactStruct;
   AboutSection?: AboutStruct;
@@ -83,7 +90,7 @@ const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
         </div>
         
         <div className="container mx-auto px-8">
-          <Navbar />
+          <Navbar NavGithub_={Data?.NavGithubSection} NavLinkedIn_={Data?.NavLinkedInSection} NavInsta_={Data?.NavInstaSection}/>
           {/* <p>{session?.user?.username}</p>
            */}
           <Hero Name={Data?.HeroSection?.Name} WhatYouAre={Data?.HeroSection?.WhatYouAre} Summary={Data?.HeroSection?.Summary}/>

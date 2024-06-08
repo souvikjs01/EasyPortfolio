@@ -12,7 +12,7 @@ import SocialLinks from "./component/SocialLinks";
 import {motion} from 'framer-motion';
 import { Button } from "../ui/moving-border";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { temp1Form } from "@/recoilState";
+import { GithubNavbar, InstaNavbar, LinkedInNavbar, NavbarItems, temp1Form } from "@/recoilState";
 import { temp2Form } from "@/recoilState";
 import { temp1 } from "@/recoilState";
 import { temp2 } from "@/recoilState";
@@ -65,8 +65,13 @@ interface socialLinkStruct {
   icon: any;
   color: string;
 }
-
+interface NavStruct {
+  link?: string;
+  name?: string;
+  icon?: any;
+}
 interface HomePageStruct {
+  NavSection?: NavStruct;
   HeroSection?: HeroStruct;
   ContactSection?: ContactStruct;
   AboutSection?: AboutStruct;
@@ -76,7 +81,7 @@ interface HomePageStruct {
   SocialSection?: socialLinkStruct[];
 }
 interface fetchedfromBackend {
-
+  navbar?: {link: string, name: string, icon: any}[];
   template?: string;
   username?: string;
   whatyouare?: string;
@@ -112,6 +117,10 @@ function Home() {
   const [a, seta] = useRecoilState(temp2);
   const router = useRouter();
   const template = "template1"
+  // const NavVal = useRecoilState(NavbarItems);
+  const NavGithub = useRecoilValue(GithubNavbar);
+  const NavLinkedIn = useRecoilValue(LinkedInNavbar);
+  const NavInsta = useRecoilValue(InstaNavbar);
   const NameVal = useRecoilValue(Name);
   const WhatYouAreVal = useRecoilValue(WhatYouAre);
   const SummaryVal = useRecoilValue(Summary);
@@ -213,10 +222,12 @@ const data:HomePageStruct = {
   const PublishPortfolio = async () => {
     try {
       setpublish('Publishing...')
-      console.log("about === ", AboutText);
+      console.log("publishing === ", {
+        navgithub:NavGithub, navlinkedin:NavLinkedIn, navinsta:NavInsta, template:template ,username: NameVal, findUser: email, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal, email: EmailVal
+      });
 
       const portfolio = await axios.post('../../api/users/uploadInformation', {
-        template:template ,username: NameVal, findUser: email, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal, email: EmailVal
+        navgithub:NavGithub, navlinkedin:NavLinkedIn, navinsta:NavInsta, template:template ,username: NameVal, findUser: email, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal, email: EmailVal
       });
       // console.log('uploaded', portfolio)
       router.push(`/Profile/${email}`)

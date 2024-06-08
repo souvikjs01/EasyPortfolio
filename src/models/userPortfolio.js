@@ -3,6 +3,15 @@ import mongoose from "mongoose";
 mongoose.Promise = global.Promise;
 
 const portfolioSchema = new mongoose.Schema({
+    navgithub: {
+        type: {},
+    },
+    navlinkedin: {
+        type: {},
+    },
+    navinsta: {
+        type: {},
+    },
     template: {
         type: String,
     },

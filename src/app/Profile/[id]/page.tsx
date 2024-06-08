@@ -50,8 +50,15 @@ interface socialLinkStruct {
   icon: any;
   color: string;
 }
-
+interface NavStruct {
+  link?: string;
+  name?: string;
+  icon?: any;
+}
 interface HomePageStruct {
+  NavGithubSection?: NavStruct;
+  NavLinkedInSection?: NavStruct;
+  NavInstaSection?: NavStruct;
   HeroSection?: HeroStruct;
   ContactSection?: ContactStruct;
   AboutSection?: AboutStruct;
@@ -61,7 +68,9 @@ interface HomePageStruct {
   SocialSection?: socialLinkStruct[];
 }
 interface PortfolioDataVal {
-
+  navgithub?: {link: string, name: string, icon: string};
+  navlinkedin?: {link: string, name: string, icon: string};
+  navinsta?: {link: string, name: string, icon: string};
   template?: string;
   username?: string;
   whatyouare?: string;
@@ -95,6 +104,9 @@ const UserProfile: React.FC = () => {
   
   const [portfolioDataVal, setPortfolioDataVal] = useState<PortfolioDataVal | null>(null);
   const data:HomePageStruct = {
+    NavGithubSection:{link: portfolioDataVal?.navgithub?.link, name: portfolioDataVal?.navgithub?.name, icon: portfolioDataVal?.navgithub?.icon},
+    NavLinkedInSection:{link: portfolioDataVal?.navlinkedin?.link, name: portfolioDataVal?.navlinkedin?.name, icon: portfolioDataVal?.navlinkedin?.icon},
+    NavInstaSection:{link: portfolioDataVal?.navinsta?.link, name: portfolioDataVal?.navinsta?.name, icon: portfolioDataVal?.navinsta?.icon},
     HeroSection: {Name: portfolioDataVal?.username, WhatYouAre: portfolioDataVal?.whatyouare, Summary: portfolioDataVal?.summary},
     ContactSection: {Address: portfolioDataVal?.address, Mobile: portfolioDataVal?.mobile, Email: portfolioDataVal?.email},
     ProjectSection: portfolioDataVal?.projects?.map(project => ({

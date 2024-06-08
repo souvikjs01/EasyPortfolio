@@ -14,7 +14,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     try {
         const reqBody = await request.json();
         const {
-            template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
+           navgithub, navlinkedin, navinsta ,template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
         } = reqBody;
 
         console.log("Received Request Body:", reqBody);
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
             const updatedPortfolio = await Data.findOneAndUpdate(
                 { findUser },
                 {
-                    template, username, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
+                   navgithub, navlinkedin, navinsta, template, username, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
                 },
                 { new: true } // Return the updated document
             );
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         } else {
             // Create a new portfolio
             const newPortfolio = new Data({
-                template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
+               navgithub, navlinkedin, navinsta, template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
             });
 
             console.log("New Portfolio:", newPortfolio);
