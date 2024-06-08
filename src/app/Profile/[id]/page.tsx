@@ -5,7 +5,7 @@ import axios from 'axios';
 import HomePage from '@/components/Template1Prop/Home';
 import App from '@/components/Middlepages/Spinners';
 import { useRouter } from 'next/navigation';
-
+import { useSession } from 'next-auth/react';
 interface ProjectStruct {
   projectName?: string;
   description?: string;
@@ -101,7 +101,7 @@ interface PortfolioDataVal {
 
 const UserProfile: React.FC = () => {
   const { id: name } = useParams();
-  
+  const {data: session} = useSession();
   const [portfolioDataVal, setPortfolioDataVal] = useState<PortfolioDataVal | null>(null);
   const data:HomePageStruct = {
     NavGithubSection:{link: portfolioDataVal?.navgithub?.link, name: portfolioDataVal?.navgithub?.name, icon: portfolioDataVal?.navgithub?.icon},
