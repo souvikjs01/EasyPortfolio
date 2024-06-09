@@ -40,6 +40,7 @@ const Home: React.FC = () => {
             <Cursor cursorStyle="_" />
           </p>
           <p className="text-neutral-300 max-w-120">
+            
             Ready to use Portfolio templates for free. Already having lots of projects? Don't have an idea how to showcase them? We got you. 
             <span className="bg-gradient-to-r from-pink-400 via-slate-500 to-purple-500 bg-clip-text tracking-tight text-transparent">
               You don't need to code for hours now...
