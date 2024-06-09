@@ -73,7 +73,11 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      // animation: {
+      //   typing: "typing 2s steps(20) infinite alternate, blink .7s infinite"
+      // },
       keyframes: {
+        
         spotlight: {
           "0%": {
             opacity: '0',
@@ -101,6 +105,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        typing: "typing 2s steps(20) infinite alternate, blink .7s infinite",
         spotlight: "spotlight 2s ease .75s 1 forwards",
         scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
