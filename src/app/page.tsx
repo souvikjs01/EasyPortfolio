@@ -4,21 +4,11 @@ import { RecoilRoot } from "recoil";
 import EasyPortfolioNavbar from '@/components/basic/EasyPortfolioNavbar';
 import { FaArrowRight } from "react-icons/fa6";
 import Link from 'next/link';
-import { useTypewriter, Cursor } from 'react-simple-typewriter';
+// import { useTypewriter, Cursor } from 'react-simple-typewriter';
+import TypeWriter from "@/components/basic/TypeWriter/TypeWriter";
 
 const Home: React.FC = () => {
-  const [ text ] = useTypewriter({
-    words: [
-      "Don't code for hours now", 
-      "Use ready-to-use templates", 
-      "Switch between templates without losing data"
-    ],
-    loop: true,
-    typeSpeed: 70,
-    deleteSpeed: 90,
-    delaySpeed: 2000,
-  });
-
+  
   return (
     <RecoilRoot>
       <div className="overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900">
@@ -35,10 +25,21 @@ const Home: React.FC = () => {
           <p className="lg:text-6xl text-4xl">
             Make your <span className="text-pink-500">Portfolio</span> with us...
           </p>
-          <p className=" tracking-tight drop-shadow-lg bg-transparent text-sm text-orange-500">
-            {text}
-            <Cursor cursorStyle="|" />
-          </p>
+
+          <TypeWriter 
+          Sentences={[
+            "Choose from many ready-to-use templates",
+            "Do not code for hours now...",
+            "Let us build your portfolio so you can focus on expressing yourself..."
+          ]} 
+          typeSpeed={70}
+          deleteSpeed={70} 
+          delay={2000}
+          color="#AB05F8"/>
+
+
+
+
           <p className="text-neutral-300 max-w-120">
 
             Ready to use Portfolio templates for free. Already having lots of projects? Don't have an idea how to showcase them? We got you. 
