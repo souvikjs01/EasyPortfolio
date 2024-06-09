@@ -35,7 +35,7 @@ const Home: React.FC = () => {
           <p className="lg:text-6xl text-4xl">
             Make your <span className="text-pink-500">Portfolio</span> with us...
           </p>
-          <p className="bg-gradient-to-r from-pink-400 via-slate-500 to-purple-500 bg-clip-text tracking-tight text-transparent">
+          <p className=" tracking-tight drop-shadow-lg bg-transparent text-sm text-orange-500">
             {text}
             <Cursor cursorStyle="|" />
           </p>
