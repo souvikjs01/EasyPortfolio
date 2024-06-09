@@ -35,12 +35,12 @@ const Home: React.FC = () => {
           <p className="lg:text-6xl text-4xl">
             Make your <span className="text-pink-500">Portfolio</span> with us...
           </p>
-          <p className="lg:text-2xl  font-thin tracking-tight bg-transparent text-xl text-blue-500">
+          <p className="bg-gradient-to-r from-pink-400 via-slate-500 to-purple-500 bg-clip-text tracking-tight text-transparent">
             {text}
-            <Cursor cursorStyle="_" />
+            <Cursor cursorStyle="|" />
           </p>
           <p className="text-neutral-300 max-w-120">
-            
+
             Ready to use Portfolio templates for free. Already having lots of projects? Don't have an idea how to showcase them? We got you. 
             <span className="bg-gradient-to-r from-pink-400 via-slate-500 to-purple-500 bg-clip-text tracking-tight text-transparent">
               You don't need to code for hours now...
