@@ -7,7 +7,7 @@ import PinkNavbar from '../Navbars/PinkNavbar'
 
 export default function Navbar() {
     const theme = useRecoilValue(ThemeState);
-    console.log('theme is ', theme);
+    //console.log('theme is ', theme);
   return (
     <div>
         {theme === 'dark' && <DarkNavbar/>}

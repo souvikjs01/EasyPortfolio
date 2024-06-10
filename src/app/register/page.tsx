@@ -16,11 +16,11 @@ function page() {
                 email: email,
                 password: pass,
             })
-            console.log("success");
+            //console.log("success");
             router.push('/login');
 
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
     

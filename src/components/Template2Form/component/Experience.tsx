@@ -16,7 +16,7 @@ export default function Experience() {
     const [company, setCompany] = React.useState('');
     const [experience, setexperience] = React.useState<ExperienceItem[]>([]);
     const addExperience = () => {
-        console.log(experience);        
+        //console.log(experience);        
         setexperience(prevItems=>[...prevItems, {title: title, description: description, techstacks: techs, year: year, company: company}]);
         setTechs([]);
     }
@@ -43,7 +43,7 @@ export default function Experience() {
                         
                         {techs.map((key, index)=>(
                             
-                            <span className='flex items-center mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'>{key}</span>
+                            <span key={index} className='flex items-center mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'>{key}</span>
                             
                         ))}
                         

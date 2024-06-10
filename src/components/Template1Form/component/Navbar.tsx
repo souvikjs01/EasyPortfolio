@@ -27,6 +27,9 @@ interface HomePageStruct {
 }
 
 const Navbar:React.FC <HomePageStruct> = ({NavGithub_, NavLinkedIn_, NavInsta_}) => {
+  //console.log("github-------------->",NavGithub_);
+  //console.log("linkedin------------>", NavLinkedIn_);
+  //console.log("insta--------------->", NavInsta_);
   const [checkLinkedin, setCheckLinkedin] = useState(true);
   const [checkGithub, setCheckGithub] = useState(true);
   const [checkInsta, setCheckInsta] = useState(true);
@@ -44,8 +47,8 @@ const Navbar:React.FC <HomePageStruct> = ({NavGithub_, NavLinkedIn_, NavInsta_})
         if(NavGithub_ && NavGithub_.link) 
         {
           setgithubLink(NavGithub_);
-          //console.log(NavGithub_.link)
-          setlinkedinUrl(NavGithub_?.link);
+          ////console.log(NavGithub_.link)
+          setgithubUrl(NavGithub_?.link);
         };
         if(NavLinkedIn_ && NavLinkedIn_.link) {setlinkedinLink(NavLinkedIn_); setlinkedinUrl(NavLinkedIn_?.link);};
         if(NavInsta_ && NavInsta_.link) {setinstaLink(NavInsta_); setinstaUrl(NavInsta_?.link);};

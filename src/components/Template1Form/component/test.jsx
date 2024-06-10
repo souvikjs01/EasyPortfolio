@@ -21,7 +21,7 @@ const DynamicInputForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitted values:', inputs);
+    //console.log('Submitted values:', inputs);
     // Here you can handle the submission, e.g., send the data to an API or update state elsewhere
   };
 

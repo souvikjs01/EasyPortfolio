@@ -15,10 +15,10 @@ async function login(credentials){
         if(!user || !isCorrect){
             throw new Error("Hat bsdk");
         }
-        //console.log(user);
+        ////console.log(user);
         return user;
     } catch (error) {
-        console.log("hatbsdk",error);
+        //console.log("hatbsdk",error);
         throw new Error("hat bsdk")
     }
 }
@@ -35,7 +35,7 @@ const authOptions = {
                     const user = await login(credentials);
                     return user;
                 } catch (error) {
-                    console.log(error);
+                    //console.log(error);
                     return null;
                 }
             }
@@ -53,13 +53,13 @@ const authOptions = {
         async signIn({user, account}){
             if(account.provider==='google'){
                 try {
-                    console.log("Google user = ", user);
+                    //console.log("Google user = ", user);
                     const {name, email} = user;
                     const exist = await User.findOne({email});
                     if(exist){
                         return user;
                     }
-                    console.log(name);
+                    //console.log(name);
                     const newUser = new User({
                         username: name,
                         email: email,
@@ -69,7 +69,7 @@ const authOptions = {
                         return user;
                     }
                 } catch (error) {
-                    console.log(error)
+                    //console.log(error)
                 }
                 
             }
@@ -82,7 +82,7 @@ const authOptions = {
                 token.id = user.id;
                 token.email = user.email;
             }
-            //console.log("token = ", token);
+            ////console.log("token = ", token);
             return token;
         },
         async session({session, token}){
@@ -91,7 +91,7 @@ const authOptions = {
                 session.user.username=token.username;
                 session.user.email=token.email;
             }
-            //console.log("session = ", session);
+            ////console.log("session = ", session);
             return session;
         }
     }

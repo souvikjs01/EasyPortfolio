@@ -57,8 +57,8 @@ interface ProjectStruct {
                     Technologies - <input type="text" value={tech} onChange={(e)=>{settech(e.target.value)}}  className='mr-2 w-24 h-8 ml-1 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent' placeholder='Eg: Kafka'/> <button onClick={addTechnology}  className='mr-2 bg-purple-900 p-1 rounded-lg hover:bg-purple-500'>Add</button>
                     
                         <div className='mt-2 flex flex-row flex-wrap'>
-                            {technologies.map((techi)=>(
-                                <div className='mt-1 mr-1'>
+                            {technologies.map((techi, index)=>(
+                                <div key={index} className='mt-1 mr-1'>
                                     <span className=' rounded bg-neutral-900  px-2 py-1 text-sm font-medium text-purple-600'>{techi}</span>
                                 </div>
                             ))}
@@ -72,7 +72,7 @@ interface ProjectStruct {
                 </div>
             </motion.div>
             {Projects.map(({projectName, description, technologies, github, hosted}, index)=>(
-                <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='mb-8 relative flex flex-wrap lg:justify-center'>
+                <motion.div key={index} whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='mb-8 relative flex flex-wrap lg:justify-center'>
                     <div className='w-full lg:w-1/4'>
                         <Image src="/o1.jpg" alt="" width={200} height={200} className='rounded-lg'/>
                     </div>
@@ -81,8 +81,8 @@ interface ProjectStruct {
                         <h6 className='mb-2 font-semibold'>{projectName}</h6>
                         <p className='mb-4 text-neutral-400'>{description}</p>
                         <div className='mt-2 flex flex-row flex-wrap'>
-                            {technologies && technologies.map((techi)=>(
-                                <div className='mt-1 mr-1'>
+                            {technologies && technologies.map((techi, index)=>(
+                                <div key={index} className='mt-1 mr-1'>
                                     <span className=' rounded bg-neutral-900  px-2 py-1 text-sm font-medium text-purple-600'>{techi}</span>
                                 </div>
                             ))}

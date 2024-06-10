@@ -17,11 +17,11 @@ function page() {
         redirect: false
       })
       
-      console.log('pp resp',res);
+      //console.log('pp resp',res);
       router.push('/ChooseTemplate')
       
     } catch (error) {
-      console.log(error)
+      //console.log(error)
     }
   }
   return (

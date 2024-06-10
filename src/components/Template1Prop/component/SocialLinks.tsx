@@ -72,7 +72,7 @@ const iconVariants = (index: number): Variants => ({
 })
 
 const SocialLinks: React.FC<PropType> = ({linked}) => {
-  // console.log("oooooooooooooooooo",linked);
+  // //console.log("oooooooooooooooooo",linked);
 
   
   const handles: SocialMediaHandle[] = [
@@ -157,12 +157,12 @@ const SocialLinks: React.FC<PropType> = ({linked}) => {
         <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x: -100}} transition={{duration:1.5}} className="mb-10 flex flex-row flex-wrap justify-center text-center items-center">
           {linked && linked.map(({ url, name, icon, color }, index) => (
             <a href={url} key={index} target="_blank" rel="noopener noreferrer">
-              <div className="m-2 p-2 text-center flex flex-row items-center">
+              <div key={index} className="m-2 p-2 text-center flex flex-row items-center">
                 <motion.div
                   className="rounded-2xl flex items-center justify-center border-4 border-neutral-800 p-4 cursor-pointer"
                   title={icon}
                   style={{ color: color, fontSize: "2em" }}
-                  key={index} // Added a key to each element
+                   // Added a key to each element
                     variants={iconVariants(index + 1)} 
                     initial='initial' 
                     animate='animate' 

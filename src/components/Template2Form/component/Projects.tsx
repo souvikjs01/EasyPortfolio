@@ -42,8 +42,8 @@ function Projects() {
                     Technologies - <input type="text" value={tech} onChange={(e)=>{settech(e.target.value)}}  className='mr-2 w-24 h-8 ml-1 pl-1 outline outline-blue-500 outline-1 rounded-lg text-neutral-400 bg-transparent' placeholder='Eg: Kafka'/> <button onClick={addTechnology}  className='mr-2 bg-purple-900 p-1 rounded-lg hover:bg-purple-500'>Add</button>
                     
                     <div className='mt-2 flex flex-row flex-wrap'>
-                        {technologies.map((techi)=>(
-                            <div className='mt-1 mr-1'>
+                        {technologies.map((techi, index)=>(
+                            <div key={index} className='mt-1 mr-1'>
                                 <span className=' rounded bg-neutral-900  px-2 py-1 text-sm font-medium text-purple-600'>{techi}</span>
                             </div>
                         ))}

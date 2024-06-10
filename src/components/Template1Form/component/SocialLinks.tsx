@@ -97,7 +97,7 @@ const SocialLinks: React.FC<PropType> = ({linked_}) =>{
   };
 
   const addLink = (url: string, name: string, color: string, icon: any) => {
-    console.log("chuchu", { url, name, color, icon });
+    //console.log("chuchu", { url, name, color, icon });
     if (icon === "Nothing") {
       setLinked((prevItems) => [
         ...prevItems,
@@ -201,7 +201,7 @@ const SocialLinks: React.FC<PropType> = ({linked_}) =>{
                 variants={iconVariants(index)}
                 initial="initial"
                 animate="animate"
-                key={handle.name}
+                key={index}
                 style={{ textAlign: "center" }}
               >
                 <motion.div
@@ -291,8 +291,8 @@ const SocialLinks: React.FC<PropType> = ({linked_}) =>{
         </div>
         <div className="mb-10 flex flex-row flex-wrap justify-center text-center items-center">
           {linked.map(({ url, name, icon, color }, index) => (
-            <div className="relative p-2">
-            <a href="#" key={index} target="_blank" rel="noopener noreferrer" >
+            <div key={index} className="relative p-2">
+            <a href="#"  target="_blank" rel="noopener noreferrer" >
               <img onClick={() => deleteHandle(index)} src="/cross.png" alt="cross" width={20} height={20} className="absolute right-0 top-0"/>
               <div className="m-2 p-2 text-center flex flex-row items-center">
                 <div

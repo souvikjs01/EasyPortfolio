@@ -14,7 +14,7 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ data }) => {
-  console.log("in about section", data);
+  //console.log("in about section", data);
   return (
     <div className='border-b border-neutral-900 pb-4'>
       <motion.h1 

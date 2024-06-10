@@ -17,7 +17,7 @@ const Contact : React.FC<MyComponentProps> = ({Address_, Mobile_, Email_}) => {
   const [Count, setCount] = useRecoilState(fetchCount);
   
   useEffect(() => {
-    console.log("faetchcount", Count)
+    //console.log("faetchcount", Count)
     if(Count<1){
       if(Address_ || Mobile_ || Email_){
         if(Address_) setaddress(Address_);

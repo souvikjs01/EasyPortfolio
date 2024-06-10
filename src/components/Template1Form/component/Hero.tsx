@@ -27,7 +27,7 @@ const Hero : React.FC<MyComponentProps> = ({Name_, WhatYouAre_, Summary_}) => {
   const [Count, setCount] = useRecoilState(fetchCount);
   
   useEffect(() => {
-    console.log("faetchcount", Count)
+    //console.log("faetchcount", Count)
     if(Count<1){
       if(Name_ || WhatYouAre_ || Summary_){
         if(Name_) setname(Name_);

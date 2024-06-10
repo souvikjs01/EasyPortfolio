@@ -139,14 +139,14 @@ const UserProfile: React.FC = () => {
       color: social.color,
     })),
   }
-  // console.log('--------------------------------', data);
+  // //console.log('--------------------------------', data);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.put("/api/users/uploadInformation", {
           findUser: name
         });
-        // console.log("oooooooooooooooooooooooooooooooooo",response.data.PortfolioData[0])
+        // //console.log("oooooooooooooooooooooooooooooooooo",response.data.PortfolioData[0])
         setPortfolioDataVal(response.data.PortfolioData[0]);
       } catch (error) {
         console.error('Error fetching data:', error);

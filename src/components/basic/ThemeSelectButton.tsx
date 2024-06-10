@@ -22,7 +22,7 @@ export default function ThemeSelectButton() {
   const ThemeChange = (value: string) => {
     // Set the theme based on the selected value
     setThemeSelect(value);
-    console.log(`Theme changed to: ${value}`);
+    //console.log(`Theme changed to: ${value}`);
   };
 
   return (

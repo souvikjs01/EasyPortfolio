@@ -90,7 +90,7 @@ interface PropType {
     technologies?: Technology[],
 }
 const Technologies: React.FC<PropType> = ({ technologies }) => {
-    // console.log("titties", technologies);
+    // //console.log("titties", technologies);
   return (
     <div className='border-b border-neutral-800 pb-24'>
         <motion.h1 whileInView={{opacity:1, y:0}} initial={{opacity:0, y: -100}} transition={{duration:1.5}} className='my-20 text-center text-4xl'>Technologies</motion.h1>
@@ -104,7 +104,7 @@ const Technologies: React.FC<PropType> = ({ technologies }) => {
                     animate='animate' 
                     className='m-1 rounded-2xl border-4 border-neutral-800 p-4'
                 >
-                    {/* {console.log(icon)} */}
+                    {/* {//console.log(icon)} */}
                     <div className='flex items-center m-2'>
                         {icon && <span style={{ color: color, fontSize: '3rem' }}>{HashMap[icon]}</span>}
                         <span style={{ color: color }}>{skill}</span>

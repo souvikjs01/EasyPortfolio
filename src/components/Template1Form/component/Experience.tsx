@@ -31,8 +31,8 @@ interface ExperienceStruct {
     const [description, setdescription] = React.useState('');
     const [experience, setexperience] = useRecoilState<ExperienceStruct[]>(experienceState);
     const Count = useRecoilValue(fetchCount);
-    // console.log("experience_ prop == ", experiences_)
-    // console.log("experience prop == ", experience)
+    // //console.log("experience_ prop == ", experiences_)
+    // //console.log("experience prop == ", experience)
     const deleteExperience = (index: number) => {
         setexperience(prevExperience => prevExperience.filter((_, i) => i !== index));
       };
@@ -69,7 +69,7 @@ interface ExperienceStruct {
                         
                         {skills.map((key, index)=>(
                             
-                            <span className='flex items-center mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'>{key}</span>
+                            <span key={index} className='flex items-center mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'>{key}</span>
                             
                         ))}
                         
@@ -79,7 +79,7 @@ interface ExperienceStruct {
                 </motion.div>
             </div>
             {experience.map(({years, role, company, description, stack}, index)=>(
-                    <div>
+                    <div key={index}>
                         <div className='mb-8 relative flex flex-wrap lg:justify-center'>
                         <img onClick={() => deleteExperience(index)} src="/cross.png" alt="cross" width={20} height={20} className="absolute right-0 top-0"/>
                             <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='w-full lg:w-1/4'>
@@ -92,7 +92,7 @@ interface ExperienceStruct {
                                 <p className='mb-4 text-neutral-400'>{description}</p>
                                 <div className='mt-2 flex flex-row flex-wrap'>
                                 {stack && stack.map((tech, index)=>(
-                                    <div>
+                                    <div key={index}>
                                         <span className='mr-2 mt-4 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-600'>{tech}</span>
                                     </div>
                                 ))}

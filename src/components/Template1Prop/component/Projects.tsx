@@ -19,7 +19,7 @@ interface ProjectsProps {
 }
 
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {
-  // console.log("weeeeeeeeeeeeee got", projects)
+  // //console.log("weeeeeeeeeeeeee got", projects)
   
   return (
     <div className="border-b border-neutral-900 pb-4">
@@ -41,6 +41,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
               initial={{ opacity: 0, x: -100 }}
               transition={{ duration: 1 }}
               className="mb-8 m-2  flex flex-wrap lg:justify-center"
+              
             >
               
               <div className=" w-full lg:w-1/4">

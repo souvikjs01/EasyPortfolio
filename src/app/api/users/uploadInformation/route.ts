@@ -17,7 +17,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
            navgithub, navlinkedin, navinsta ,template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
         } = reqBody;
 
-        console.log("Received Request Body:", reqBody);
+        //console.log("Received Request Body:", reqBody);
 
         // Check if a portfolio with the specified findUser already exists
         const existingPortfolio = await Data.findOne({ findUser });
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
                 { new: true } // Return the updated document
             );
 
-            console.log("Updated Portfolio:", updatedPortfolio);
+            //console.log("Updated Portfolio:", updatedPortfolio);
 
             return NextResponse.json({
                 message: "Portfolio updated successfully",
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
                navgithub, navlinkedin, navinsta, template, username, findUser, whatyouare, summary, resume, abouttext, address, mobile, sociallinks, technology, projects, experience, email
             });
 
-            console.log("New Portfolio:", newPortfolio);
+            //console.log("New Portfolio:", newPortfolio);
             await newPortfolio.save();
 
             return NextResponse.json({
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         }
 
     } catch (error: any) {
-        console.log("Error:", error);
+        //console.log("Error:", error);
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
@@ -63,12 +63,12 @@ export async function PUT(request: NextRequest) {
 
     try {
         const reqBody = await request.json();
-        console.log("request body ================== ", reqBody);
+        //console.log("request body ================== ", reqBody);
         const {findUser} = reqBody;
-        // console.log("username is .......", username)
+        // //console.log("username is .......", username)
         const PortfolioData = await Data.find({findUser: findUser});
-        //console.log(member);
-        console.log(PortfolioData);
+        ////console.log(member);
+        //console.log(PortfolioData);
         return NextResponse.json({
             PortfolioData
         })
