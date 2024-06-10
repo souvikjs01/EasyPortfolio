@@ -71,7 +71,9 @@ interface NavStruct {
   icon?: any;
 }
 interface HomePageStruct {
-  NavSection?: NavStruct;
+  NavGithubSection?: NavStruct;
+  NavLinkedInSection?: NavStruct;
+  NavInstaSection?: NavStruct;
   HeroSection?: HeroStruct;
   ContactSection?: ContactStruct;
   AboutSection?: AboutStruct;
@@ -82,6 +84,9 @@ interface HomePageStruct {
 }
 interface fetchedfromBackend {
   navbar?: {link: string, name: string, icon: any}[];
+  navgithub?: {link: string, name: string, icon: any},
+  navinsta?: {link: string, name: string, icon: any},
+  navlinkedin: {link: string, name: string, icon: any},
   template?: string;
   username?: string;
   whatyouare?: string;
@@ -180,6 +185,9 @@ useEffect(() => {
   fetchData();
 },[]);
 const data:HomePageStruct = {
+  NavGithubSection:{link: fetchedfromBackend?.navgithub?.link, name: fetchedfromBackend?.navgithub?.name, icon: fetchedfromBackend?.navgithub?.icon},
+  NavLinkedInSection:{link: fetchedfromBackend?.navlinkedin?.link, name: fetchedfromBackend?.navlinkedin?.name, icon: fetchedfromBackend?.navlinkedin?.icon},
+  NavInstaSection:{link: fetchedfromBackend?.navinsta?.link, name: fetchedfromBackend?.navinsta?.name, icon: fetchedfromBackend?.navinsta?.icon},
   HeroSection: {Name: fetchedfromBackend?.username, WhatYouAre: fetchedfromBackend?.whatyouare, Summary: fetchedfromBackend?.summary},
   ContactSection: {Address: fetchedfromBackend?.address, Mobile: fetchedfromBackend?.mobile, Email: fetchedfromBackend?.email},
   ProjectSection: fetchedfromBackend?.projects?.map(project => ({
@@ -247,7 +255,7 @@ const data:HomePageStruct = {
       </div>
       <button className=" p-2 bg-neutral-800 rounded-lg flex flex-row " onClick={()=>{setX(!temp1Form)}}><svg width="25" height="25" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg> Go back</button>
       <div className="container mx-auto px-8">
-        <Navbar />
+        <Navbar NavGithub_={data.NavGithubSection} NavLinkedIn_={data.NavLinkedInSection} NavInsta_={data.NavInstaSection}/>
         <Hero Name_={data.HeroSection?.Name} WhatYouAre_={data.HeroSection?.WhatYouAre} Summary_={data.HeroSection?.Summary}/>
         <About data={data.AboutSection}/>
         <Technologies technologies_={data.TechnologySection}/>
