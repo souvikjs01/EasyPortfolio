@@ -87,7 +87,9 @@ const SocialLinks: React.FC<PropType> = ({linked_}) =>{
       // }
     }
   }, [linked_]);
-
+  const deleteHandle = (index: number) => {
+    setLinked(prevlinks => prevlinks.filter((_, i) => i !== index));
+  };
   const addHandle = (name: string, icon: any, color: string) => {
     if (icon === "Nothing") {
       setSelected({ name: name, icon: icon, color: color });
@@ -289,7 +291,9 @@ const SocialLinks: React.FC<PropType> = ({linked_}) =>{
         </div>
         <div className="mb-10 flex flex-row flex-wrap justify-center text-center items-center">
           {linked.map(({ url, name, icon, color }, index) => (
-            <a href={url} key={index} target="_blank" rel="noopener noreferrer">
+            <div className="relative p-2">
+            <a href="#" key={index} target="_blank" rel="noopener noreferrer" >
+              <img onClick={() => deleteHandle(index)} src="/cross.png" alt="cross" width={20} height={20} className="absolute right-0 top-0"/>
               <div className="m-2 p-2 text-center flex flex-row items-center">
                 <div
                   className="rounded-2xl flex items-center justify-center border-4 border-neutral-800 p-4 cursor-pointer"
@@ -300,6 +304,7 @@ const SocialLinks: React.FC<PropType> = ({linked_}) =>{
                 </div>
               </div>
             </a>
+            </div>
           ))}
         </div>
       </div>

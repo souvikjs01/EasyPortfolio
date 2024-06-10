@@ -31,9 +31,11 @@ interface ExperienceStruct {
     const [description, setdescription] = React.useState('');
     const [experience, setexperience] = useRecoilState<ExperienceStruct[]>(experienceState);
     const Count = useRecoilValue(fetchCount);
-    console.log("experience_ prop == ", experiences_)
-    console.log("experience prop == ", experience)
-    
+    // console.log("experience_ prop == ", experiences_)
+    // console.log("experience prop == ", experience)
+    const deleteExperience = (index: number) => {
+        setexperience(prevExperience => prevExperience.filter((_, i) => i !== index));
+      };
     useEffect(()=>{
         if(Count < 1) {
             if(experiences_ ) setexperience(experiences_);
@@ -78,7 +80,8 @@ interface ExperienceStruct {
             </div>
             {experience.map(({years, role, company, description, stack}, index)=>(
                     <div>
-                        <div className='mb-8 flex flex-wrap lg:justify-center'>
+                        <div className='mb-8 relative flex flex-wrap lg:justify-center'>
+                        <img onClick={() => deleteExperience(index)} src="/cross.png" alt="cross" width={20} height={20} className="absolute right-0 top-0"/>
                             <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='w-full lg:w-1/4'>
                                 <p className='mb-2 text-sm text-neutral-400'>{years}</p>
                             </motion.div>

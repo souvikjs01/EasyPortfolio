@@ -28,7 +28,9 @@ interface ProjectStruct {
     const [github, setgithub] = useState('');
     const [hosted, sethosted] = useState('');
     const Count = useRecoilValue(fetchCount);
-
+    const deleteProject = (index: number) => {
+        setProjects(prevProjects => prevProjects.filter((_, i) => i !== index));
+      };
     useEffect(()=>{
         if(Count < 1) {
             if(projects ) setProjects(projects);
@@ -69,11 +71,12 @@ interface ProjectStruct {
                     
                 </div>
             </motion.div>
-            {Projects.map(({projectName, description, technologies, github, hosted})=>(
-                <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='mb-8 flex flex-wrap lg:justify-center'>
+            {Projects.map(({projectName, description, technologies, github, hosted}, index)=>(
+                <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='mb-8 relative flex flex-wrap lg:justify-center'>
                     <div className='w-full lg:w-1/4'>
                         <Image src="/o1.jpg" alt="" width={200} height={200} className='rounded-lg'/>
                     </div>
+                    <img onClick={() => deleteProject(index)} src="/cross.png" alt="cross" width={20} height={20} className="absolute right-0 top-0"/>
                     <div className='w-full max-w-xl lg:w-3/4'>
                         <h6 className='mb-2 font-semibold'>{projectName}</h6>
                         <p className='mb-4 text-neutral-400'>{description}</p>
