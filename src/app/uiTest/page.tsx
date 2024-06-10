@@ -1,12 +1,9 @@
 import React from 'react'
 
-function 
-() {
+function page() {
   return (
-    <div>
-        
-    </div>
+    <div>page</div>
   )
 }
 
-export default 
+export default page
