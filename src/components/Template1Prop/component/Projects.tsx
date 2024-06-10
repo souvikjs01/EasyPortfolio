@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { LuLink } from "react-icons/lu";
-
+import InfinitySlider from "@/components/basic/InfinitySlider/InfinitySlider";
 // Define the type for a project
 interface ProjectStruct {
   
@@ -30,6 +30,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       >
         Projects
       </motion.h1>
+
       <div>
         {projects &&
           projects?.map((project, index) => (

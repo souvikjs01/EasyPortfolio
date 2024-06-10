@@ -77,7 +77,15 @@ const config = {
       //   typing: "typing 2s steps(20) infinite alternate, blink .7s infinite"
       // },
       keyframes: {
-        
+        infinite_scroll: {
+          // "100%": {transform: "translate(calc(-50% + 0.25rem))"}
+          from: { transform: 'translateX(80%)' },
+          to: { transform: 'translateX(-80%)' },
+        },
+        scroll:{
+          from: { transform: 'translateX(0)'},
+          to: { transform: 'translateX(-100%)'}
+        },
         spotlight: {
           "0%": {
             opacity: '0',
@@ -88,11 +96,11 @@ const config = {
             transform: "translate(-50%,-40%) scale(1)",
           },
         },
-        scroll: {
-          to: {
-            transform: "translate(calc(-50% - 0.5rem))",
-          },
-        },
+        // scroll: {
+        //   to: {
+        //     transform: "translate(calc(-50% - 0.5rem))",
+        //   },
+        // },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -103,11 +111,13 @@ const config = {
         },
       },
       animation: {
+        scroll: "50s slide linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         typing: "typing 2s steps(20) infinite alternate, blink .7s infinite",
         spotlight: "spotlight 2s ease .75s 1 forwards",
-        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        infinite_scroll: "infinite_scroll 10s linear infinite"
+        // scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
     },
   },
