@@ -34,6 +34,7 @@ interface HeroStruct {
   Name?: string;
   WhatYouAre?: string;
   Summary?: string;
+  Image?: string;
 }
 
 interface ContactStruct {
@@ -127,6 +128,7 @@ const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
             Name={Data?.HeroSection?.Name}
             WhatYouAre={Data?.HeroSection?.WhatYouAre}
             Summary={Data?.HeroSection?.Summary}
+            Image={Data?.HeroSection?.Image}
           />
           <About data={Data?.AboutSection} />
           <Technologies technologies={Data?.TechnologySection} />

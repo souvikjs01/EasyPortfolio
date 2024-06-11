@@ -6,6 +6,7 @@ interface MyComponentProps {
   Name?: string;
   WhatYouAre?: string;
   Summary?: string;
+  Image?: string;
 }
 const container = (delay:any) => ({
     hidden: {x: -100, opacity: 0},
@@ -15,7 +16,7 @@ const container = (delay:any) => ({
         transition: {duration: 0.5, delay: delay},
     }
 })
-const Hero : React.FC<MyComponentProps> = ({Name, WhatYouAre, Summary}) => {
+const Hero : React.FC<MyComponentProps> = ({Name, WhatYouAre, Summary, Image}) => {
   return (
     <div className="border-b border-neutral-900 pb-4 lg:mb-35">
       <div className="flex flex-wrap">
@@ -29,7 +30,7 @@ const Hero : React.FC<MyComponentProps> = ({Name, WhatYouAre, Summary}) => {
         </div>
         <div className="w-full lg:w-1/2 lg:p-8">
             <div className="flex justify-center ">
-                <motion.img initial={{x:100, opacity: 0}} animate={{x:0, opacity:1}} transition={{duration:1, delay:1.2}} src="/heroDefault.jpg" alt="Image" height={100} width={100} style={{height:'450px', width:'auto', borderRadius:'10px'}}/>
+                <motion.img initial={{x:100, opacity: 0}} animate={{x:0, opacity:1}} transition={{duration:1, delay:1.2}} src={Image} alt="Image" height={100} width={100} style={{height:'450px', width:'auto', borderRadius:'10px'}}/>
             </div>
         </div>
       </div>

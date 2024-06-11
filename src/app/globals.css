@@ -2,21 +2,7 @@
   @tailwind components;
   @tailwind utilities;
 
-  .scroller {
-    overflow: hidden;
-    -webkit-mask: linear-gradient(
-      90deg,
-      transparent,
-      white 20%,
-      white 80%,
-      transparent
-    );
-    mask: linear-gradient(90deg, transparent, white 20% white 80%, transparent);
-  }
-  .scroller_inner{
-    flex-wrap: nowrap;
-    width: max-content;
-  }
+  
   @layer base {
     :root {
       --background: 0 0% 100%;
