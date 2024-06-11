@@ -13,6 +13,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useParams } from 'next/navigation';
+import { useState } from "react";
+import { PiShareFatBold } from "react-icons/pi";
 
 interface ProjectStruct {
   projectName?: string;
@@ -87,7 +89,16 @@ interface WrapAllProps {
 const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
   const { id: name } = useParams();
   const { data: session } = useSession();
-
+  const [copied, setCopied] = useState(false);
+  const copyToClipboard = async () => {
+    try {
+        await navigator.clipboard.writeText(window.location.href);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+    }
+};
   function cleanEmailAddress(email: string): string {
     // Split the email into local part and domain part
     const [localPart, domainPart] = email.split('@');
@@ -152,7 +163,26 @@ const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
               Update Portfolio
             </motion.button>
           </Link>
+
         )}
+        {
+          isSameUser && <div className="fixed left-6 bottom-6">
+            <button
+                onClick={copyToClipboard}
+                className="text-white px-4 py-2 text-4xl rounded-md focus:outline-none"
+            >
+               {copied && (
+                <span className="text-xl bg-neutral-700 bg-rounded p-2 rounded-lg">
+                    Copied!
+                </span>
+            )}
+            {!copied && (
+              <span><PiShareFatBold /></span>
+            )}
+            </button>
+            
+          </div>
+        }
       </div>
     </div>
   );

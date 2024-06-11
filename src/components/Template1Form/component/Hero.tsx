@@ -9,6 +9,7 @@ import { Summary } from "@/recoilState";
 import { useEffect } from "react";
 import { CldUploadWidget } from 'next-cloudinary';
 import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast"
 
 const container = (delay:any) => ({
     hidden: {x: -100, opacity: 0},
@@ -31,7 +32,9 @@ const Hero : React.FC<MyComponentProps> = ({Name_, WhatYouAre_, Summary_, Image_
   const [Count, setCount] = useRecoilState(fetchCount);
   const [buttonText, setButtonText] = useState("Upload Image")
   const [url, seturl] = useRecoilState(HeroImage);
-  console.log("prop image = ", Image_);
+  const { toast } = useToast()
+
+  // console.log("prop image = ", Image_);
   const handelImageUpload = async(result: any) => {
     try {
         console.log(result)
@@ -39,17 +42,17 @@ const Hero : React.FC<MyComponentProps> = ({Name_, WhatYouAre_, Summary_, Image_
         setButtonText(result.info.original_filename);
         seturl(result.info.url);
         
-        // toast({
-        //     title: "Image uploaded, now add description",
-        //     // description: "Your messages motivate us to work harder and better",
-        // })
+        toast({
+            title: "Image set to be uploaded",
+            // description: "Your messages motivate us to work harder and better",
+        })
     } catch (error) {
-        // toast({
-        //     variant: "destructive",
-        //     title: "Uh oh! Something went wrong.",
-        //     description: "Image could not be uploaded.",
+        toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: "Image could not be uploaded.",
             
-        // })
+        })
         console.log("error uploading image", error);
     }
     
