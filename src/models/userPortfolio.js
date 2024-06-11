@@ -28,6 +28,9 @@ const portfolioSchema = new mongoose.Schema({
     summary : {
         type: String,
     },
+    heroImage: {
+        type: String,
+    },
     resume : {
         type: String,
     },

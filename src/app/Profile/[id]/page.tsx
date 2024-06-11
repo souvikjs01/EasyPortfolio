@@ -26,6 +26,7 @@ interface HeroStruct {
   Name?: string;
   WhatYouAre?: string;
   Summary?: string;
+  Image?: string;
 }
 
 interface ContactStruct {
@@ -75,7 +76,7 @@ interface PortfolioDataVal {
   username?: string;
   whatyouare?: string;
   summary?: string;
-  image?: string;
+  heroImage?: string;
   abouttext?: string;
   address?: string;
   mobile?: string;
@@ -107,7 +108,7 @@ const UserProfile: React.FC = () => {
     NavGithubSection:{link: portfolioDataVal?.navgithub?.link, name: portfolioDataVal?.navgithub?.name, icon: portfolioDataVal?.navgithub?.icon},
     NavLinkedInSection:{link: portfolioDataVal?.navlinkedin?.link, name: portfolioDataVal?.navlinkedin?.name, icon: portfolioDataVal?.navlinkedin?.icon},
     NavInstaSection:{link: portfolioDataVal?.navinsta?.link, name: portfolioDataVal?.navinsta?.name, icon: portfolioDataVal?.navinsta?.icon},
-    HeroSection: {Name: portfolioDataVal?.username, WhatYouAre: portfolioDataVal?.whatyouare, Summary: portfolioDataVal?.summary},
+    HeroSection: {Name: portfolioDataVal?.username, WhatYouAre: portfolioDataVal?.whatyouare, Summary: portfolioDataVal?.summary, Image: portfolioDataVal?.heroImage},
     ContactSection: {Address: portfolioDataVal?.address, Mobile: portfolioDataVal?.mobile, Email: portfolioDataVal?.email},
     ProjectSection: portfolioDataVal?.projects?.map(project => ({
       projectName: project.projectName,

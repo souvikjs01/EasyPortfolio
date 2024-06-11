@@ -1,11 +1,15 @@
+"use client"
 import React from "react";
 // import Image from 'next/image'
 import {motion} from 'framer-motion'
 import { useRecoilState } from "recoil";
-import { Name, fetchCount } from "@/recoilState";
+import { Name, fetchCount, HeroImage } from "@/recoilState";
 import { WhatYouAre } from "@/recoilState";
 import { Summary } from "@/recoilState";
 import { useEffect } from "react";
+import { CldUploadWidget } from 'next-cloudinary';
+import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast"
 
 const container = (delay:any) => ({
     hidden: {x: -100, opacity: 0},
@@ -19,20 +23,48 @@ interface MyComponentProps {
   Name_?: string;
   WhatYouAre_?: string;
   Summary_?: string;
+  Image_?: string;
 }
-const Hero : React.FC<MyComponentProps> = ({Name_, WhatYouAre_, Summary_}) => {
+const Hero : React.FC<MyComponentProps> = ({Name_, WhatYouAre_, Summary_, Image_}) => {
   const [name, setname] = useRecoilState(Name);
   const [whatuare, setwhatuare] = useRecoilState(WhatYouAre);
   const [summary, setsummary] = useRecoilState(Summary);
   const [Count, setCount] = useRecoilState(fetchCount);
-  
+  const [buttonText, setButtonText] = useState("Upload Image")
+  const [url, seturl] = useRecoilState(HeroImage);
+  const { toast } = useToast()
+
+  // console.log("prop image = ", Image_);
+  const handelImageUpload = async(result: any) => {
+    try {
+        console.log(result)
+        //console.log("result", result.info.url);
+        setButtonText(result.info.original_filename);
+        seturl(result.info.url);
+        
+        toast({
+            title: "Image set to be uploaded",
+            // description: "Your messages motivate us to work harder and better",
+        })
+    } catch (error) {
+        toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: "Image could not be uploaded.",
+            
+        })
+        console.log("error uploading image", error);
+    }
+    
+}
   useEffect(() => {
     //console.log("faetchcount", Count)
     if(Count<1){
-      if(Name_ || WhatYouAre_ || Summary_){
+      if(Name_ || WhatYouAre_ || Summary_ || Image_){
         if(Name_) setname(Name_);
         if(WhatYouAre_) setwhatuare(WhatYouAre_);
         if(Summary_) setsummary(Summary_);
+        if(Image_) seturl(Image_);
         setCount(Count+1)
       }
     }
@@ -69,21 +101,37 @@ const Hero : React.FC<MyComponentProps> = ({Name_, WhatYouAre_, Summary_}) => {
           </div>
         </div>
         <div className="w-full lg:w-1/2 lg:p-8">
+          <div className="flex justify-center items-center content-center">
+        <CldUploadWidget uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
+                onSuccess={handelImageUpload}>
+      
+          {({ open }) => {
+            return (
+              <button className="p-2 m-2 bg-cyan-700 rounded-lg hover:bg-cyan-500" onClick={() => open()}>
+                {buttonText}
+              </button>
+            );
+          }}
+        </CldUploadWidget>
+        </div>
         <div className="relative flex justify-center cursor-pointer group">
-        {HeroImage()}
+        {HeroImageLocal(url)}
       </div>
         </div>
       </div>
     </div>
   );
 }
-function HeroImage() {
+function HeroImageLocal(url: string) {
   return <div className='relative'>
+
+    
+
     <motion.img
       initial={{ x: 100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 1, delay: 1.2 }}
-      src="./blank2.jpg"
+      src={url}
       alt="Image"
       height={100}
       width={100}

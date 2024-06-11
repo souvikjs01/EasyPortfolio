@@ -72,6 +72,10 @@ export const NavbarItems = atom<ListItem[]>({
 })
 // Hero 
 
+export const HeroImage = atom({
+    key: 'HeroImage',
+    default: 'heroDefault.jpg'
+})
 
 export const Name = atom({
     key: 'Name',
