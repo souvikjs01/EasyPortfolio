@@ -12,7 +12,7 @@ import SocialLinks from "./component/SocialLinks";
 import {motion} from 'framer-motion';
 import { Button } from "../ui/moving-border";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { GithubNavbar, InstaNavbar, LinkedInNavbar, NavbarItems, temp1Form } from "@/recoilState";
+import { AboutImage, GithubNavbar, InstaNavbar, LinkedInNavbar, NavbarItems, temp1Form } from "@/recoilState";
 import { temp2Form } from "@/recoilState";
 import { temp1 } from "@/recoilState";
 import { temp2 } from "@/recoilState";
@@ -93,7 +93,7 @@ interface fetchedfromBackend {
   whatyouare?: string;
   summary?: string;
   heroImage?: string;
-  
+  aboutImage?: string;
   abouttext?: string;
   address?: string;
   mobile?: string;
@@ -141,6 +141,7 @@ function Home() {
   const SocialHandlesVal = useRecoilValue(SocialHandles);
   const projectStateVal = useRecoilValue(projectState);
   const experienceStateVal = useRecoilValue(experienceState);
+  const AboutImageVal = useRecoilValue(AboutImage);
   const {data: session} = useSession();
   const [email, setemail] = React.useState('');
   const [fetchedfromBackend, setfetchedfromBackend] = React.useState<fetchedfromBackend>();
@@ -220,7 +221,7 @@ const data:HomePageStruct = {
   })),
   AboutSection: {
     abouttext: fetchedfromBackend?.abouttext,
-    image: '/aboutDefault.jpg',
+    image: fetchedfromBackend?.aboutImage,
   },
   SocialSection:fetchedfromBackend?.sociallinks?.map(social=>({
     url: social.url,
@@ -242,13 +243,13 @@ const data:HomePageStruct = {
       
 
       const portfolio = await axios.post('../../api/users/uploadInformation', {
-        navgithub:NavGithub, navlinkedin:NavLinkedIn, navinsta:NavInsta, template:template ,username: NameVal, findUser: email, whatyouare: WhatYouAreVal, heroImage: HeroImageVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal, email: EmailVal
+        navgithub:NavGithub, navlinkedin:NavLinkedIn, navinsta:NavInsta, template:template ,username: NameVal, findUser: email, whatyouare: WhatYouAreVal, heroImage: HeroImageVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, aboutImage: AboutImageVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal, email: EmailVal
       });
       // //console.log('uploaded', portfolio)
       router.push(`/Profile/${email}`)
     } catch (error) {
       setpublish('Try again');
-      //console.log('error', error);
+      console.log('error', error);
     } finally{
       setpublish('redirecting...');
     }

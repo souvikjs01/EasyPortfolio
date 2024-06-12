@@ -34,7 +34,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
           className='w-full lg:w-1/2 lg:p-8'
         >
           <div className='flex items-center justify-center'>
-            {data.image && <Image src={data.image} alt="About Image" height={500} width={500} className='rounded-2xl'/>}
+            {data.image && <img src={data.image} alt="About Image" height={500} width={500} className='rounded-2xl'/>}
           </div>
         </motion.div>
         <motion.div 

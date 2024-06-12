@@ -78,6 +78,7 @@ interface PortfolioDataVal {
   summary?: string;
   heroImage?: string;
   abouttext?: string;
+  aboutImage?: string;
   address?: string;
   mobile?: string;
   sociallinks?: { url: string; name: string; icon: string,  color: string}[];
@@ -131,7 +132,7 @@ const UserProfile: React.FC = () => {
     })),
     AboutSection: {
       abouttext: portfolioDataVal?.abouttext,
-      image: '/aboutDefault.jpg',
+      image: portfolioDataVal?.aboutImage,
     },
     SocialSection:portfolioDataVal?.sociallinks?.map(social=>({
       url: social.url,

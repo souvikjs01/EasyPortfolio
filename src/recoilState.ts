@@ -77,6 +77,11 @@ export const HeroImage = atom({
     default: 'heroDefault.jpg'
 })
 
+export const AboutImage = atom({
+    key: 'AboutImage',
+    default: '/aboutDefault.jpg'
+})
+
 export const Name = atom({
     key: 'Name',
     default: ''
