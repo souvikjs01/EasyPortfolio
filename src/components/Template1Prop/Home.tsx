@@ -17,6 +17,7 @@ import { useState } from "react";
 import { PiShareFatBold } from "react-icons/pi";
 
 interface ProjectStruct {
+  image?: string;
   projectName?: string;
   description?: string;
   technologies?: string[];
@@ -87,6 +88,7 @@ interface WrapAllProps {
 }
 
 const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
+  console.log(Data);
   const { id: name } = useParams();
   const { data: session } = useSession();
   const [copied, setCopied] = useState(false);
@@ -172,7 +174,7 @@ const HomePage: React.FC<WrapAllProps> = ({ Data }) => {
                 className="text-white px-4 py-2 text-4xl rounded-md focus:outline-none"
             >
                {copied && (
-                <span className="text-xl bg-neutral-700 bg-rounded p-2 rounded-lg">
+                <span className="text-sm text-cyan-300 bg-neutral-900 bg-rounded p-2 rounded-lg" style={{color: 'cyan'}}>
                     Copied!
                 </span>
             )}

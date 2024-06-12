@@ -22,6 +22,7 @@ import { HeroImage, Name, WhatYouAre, Summary, Resume, AboutText, Technology_, A
 import axios from "axios";
 import { useSession } from "next-auth/react";
 interface ProjectStruct {
+    image?: string;
     projectName?: string;
     description?: string;
     technologies?: string[];
@@ -100,6 +101,7 @@ interface fetchedfromBackend {
   sociallinks?: { url: string; name: string; icon: string,  color: string}[];
   technology?: { skill: string; color: string, icon: string}[];
   projects?: {
+    projectImage?: string;
     projectName?: string;
     description?: string;
     technologies?: string[];
@@ -201,6 +203,7 @@ const data:HomePageStruct = {
   },
   ContactSection: {Address: fetchedfromBackend?.address, Mobile: fetchedfromBackend?.mobile, Email: fetchedfromBackend?.email},
   ProjectSection: fetchedfromBackend?.projects?.map(project => ({
+    image: project.projectImage,
     projectName: project?.projectName,
     description: project?.description,
     technologies: project?.technologies,

@@ -8,6 +8,7 @@ interface Project {
 }
 // Project Type
 interface ProjectItem {
+    image?:string;
     projectName?: string;
     description?: string;
     technologies?: string[];
