@@ -1,10 +1,10 @@
 "use client";
 import { TextGenerateEffect } from "../../ui/text-generate-effect";
 import { Spotlight } from '@/components/ui/Spotlight'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from "framer-motion";
 import { useRecoilState } from "recoil";
-import { Name } from "@/recoilState";
+import { Name, fetchCount } from "@/recoilState";
 import { WhatYouAre } from "@/recoilState";
 import { Summary } from "@/recoilState";
 
@@ -18,12 +18,28 @@ const container = (delay:any) => ({
 })
 
 const words = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nulla rerum sapiente aliquam consequuntur commodi quod error sit suscipit quidem! Officia reprehenderit esse deserunt blanditiis earum,`;
-
-const About = () => {
+interface MyComponentProps {
+    Name_?: string;
+    WhatYouAre_?: string;
+    Summary_?: string;
+}
+const About = ({ Name_, WhatYouAre_, Summary_}: MyComponentProps) => {
     const [name, setname] = useRecoilState(Name);
     const [whatuare, setwhatuare] = useRecoilState(WhatYouAre);
     const [summary, setsummary] = useRecoilState(Summary);
+    const [Count, setCount] = useRecoilState(fetchCount)
     
+    useEffect(() => {
+        //console.log("faetchcount", Count)
+        if(Count<1){
+            if(Name_ || WhatYouAre_ || Summary_){
+            if(Name_) setname(Name_);
+            if(WhatYouAre_) setwhatuare(WhatYouAre_);
+            if(Summary_) setsummary(Summary_);
+            setCount(Count+1)
+          }
+        }
+    }, [Name_, WhatYouAre_, Summary_]);
   return (
     <div className="text-center p-10 py-10 flex flex-col">
         <Spotlight

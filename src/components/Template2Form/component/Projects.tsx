@@ -1,23 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import {motion} from 'framer-motion'
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { fetchCount, projectState } from '@/recoilState';
+import { LuLink } from 'react-icons/lu';
 
-interface ProjectItems {
-    projectName: string;
-    description: string;
-    technologies: string[];
-    github: string;
-    hosted: string;
+interface ProjectStruct {
+    projectName?: string;
+    description?: string;
+    technologies?: string[];
+    github?: string;
+    hosted?: string;
 }
-function Projects() {
+interface ProjectsProps {
+    projects?: ProjectStruct[];
+}
+const Projects: React.FC<ProjectsProps> = ({ projects }) => {
     const [projectName, setprojectName] = useState('');
     const [description, setdescription] = useState('');
     const [technologies, settechnologies] = useState<string[]>([]);
     const [tech, settech] = useState('');
     const [github, setgithub] = useState('');
     const [hosted, sethosted] = useState('');
-    const [projects, setProjects] = useState<ProjectItems[]>([]);
-    
+    const [Projects, setProjects] = useRecoilState(projectState);
+    const Count = useRecoilValue(fetchCount);
+
+    const deleteProject = (index: number) => {
+        setProjects(prevProjects => prevProjects.filter((_, i) => i !== index));
+    };
+    useEffect(()=>{
+        if(Count < 1) {
+            if(projects ) setProjects(projects);
+        }
+    }, [projects])
     const addTechnology = () => {
         settechnologies(prevItem => [...prevItem, tech]);
     }
@@ -56,9 +71,37 @@ function Projects() {
                     
                 </div>
             </motion.div>
+
+            {Projects.map(({projectName, description, technologies, github, hosted}, index)=>(
+                <motion.div key={index} whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='mb-8 relative flex flex-wrap lg:justify-center'>
+                    <div className='w-full lg:w-1/4'>
+                        <Image src="/o1.jpg" alt="" width={200} height={200} className='rounded-lg'/>
+                    </div>
+                    <img onClick={() => deleteProject(index)} src="/cross.png" alt="cross" width={20} height={20} className="absolute right-0 top-0"/>
+                    <div className='w-full max-w-xl lg:w-3/4'>
+                        <h6 className='mb-2 font-semibold'>{projectName}</h6>
+                        <p className='mb-4 text-neutral-400'>{description}</p>
+                        <div className='mt-2 flex flex-row flex-wrap'>
+                            {technologies && technologies.map((techi, index)=>(
+                                <div key={index} className='mt-1 mr-1'>
+                                    <span className=' rounded bg-neutral-900  px-2 py-1 text-sm font-medium text-purple-600'>{techi}</span>
+                                </div>
+                            ))}
+                        </div>
+                        <div className='flex flex-row flex-wrap gap-4 mt-3 pt-2'>
+                            {github && (<a href={github} className='flex flex-row text-blue-500'><LuLink className='text-xl'/>Github</a>)}
+                            {hosted && (<a href={hosted} className='flex flex-row text-blue-500'><LuLink className='text-xl'/>Hosted</a>)}
+                        </div>
+                        
+                    </div>
+                </motion.div>
+            ))}
         </div>
     </div>
   )
 }
 
 export default Projects
+
+
+
