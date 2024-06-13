@@ -7,6 +7,7 @@ import App from '@/components/Middlepages/Spinners';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 interface ProjectStruct {
+  image?: string;
   projectName?: string;
   description?: string;
   technologies?: string[];
@@ -78,11 +79,13 @@ interface PortfolioDataVal {
   summary?: string;
   heroImage?: string;
   abouttext?: string;
+  aboutImage?: string;
   address?: string;
   mobile?: string;
   sociallinks?: { url: string; name: string; icon: string,  color: string}[];
   technology?: { skill: string; color: string, icon: string}[];
   projects?: {
+    image?: string;
     projectName?: string;
     description?: string;
     technologies?: string[];
@@ -111,6 +114,7 @@ const UserProfile: React.FC = () => {
     HeroSection: {Name: portfolioDataVal?.username, WhatYouAre: portfolioDataVal?.whatyouare, Summary: portfolioDataVal?.summary, Image: portfolioDataVal?.heroImage},
     ContactSection: {Address: portfolioDataVal?.address, Mobile: portfolioDataVal?.mobile, Email: portfolioDataVal?.email},
     ProjectSection: portfolioDataVal?.projects?.map(project => ({
+      image: project.image,
       projectName: project.projectName,
       description: project.description,
       technologies: project.technologies,
@@ -131,7 +135,7 @@ const UserProfile: React.FC = () => {
     })),
     AboutSection: {
       abouttext: portfolioDataVal?.abouttext,
-      image: '/aboutDefault.jpg',
+      image: portfolioDataVal?.aboutImage,
     },
     SocialSection:portfolioDataVal?.sociallinks?.map(social=>({
       url: social.url,

@@ -5,8 +5,9 @@ import { useState } from 'react'
 import { LuLink } from "react-icons/lu";
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { fetchCount, projectState } from '@/recoilState';
-
+import { CldImage, CldUploadWidget } from 'next-cloudinary';
 interface ProjectStruct {
+    image?: string;
     projectName?: string;
     description?: string;
     technologies?: string[];
@@ -27,7 +28,32 @@ interface ProjectStruct {
     const [Projects, setProjects] = useRecoilState(projectState);
     const [github, setgithub] = useState('');
     const [hosted, sethosted] = useState('');
+    const [buttonText, setButtonText] = useState("Upload Image");
+
+    const [projectImage, setprojectImage] = useState('/o2.jpg');
+
     const Count = useRecoilValue(fetchCount);
+    const handelImageUpload = async (result: any) => {
+        try {
+          console.log(result);
+          //console.log("result", result.info.url);
+          setButtonText(result.info.original_filename);
+          setprojectImage(result.info.url);
+    
+          // toast({
+          //     title: "Image set to be uploaded",
+          //     // description: "Your messages motivate us to work harder and better",
+          // })
+        } catch (error) {
+          // toast({
+          //     variant: "destructive",
+          //     title: "Uh oh! Something went wrong.",
+          //     description: "Image could not be uploaded.",
+    
+          // })
+          console.log("error uploading image", error);
+        }
+      };
     const deleteProject = (index: number) => {
         setProjects(prevProjects => prevProjects.filter((_, i) => i !== index));
       };
@@ -41,7 +67,7 @@ interface ProjectStruct {
     }
 
     const addProject = () => {
-        setProjects(prevItem => [...prevItem, {projectName: projectName, description: description, technologies: technologies, github: github, hosted: hosted}]);
+        setProjects(prevItem => [...prevItem, {image:projectImage, projectName: projectName, description: description, technologies: technologies, github: github, hosted: hosted}]);
     }
   return (
     <div className='border-b border-neutral-900 pb-4'>
@@ -49,7 +75,24 @@ interface ProjectStruct {
         <div>
             <motion.div whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='bg-slate-700 lg:mx-20 bg-opacity-10 p-2 rounded-lg mb-8 flex flex-wrap lg:justify-center'>
                 <div className='w-full lg:w-1/4 my-2'>
-                    <Image src="/o1.jpg" alt="" width={200} height={200} className='rounded-lg'/>
+                <CldUploadWidget
+                uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
+                onSuccess={handelImageUpload}
+              >
+                {
+                
+                ({ open }) => {
+                  return (
+                    <button
+                      className="p-2 m-2 bg-cyan-700 rounded-lg hover:bg-cyan-500"
+                      onClick={() => open()}
+                    >
+                      {buttonText}
+                    </button>
+                  );
+                }}
+              </CldUploadWidget>
+                    <img src={projectImage} alt="" width={200} height={200} className='rounded-lg'/>
                 </div>
                 <div className='w-full max-w-xl lg:w-3/4'>
                     <h6 className='mb-2 font-semibold'>Project Name - <input type="text" value={projectName} onChange={(e)=>{setprojectName(e.target.value)}} className='mb-2 text-sm outline outline-blue-500 outline-1 rounded-lg text-neutral-400 ml-1 pl-1 w-56 h-8 bg-transparent' placeholder='Eg: Tic-Tac-Toe'/></h6>
@@ -71,11 +114,11 @@ interface ProjectStruct {
                     
                 </div>
             </motion.div>
-            {Projects.map(({projectName, description, technologies, github, hosted}, index)=>(
+            {Projects.map(({image, projectName, description, technologies, github, hosted}, index)=>(
                 <motion.div key={index} whileInView={{opacity:1, x:0}} initial={{opacity:0, x:-100}} transition={{duration:1}} className='mb-8 relative flex flex-wrap lg:justify-center'>
-                    <div className='w-full lg:w-1/4'>
-                        <Image src="/o1.jpg" alt="" width={200} height={200} className='rounded-lg'/>
-                    </div>
+                    {image && <div className='w-full lg:w-1/4'>
+                        <img src={image} alt="" width={200} height={200} className='rounded-lg'/>
+                    </div>}
                     <img onClick={() => deleteProject(index)} src="/cross.png" alt="cross" width={20} height={20} className="absolute right-0 top-0"/>
                     <div className='w-full max-w-xl lg:w-3/4'>
                         <h6 className='mb-2 font-semibold'>{projectName}</h6>

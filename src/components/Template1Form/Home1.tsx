@@ -12,16 +12,17 @@ import SocialLinks from "./component/SocialLinks";
 import {motion} from 'framer-motion';
 import { Button } from "../ui/moving-border";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { GithubNavbar, InstaNavbar, LinkedInNavbar, NavbarItems, temp1Form } from "@/recoilState";
+import { AboutImage, GithubNavbar, InstaNavbar, LinkedInNavbar, NavbarItems, temp1Form } from "@/recoilState";
 import { temp2Form } from "@/recoilState";
 import { temp1 } from "@/recoilState";
 import { temp2 } from "@/recoilState";
 // importing the profile information
 import { useRouter } from "next/navigation";
-import {Name, WhatYouAre, Summary, Resume, AboutText, Technology_, Address, Email, Mobile, SocialHandles, experienceState, projectState} from '@/recoilState';
+import { HeroImage, Name, WhatYouAre, Summary, Resume, AboutText, Technology_, Address, Email, Mobile, SocialHandles, experienceState, projectState} from '@/recoilState';
 import axios from "axios";
 import { useSession } from "next-auth/react";
 interface ProjectStruct {
+    image?: string;
     projectName?: string;
     description?: string;
     technologies?: string[];
@@ -92,13 +93,15 @@ interface fetchedfromBackend {
   username?: string;
   whatyouare?: string;
   summary?: string;
-  image?: string;
+  heroImage?: string;
+  aboutImage?: string;
   abouttext?: string;
   address?: string;
   mobile?: string;
   sociallinks?: { url: string; name: string; icon: string,  color: string}[];
   technology?: { skill: string; color: string, icon: string}[];
   projects?: {
+    projectImage?: string;
     projectName?: string;
     description?: string;
     technologies?: string[];
@@ -130,6 +133,7 @@ function Home() {
   const NameVal = useRecoilValue(Name);
   const WhatYouAreVal = useRecoilValue(WhatYouAre);
   const SummaryVal = useRecoilValue(Summary);
+  const HeroImageVal = useRecoilValue(HeroImage);
   const ResumeVal = useRecoilValue(Resume);
   const AboutTextVal = useRecoilValue(AboutText);
   const Technology_Val = useRecoilValue(Technology_);
@@ -139,6 +143,7 @@ function Home() {
   const SocialHandlesVal = useRecoilValue(SocialHandles);
   const projectStateVal = useRecoilValue(projectState);
   const experienceStateVal = useRecoilValue(experienceState);
+  const AboutImageVal = useRecoilValue(AboutImage);
   const {data: session} = useSession();
   const [email, setemail] = React.useState('');
   const [fetchedfromBackend, setfetchedfromBackend] = React.useState<fetchedfromBackend>();
@@ -189,9 +194,16 @@ const data:HomePageStruct = {
   NavGithubSection:{link: fetchedfromBackend?.navgithub?.link, name: fetchedfromBackend?.navgithub?.name, icon: fetchedfromBackend?.navgithub?.icon},
   NavLinkedInSection:{link: fetchedfromBackend?.navlinkedin?.link, name: fetchedfromBackend?.navlinkedin?.name, icon: fetchedfromBackend?.navlinkedin?.icon},
   NavInstaSection:{link: fetchedfromBackend?.navinsta?.link, name: fetchedfromBackend?.navinsta?.name, icon: fetchedfromBackend?.navinsta?.icon},
-  HeroSection: {Name: fetchedfromBackend?.username, WhatYouAre: fetchedfromBackend?.whatyouare, Summary: fetchedfromBackend?.summary},
+  HeroSection: 
+  {   
+    Name: fetchedfromBackend?.username,
+    WhatYouAre: fetchedfromBackend?.whatyouare,
+    Summary: fetchedfromBackend?.summary,
+    Image: fetchedfromBackend?.heroImage
+  },
   ContactSection: {Address: fetchedfromBackend?.address, Mobile: fetchedfromBackend?.mobile, Email: fetchedfromBackend?.email},
   ProjectSection: fetchedfromBackend?.projects?.map(project => ({
+    image: project.projectImage,
     projectName: project?.projectName,
     description: project?.description,
     technologies: project?.technologies,
@@ -212,7 +224,7 @@ const data:HomePageStruct = {
   })),
   AboutSection: {
     abouttext: fetchedfromBackend?.abouttext,
-    image: '/aboutDefault.jpg',
+    image: fetchedfromBackend?.aboutImage,
   },
   SocialSection:fetchedfromBackend?.sociallinks?.map(social=>({
     url: social.url,
@@ -234,13 +246,13 @@ const data:HomePageStruct = {
       
 
       const portfolio = await axios.post('../../api/users/uploadInformation', {
-        navgithub:NavGithub, navlinkedin:NavLinkedIn, navinsta:NavInsta, template:template ,username: NameVal, findUser: email, whatyouare: WhatYouAreVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal, email: EmailVal
+        navgithub:NavGithub, navlinkedin:NavLinkedIn, navinsta:NavInsta, template:template ,username: NameVal, findUser: email, whatyouare: WhatYouAreVal, heroImage: HeroImageVal, summary: SummaryVal, resume: ResumeVal, abouttext: AboutTextVal, aboutImage: AboutImageVal, address: AddressVal, mobile: MobileVal, sociallinks: SocialHandlesVal, technology: Technology_Val, projects: projectStateVal, experience: experienceStateVal, email: EmailVal
       });
       // //console.log('uploaded', portfolio)
       router.push(`/Profile/${email}`)
     } catch (error) {
       setpublish('Try again');
-      //console.log('error', error);
+      console.log('error', error);
     } finally{
       setpublish('redirecting...');
     }
@@ -255,7 +267,7 @@ const data:HomePageStruct = {
       <button className=" p-2 bg-neutral-800 rounded-lg flex flex-row " onClick={()=>{setX(!temp1Form)}}><svg width="25" height="25" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg> Go back</button>
       <div className="container mx-auto px-8">
         <Navbar NavGithub_={data.NavGithubSection} NavLinkedIn_={data.NavLinkedInSection} NavInsta_={data.NavInstaSection}/>
-        <Hero Name_={data.HeroSection?.Name} WhatYouAre_={data.HeroSection?.WhatYouAre} Summary_={data.HeroSection?.Summary}/>
+        <Hero Name_={data.HeroSection?.Name} WhatYouAre_={data.HeroSection?.WhatYouAre} Summary_={data.HeroSection?.Summary} Image_={data.HeroSection?.Image}/>
         <About data={data.AboutSection}/>
         <Technologies technologies_={data.TechnologySection}/>
         <Experience experiences_={data.ExperienceSection}/>

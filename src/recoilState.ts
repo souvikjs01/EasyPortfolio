@@ -8,6 +8,7 @@ interface Project {
 }
 // Project Type
 interface ProjectItem {
+    image?:string;
     projectName?: string;
     description?: string;
     technologies?: string[];
@@ -75,6 +76,11 @@ export const NavbarItems = atom<ListItem[]>({
 export const HeroImage = atom({
     key: 'HeroImage',
     default: 'heroDefault.jpg'
+})
+
+export const AboutImage = atom({
+    key: 'AboutImage',
+    default: '/aboutDefault.jpg'
 })
 
 export const Name = atom({
